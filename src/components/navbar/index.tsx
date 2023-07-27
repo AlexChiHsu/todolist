@@ -5,15 +5,19 @@ import NavItems from "./navItems";
 
 const NavbarContainer = styled.div`
   min-height: 68px;
+  min-width: 280px;
   ${tw`
-    w-full
+    h-full
+    w-72
     max-w-screen-2xl
-    flex
-    flex-row
+    flex-col-reverse
+    flex-col
     items-center
-    lg:pl-12
-    lg:pr-12
+    lg:pl-6
+    lg:pr-6
+    lg:pt-6
     justify-between
+    bg-gray-100
   `};
 `;
 
