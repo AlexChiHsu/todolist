@@ -1,15 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { myListItems } from "./tabItems";
+import Button from "../button";
+import Marginer from "../../marginer";
 
 const TabListContainer = styled.ul`
   ${tw`
     flex
     flex-row
     list-none
-    mb-2.5
   `}
+  height: 31px;
+  border-bottom-width: 1px;
+  border-bottom-color: #0000004d;
 `;
 
 const TabItem = styled.li`
@@ -25,24 +29,17 @@ const TabItem = styled.li`
     duration-300
     ease-in-out
     hover:text-gray-700
-    mb-1
-    pb-1
-    border-b-2
-    border-b-blue-600
   `}
-  a {
-    color: black;
-    text-decoration: none;
-  }
 `;
 
 function Tab() {
+  const [selectTab, setSelectTab] = useState("清單");
   const tabItem = (subtitles: string[]) => (
     <>
       <TabListContainer>
         {subtitles.map((item) => (
           <TabItem>
-            <a href="#">{item}</a>
+            <Button text={item} onClick={() => setSelectTab(item)} />
           </TabItem>
         ))}
       </TabListContainer>
