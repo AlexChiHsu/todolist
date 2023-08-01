@@ -12,12 +12,14 @@ import { ReactComponent as RectangleGroup } from "../../../assets/images/rectang
 import { ReactComponent as Sort } from "../../../assets/images/sort.svg";
 import { ReactComponent as ArrowDown } from "../../../assets/images/arrow-down.svg";
 import { ReactComponent as User } from "../../../assets/images/user.svg";
+import { ReactComponent as ArrowRightLeft } from "../../../assets/images/arrows-right-left.svg";
 
 interface IIconsProp {
   name:
     | "sort"
     | "arrowDown"
     | "plus"
+    | "arrowUpDown"
     | "barsArrowDown"
     | "arrowLeft"
     | "arrowRight"
@@ -27,6 +29,7 @@ interface IIconsProp {
     | "listDots"
     | "menu"
     | "rectangleGroup"
+    | "arrowRightLeft"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -43,6 +46,24 @@ export default function Icon(props: IIconsProp) {
     case "sort":
       return (
         <Sort
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "arrowUpDown":
+      return (
+        <ArrowUpDown
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "dots":
+      return (
+        <Dots
           fill={fillColor}
           stroke={strokeColor}
           width={width}
@@ -142,6 +163,15 @@ export default function Icon(props: IIconsProp) {
     case "user":
       return (
         <User
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "arrowRightLeft":
+      return (
+        <ArrowRightLeft
           fill={fillColor}
           stroke={strokeColor}
           width={width}

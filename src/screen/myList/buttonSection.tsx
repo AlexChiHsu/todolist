@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../components/common/icons/icon";
+import IconButton from "../../components/common/button/iconButton";
 
 const ButtonSectionContainer = styled.div`
   ${tw`
@@ -54,6 +55,16 @@ const NewSectionButtonRight = styled.button`
   `}
 `;
 
+const IconSectionContainer = styled.div`
+  ${tw`
+    w-1/2
+    flex
+    flex-row
+    justify-between
+    items-center
+  `}
+`;
+
 function ButtonSection() {
   return (
     <ButtonSectionContainer>
@@ -66,6 +77,84 @@ function ButtonSection() {
           <Icon name="arrowDown" stroke="#2563eb" width={20} height={20} />
         </NewSectionButtonRight>
       </NewButton>
+      <IconSectionContainer>
+        <IconButton
+          text="未完成"
+          onClick={() => {}}
+          leftComponent={
+            <Icon name="sort" stroke="#000000cc" width={16} height={16} />
+          }
+          component={
+            <Icon
+              name={"arrowDown"}
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+        />
+        <IconButton
+          text="篩選"
+          onClick={() => {}}
+          leftComponent={
+            <Icon name="filter" stroke="#000000cc" width={16} height={16} />
+          }
+          component={
+            <Icon
+              name={"arrowDown"}
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+        />
+        <IconButton
+          text="排序"
+          onClick={() => {}}
+          leftComponent={
+            <Icon
+              name="arrowUpDown"
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+          component={
+            <Icon
+              name={"arrowDown"}
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+        />
+        <IconButton
+          text="分組"
+          onClick={() => {}}
+          leftComponent={
+            <Icon name="menu" stroke="#000000cc" width={16} height={16} />
+          }
+          component={
+            <Icon
+              name={"arrowDown"}
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+        />
+        <IconButton
+          onClick={() => {}}
+          leftComponent={
+            <Icon
+              name="arrowRightLeft"
+              stroke="#000000cc"
+              width={16}
+              height={16}
+            />
+          }
+        />
+      </IconSectionContainer>
     </ButtonSectionContainer>
   );
 }

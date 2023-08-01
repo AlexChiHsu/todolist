@@ -6,6 +6,7 @@ interface IButtonProps {
   text?: string;
   onClick: Function;
   component?: JSX.Element;
+  leftComponent?: JSX.Element;
 }
 
 const BaseButton = styled.button`
@@ -32,8 +33,12 @@ const BaseButton = styled.button`
 const IconButtonContainer = styled(BaseButton)`
   ${tw`
     bg-transparent
-    justify-center
+    justify-between
     items-center
+    flex
+    flex-row
+    text-black
+    opacity-80
   `};
   &:hover {
     background-color: transparent;
@@ -42,7 +47,7 @@ const IconButtonContainer = styled(BaseButton)`
 `;
 
 export default function IconButton(props: IButtonProps) {
-  const { text, onClick, component } = props;
+  const { text, onClick, component, leftComponent } = props;
   const handle = () => {
     onClick();
   };
@@ -50,6 +55,7 @@ export default function IconButton(props: IButtonProps) {
   return (
     <>
       <IconButtonContainer onClick={handle}>
+        {leftComponent && leftComponent}
         {text && text}
         {component && component}
       </IconButtonContainer>
