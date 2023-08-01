@@ -5,7 +5,6 @@ import Icon from "../icons/icon";
 interface IButtonProps {
   text?: string;
   onClick: Function;
-  isFill?: boolean;
   component?: JSX.Element;
 }
 
@@ -22,9 +21,6 @@ const BaseButton = styled.button`
     justify-center
     items-center
     text-center
-    pr-1
-    pl-1
-    pb-2
   `};
 
   &:focus {
@@ -33,7 +29,7 @@ const BaseButton = styled.button`
   }
 `;
 
-const ListButton = styled(BaseButton)`
+const IconButtonContainer = styled(BaseButton)`
   ${tw`
     bg-transparent
     justify-center
@@ -45,42 +41,18 @@ const ListButton = styled(BaseButton)`
   }
 `;
 
-const FillButton = styled(BaseButton)`
-  ${tw`
-    pt-1.5
-    pb-1.5
-    pr-2.5
-    pl-2.5
-    flex
-    flex-row
-    rounded
-    bg-blue-700
-    text-white
-    justify-center
-    items-center
-    text-center
-  `}
-`;
-
-export default function Button(props: IButtonProps) {
-  const { text, onClick, isFill, component } = props;
+export default function IconButton(props: IButtonProps) {
+  const { text, onClick, component } = props;
   const handle = () => {
     onClick();
   };
 
   return (
     <>
-      {isFill ? (
-        <FillButton>
-          {text && text}
-          {component && component}
-        </FillButton>
-      ) : (
-        <ListButton autoFocus={text === "清單"} onClick={handle}>
-          {text && text}
-          {component && component}
-        </ListButton>
-      )}
+      <IconButtonContainer onClick={handle}>
+        {text && text}
+        {component && component}
+      </IconButtonContainer>
     </>
   );
 }

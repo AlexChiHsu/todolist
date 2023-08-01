@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Button from "./button";
+import Marginer from "../marginer";
+import Icon from "./icons/icon";
+import Dividing from "../dividing";
+import IconButton from "./button/iconButton";
 
 export interface IHeadetTitleProp {
   title: string;
@@ -9,7 +13,21 @@ export interface IHeadetTitleProp {
 
 const HeaderTitleContainer = styled.div`
   ${tw`
+    flex
+    justify-between
+    bg-amber-300
+    items-center
+    pr-2
+    pl-2
+  `}
+`;
 
+const RightContainer = styled.div`
+  ${tw`
+    flex
+    flex-row
+    items-center
+    justify-between
   `}
 `;
 
@@ -18,7 +36,23 @@ function HeaderTitle(props: IHeadetTitleProp) {
   return (
     <HeaderTitleContainer>
       {title}
-      <Button isFill text={"新增"} onClick={() => {}} />
+      <RightContainer>
+        <Button
+          isFill
+          text={"新增"}
+          onClick={() => {}}
+          component={
+            <Icon name="arrowDown" stroke="white" width={18} height={18} />
+          }
+        />
+        <Dividing direction="vertical" dividing={"1em"} lineLength={"1.5em"} />
+        <IconButton
+          onClick={() => {}}
+          component={
+            <Icon name="rectangleGroup" stroke="black" width={24} height={24} />
+          }
+        />
+      </RightContainer>
     </HeaderTitleContainer>
   );
 }
