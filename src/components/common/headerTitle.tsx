@@ -15,10 +15,9 @@ const HeaderTitleContainer = styled.div`
   ${tw`
     flex
     justify-between
-    bg-amber-300
     items-center
-    pr-2
-    pl-2
+    pl-1
+    pr-1
   `}
 `;
 
@@ -28,6 +27,9 @@ const RightContainer = styled.div`
     flex-row
     items-center
     justify-between
+    relative
+    right-0
+    top-2.5
   `}
 `;
 

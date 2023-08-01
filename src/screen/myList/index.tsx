@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 import tw from "twin.macro";
 import HeaderTitle from "../../components/common/headerTitle";
 import Tab from "../../components/common/tab/tab";
-import Marginer from "../../components/marginer";
+import Dividing from "../../components/dividing";
+import ButtonSection from "./buttonSection";
 
 const MyListContainer = styled.div`
   ${tw`
@@ -18,6 +19,8 @@ export default function MyList() {
     <MyListContainer>
       <HeaderTitle title="我負責的" />
       <Tab />
+      <Dividing direction="horizontal" dividing={"0em"} lineLength={"100%"} />
+      <ButtonSection />
     </MyListContainer>
   );
 }

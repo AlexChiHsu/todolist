@@ -12,8 +12,8 @@ const TabListContainer = styled.ul`
     list-none
   `}
   height: 31px;
-  border-bottom-width: 1px;
-  border-bottom-color: #0000004d;
+  /* border-bottom-width: 1px;
+  border-bottom-color: #0000004d; */
 `;
 
 const TabItem = styled.li`
