@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import { Icon } from "../icons/icon";
+import Icon from "../icons/icon";
 
 interface IButtonProps {
   text: string;
@@ -61,15 +61,6 @@ const FillButton = styled(BaseButton)`
   }
 `;
 
-const Svg = styled.svg<{ src?: any }>`
-  ${tw`
-    w-6
-    h-6
-  `}
-  background-color: #e5f2e5;
-  mask: ${({ src }) => `url(${src}) no-repeat center`};
-`;
-
 export default function Button(props: IButtonProps) {
   const { text, onClick, isFill } = props;
   const handle = () => {
@@ -81,7 +72,7 @@ export default function Button(props: IButtonProps) {
       {isFill ? (
         <FillButton>
           {text}
-          <Icon name="arrowDown" />
+          <Icon name="arrowDown" stroke="white" width={18} height={18} />
         </FillButton>
       ) : (
         <ListButton autoFocus={text === "清單"} onClick={handle}>
