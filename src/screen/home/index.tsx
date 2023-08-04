@@ -1,8 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import Navbar from "../../components/navbar";
-import MyList from "../myList";
+import WebHeader from "../../components/header/webHeader";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -17,8 +16,7 @@ const HomeContainer = styled.div`
 function HomeScreen() {
   return (
     <HomeContainer>
-      <Navbar />
-      <MyList />
+      <WebHeader />
     </HomeContainer>
   );
 }

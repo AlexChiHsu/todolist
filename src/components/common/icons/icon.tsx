@@ -13,6 +13,8 @@ import { ReactComponent as Sort } from "../../../assets/images/sort.svg";
 import { ReactComponent as ArrowDown } from "../../../assets/images/arrow-down.svg";
 import { ReactComponent as User } from "../../../assets/images/user.svg";
 import { ReactComponent as ArrowRightLeft } from "../../../assets/images/arrows-right-left.svg";
+import { ReactComponent as Logo } from "../../../assets/images/w-logo.svg";
+import { ReactComponent as Search } from "../../../assets/images/search.svg";
 
 interface IIconsProp {
   name:
@@ -30,6 +32,8 @@ interface IIconsProp {
     | "menu"
     | "rectangleGroup"
     | "arrowRightLeft"
+    | "logo"
+    | "search"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -172,6 +176,24 @@ export default function Icon(props: IIconsProp) {
     case "arrowRightLeft":
       return (
         <ArrowRightLeft
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "logo":
+      return (
+        <Logo
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "search":
+      return (
+        <Search
           fill={fillColor}
           stroke={strokeColor}
           width={width}
