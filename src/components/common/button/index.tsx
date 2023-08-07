@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import Icon from "../icons/icon";
 
 interface IButtonProps {
   text?: string;
@@ -38,6 +37,16 @@ const ListButton = styled(BaseButton)`
     bg-transparent
     justify-center
     items-center
+    text-white
+    text-sm
+    font-normal
+    leading-5
+    lg:pr-6
+    lg:pl-6
+    md:pr-3
+    md:pl-3
+    sm:pr-1
+    sm:pl-1
   `};
   &:hover {
     background-color: transparent;
@@ -47,19 +56,26 @@ const ListButton = styled(BaseButton)`
 
 const FillButton = styled(BaseButton)`
   ${tw`
-    pt-1.5
-    pb-1.5
-    pr-2.5
-    pl-2.5
+    w-44
+    h-10
+    p-2.5
     flex
     flex-row
-    rounded
-    bg-blue-700
+    gap-2.5
+    rounded-lg
     text-white
     justify-center
     items-center
     text-center
-  `}
+    mt-6
+    font-normal
+  `};
+  &:hover {
+    color: #5799c8;
+  }
+  font-size: 16px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.48);
+  background: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
 
 export default function Button(props: IButtonProps) {

@@ -6,51 +6,61 @@ import Icon from "../common/icons/icon";
 const SearchBoxContainer = styled.div`
   min-width: 448px;
   min-height: 38px;
-  ${tw`
-    items-center
-    justify-center
-    rounded-lg
-    flex
-    flex-row
-    bg-transparent
-    pl-2.5
-    pr-2.5
-    text-left
-  `}
-  border: 1px solid rgba(104, 107, 114, 1);
 `;
-
-const IconContainer = styled.div`
+const Box = styled.div`
   ${tw`
-    h-full
-    mr-1.5
+    relative 
+    rounded-md 
+    shadow-sm
+  `}
+`;
+const IconContainer = styled.span`
+  ${tw`
+    pointer-events-none 
+    absolute
+    inset-y-0 
+    left-0 
+    flex 
+    items-center 
+    pl-3
   `}
 `;
 
 const SearchBoxInput = styled.input`
   ${tw`
-    w-full
-    h-full
-    justify-center
-    rounded-lg
     bg-transparent
-    text-left
-    pl-2
+    block 
+    w-full
+    rounded-md 
+    border
+    py-1.5 
+    pl-10
+    pr-3
+    text-white
+    ring-1 
+    ring-inset 
+    placeholder:text-gray-400 
+    focus:ring-indigo-600 
+    sm:text-sm 
+    sm:leading-6
   `}
+  border-color: rgba(104, 107, 114, 1);
 `;
 export default function SearchBox() {
   return (
     <SearchBoxContainer>
-      <IconContainer>
-        <Icon
-          name={"search"}
-          width={24}
-          height={24}
-          stroke="#686B72"
-          fill="#686B72"
-        />
-      </IconContainer>
-      <SearchBoxInput placeholder="搜尋劇名 / 演員"></SearchBoxInput>
+      <Box>
+        <IconContainer>
+          <Icon
+            name={"search"}
+            width={24}
+            height={24}
+            stroke="#686B72"
+            fill="#686B72"
+          />
+        </IconContainer>
+        <SearchBoxInput placeholder="搜尋劇名 / 演員"></SearchBoxInput>
+      </Box>
     </SearchBoxContainer>
   );
 }

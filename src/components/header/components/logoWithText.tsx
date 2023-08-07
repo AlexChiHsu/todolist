@@ -2,13 +2,14 @@ import React from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../common/icons/icon";
+import SearchBox from "../../searchBox/searchBox";
 
 const LogoWithTextContainer = styled.div`
   ${tw`
     h-full
     flex
     flex-row
-    justify-between
+    justify-start
     items-center
     mr-5
   `}
@@ -19,6 +20,7 @@ const BrandText = styled.h1`
     text-white
     text-xl
     ml-2.5
+    mr-5
   `}
 `;
 
@@ -27,6 +29,7 @@ export default function LogoWithText() {
     <LogoWithTextContainer>
       <Icon name={"logo"} width={38} />
       <BrandText>WoW ! Movie</BrandText>
+      <SearchBox />
     </LogoWithTextContainer>
   );
 }

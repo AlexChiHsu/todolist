@@ -13,8 +13,8 @@ const ThumbnailContainer = styled.div`
 const ThumbnailImg = styled.div`
   ${tw`
     inline-block
-    h-11
-    w-11
+    h-10
+    w-10
     rounded-full
     ring-2
     ring-white
