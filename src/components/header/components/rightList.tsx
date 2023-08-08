@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Thumbnail from "./thumbnail";
 import Button from "../../common/button";
+import Label from "./label";
 
 const RightListContainer = styled.div`
   ${tw`
@@ -32,17 +33,30 @@ const ButtonItem = styled.li`
 `;
 
 export default function RightList() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isShowLabel, setIsShowLabel] = useState(false);
+
+  const clickThumbnail = () => {
+    setIsShowLabel(!isShowLabel);
+  };
   return (
-    <RightListContainer>
-      <ButtonListContainer>
-        <ButtonItem>
-          <Button isFill={false} onClick={() => {}} text="電影" />
-          <Button isFill={false} onClick={() => {}} text="影集" />
-          <Button isFill={false} onClick={() => {}} text="主題館" />
-          <Button isFill={false} onClick={() => {}} text="我的片單" />
-          <Button isFill={false} onClick={() => {}} component={<Thumbnail />} />
-        </ButtonItem>
-      </ButtonListContainer>
-    </RightListContainer>
+    <>
+      <RightListContainer>
+        <ButtonListContainer>
+          <ButtonItem>
+            <Button isFill={false} onClick={() => {}} text="電影" />
+            <Button isFill={false} onClick={() => {}} text="影集" />
+            <Button isFill={false} onClick={() => {}} text="主題館" />
+            <Button isFill={false} onClick={() => {}} text="我的片單" />
+            <Button
+              isFill={false}
+              onClick={clickThumbnail}
+              component={<Thumbnail isLogin={isLogin} />}
+            />
+          </ButtonItem>
+        </ButtonListContainer>
+      </RightListContainer>
+      {isShowLabel && <Label />}
+    </>
   );
 }

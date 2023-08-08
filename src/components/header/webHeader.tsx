@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import tw from "twin.macro";
 import LogoWithText from "./components/logoWithText";
 import RightList from "./components/rightList";
-import Label from "./components/label";
 
 const WebHeaderContainer = styled.div`
   ${tw`
@@ -25,13 +24,10 @@ const WebHeaderContainer = styled.div`
 
 function WebHeader() {
   return (
-    <>
-      <WebHeaderContainer>
-        <LogoWithText />
-        <RightList />
-      </WebHeaderContainer>
-      <Label />
-    </>
+    <WebHeaderContainer>
+      <LogoWithText />
+      <RightList />
+    </WebHeaderContainer>
   );
 }
 
