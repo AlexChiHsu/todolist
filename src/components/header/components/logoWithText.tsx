@@ -11,7 +11,6 @@ const LogoWithTextContainer = styled.div`
     flex-row
     justify-start
     items-center
-    mr-5
   `}
 `;
 

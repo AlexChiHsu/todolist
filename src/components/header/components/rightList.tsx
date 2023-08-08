@@ -16,15 +16,18 @@ const RightListContainer = styled.div`
 const ButtonListContainer = styled.ul`
   ${tw`
     flex
+    w-full
     h-full
-    items-end
     list-none
   `}
 `;
 
 const ButtonItem = styled.li`
   ${tw`
-    // bg-amber-500
+    h-full
+    flex
+    items-end
+    relative
   `}
 `;
 
@@ -37,9 +40,9 @@ export default function RightList() {
           <Button isFill={false} onClick={() => {}} text="影集" />
           <Button isFill={false} onClick={() => {}} text="主題館" />
           <Button isFill={false} onClick={() => {}} text="我的片單" />
+          <Button isFill={false} onClick={() => {}} component={<Thumbnail />} />
         </ButtonItem>
       </ButtonListContainer>
-      <Thumbnail />
     </RightListContainer>
   );
 }

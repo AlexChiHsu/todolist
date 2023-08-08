@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import WebHeader from "../../components/header/webHeader";
-import Message from "../message";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -18,7 +17,6 @@ function HomeScreen() {
   return (
     <HomeContainer>
       <WebHeader />
-      {/* <Message /> */}
     </HomeContainer>
   );
 }

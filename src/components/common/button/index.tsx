@@ -1,19 +1,21 @@
-import { styled } from "styled-components";
-import tw from "twin.macro";
+import { CSSProp, css, styled } from "styled-components";
+import tw, { TwStyle } from "twin.macro";
 
 interface IButtonProps {
   text?: string;
   onClick: Function;
   isFill?: boolean;
   component?: JSX.Element;
+  css?: CSSProp | TwStyle;
 }
 
-const BaseButton = styled.button`
+const BaseButton = styled.button<{ styles?: any }>`
   ${tw`
     outline-none
     text-black
-    text-xs
-    font-semibold
+    font-normal
+    text-lg
+    leading-6
     focus:outline-none
     transition-all
     duration-200
@@ -23,8 +25,20 @@ const BaseButton = styled.button`
     text-center
     pr-1
     pl-1
-    pb-2
+    pb-1
+    border-b-2
+    border-b-transparent
   `};
+
+  ${({ styles }) =>
+    styles &&
+    css`
+      ${styles}
+    `}
+  &:hover {
+    border-bottom-color: #2550bd;
+    border-bottom-width: 2px;
+  }
 
   &:focus {
     border-bottom-color: #2550bd;
@@ -79,7 +93,7 @@ const FillButton = styled(BaseButton)`
 `;
 
 export default function Button(props: IButtonProps) {
-  const { text, onClick, isFill, component } = props;
+  const { text, onClick, isFill, component, css } = props;
   const handle = () => {
     onClick();
   };
@@ -87,12 +101,12 @@ export default function Button(props: IButtonProps) {
   return (
     <>
       {isFill ? (
-        <FillButton>
+        <FillButton styles={css}>
           {text && text}
           {component && component}
         </FillButton>
       ) : (
-        <ListButton autoFocus={text === "清單"} onClick={handle}>
+        <ListButton styles={css} autoFocus={text === "清單"} onClick={handle}>
           {text && text}
           {component && component}
         </ListButton>
