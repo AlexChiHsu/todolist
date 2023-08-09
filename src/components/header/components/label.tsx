@@ -20,7 +20,12 @@ const LabelContainer = styled.div`
 export default function Label() {
   return (
     <LabelContainer>
-      <Button onClick={() => {}} text="登出" css={{ border: "none" }} />
+      <Button
+        isOpenBottomBar={false}
+        onClick={() => {}}
+        text="登出"
+        css={{ border: "none" }}
+      />
     </LabelContainer>
   );
 }

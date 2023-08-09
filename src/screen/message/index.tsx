@@ -23,7 +23,12 @@ export default function Message() {
         目前網路不穩或伺服器異常，\n
         請稍後再重新試試！`}
       />
-      <Button onClick={() => {}} text="重新載入" isFill />
+      <Button
+        isOpenBottomBar={false}
+        onClick={() => {}}
+        text="重新載入"
+        isFill
+      />
     </MessageContainer>
   );
 }

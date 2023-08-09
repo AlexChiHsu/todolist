@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CSSProp, css, styled } from "styled-components";
 import tw, { TwStyle } from "twin.macro";
 
@@ -7,6 +8,8 @@ interface IButtonProps {
   isFill?: boolean;
   component?: JSX.Element;
   css?: CSSProp | TwStyle;
+  isSelected?: boolean;
+  isOpenBottomBar: boolean;
 }
 
 const BaseButton = styled.button<{ styles?: any }>`
@@ -25,9 +28,7 @@ const BaseButton = styled.button<{ styles?: any }>`
     text-center
     pr-1
     pl-1
-    pb-1
-    border-b-2
-    border-b-transparent
+    pb-2
   `};
 
   ${({ styles }) =>
@@ -35,15 +36,31 @@ const BaseButton = styled.button<{ styles?: any }>`
     css`
       ${styles}
     `}
+`;
+
+const ButtonContainer = styled.div`
+  width: 78;
+  ${tw`
+    mr-[3px]
+    ml-[3px]
+  `}
   &:hover {
-    border-bottom-color: #2550bd;
-    border-bottom-width: 2px;
+    background-color: linear-gradient(91.47deg, #c10171, #5c00f2) 1;
   }
 
   &:focus {
-    border-bottom-color: #2550bd;
-    border-bottom-width: 2px;
+    background-color: linear-gradient(91.47deg, #c10171, #5c00f2) 1;
   }
+`;
+
+const BottomBar = styled.div`
+  ${tw`
+    w-full
+    h-1
+    rounded-full
+    bottom-0
+  `}
+  background: linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
 `;
 
 const ListButton = styled(BaseButton)`
@@ -93,10 +110,22 @@ const FillButton = styled(BaseButton)`
 `;
 
 export default function Button(props: IButtonProps) {
-  const { text, onClick, isFill, component, css } = props;
+  const { text, onClick, isFill, component, css, isSelected, isOpenBottomBar } =
+    props;
+  const [isShowBottomBar, setIsShowBottomBar] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+
   const handle = () => {
     onClick();
   };
+
+  useEffect(() => {
+    if (isSelected || isHover) {
+      setIsShowBottomBar(true);
+    } else {
+      setIsShowBottomBar(false);
+    }
+  }, [isSelected, isHover]);
 
   return (
     <>
@@ -106,10 +135,18 @@ export default function Button(props: IButtonProps) {
           {component && component}
         </FillButton>
       ) : (
-        <ListButton styles={css} autoFocus={text === "清單"} onClick={handle}>
-          {text && text}
-          {component && component}
-        </ListButton>
+        <>
+          <ButtonContainer
+            onMouseEnter={() => setIsHover(true)}
+            onMouseOut={() => setIsHover(false)}
+          >
+            <ListButton styles={css} onClick={handle}>
+              {text && text}
+              {component && component}
+            </ListButton>
+            {isOpenBottomBar && isShowBottomBar && <BottomBar />}
+          </ButtonContainer>
+        </>
       )}
     </>
   );
