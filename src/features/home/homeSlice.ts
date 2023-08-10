@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
 
 export interface IHomeState {
   value: number;
@@ -18,7 +17,5 @@ export const homeSlice = createSlice({
 });
 
 export const {} = homeSlice.actions;
-
-export const selectCount = (state: RootState) => state.counter.value;
 
 export default homeSlice.reducer;
