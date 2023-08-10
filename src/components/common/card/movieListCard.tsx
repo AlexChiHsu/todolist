@@ -12,6 +12,10 @@ const MovieCardContainer = styled.button`
     ml-1
     mr-1
   `}
+  & :hover {
+    border-width: 1px;
+    border-color: white;
+  }
 `;
 
 const MovieTitle = styled.div`
