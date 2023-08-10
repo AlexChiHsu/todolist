@@ -1,8 +1,6 @@
 import { ReactComponent as Plus } from "../../../assets/images/plus.svg";
 import { ReactComponent as ArrowUpDown } from "../../../assets/images/arrows-up-down.svg";
 import { ReactComponent as BarsArrowDown } from "../../../assets/images/bars-arrow-down.svg";
-import { ReactComponent as ArrowLeft } from "../../../assets/images/chevron-left.svg";
-import { ReactComponent as ArrowRight } from "../../../assets/images/chevron-right.svg";
 import { ReactComponent as ArrowUp } from "../../../assets/images/chevron-up.svg";
 import { ReactComponent as Dots } from "../../../assets/images/ellipsis-horizontal.svg";
 import { ReactComponent as Filter } from "../../../assets/images/funnel.svg";
@@ -16,6 +14,8 @@ import { ReactComponent as ArrowRightLeft } from "../../../assets/images/arrows-
 import { ReactComponent as Logo } from "../../../assets/images/w-logo.svg";
 import { ReactComponent as Search } from "../../../assets/images/search.svg";
 import { ReactComponent as Logout } from "../../../assets/images/logout.svg";
+import { ReactComponent as ArrowLeft } from "../../../assets/images/arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../../assets/images/arrow-right.svg";
 
 interface IIconsProp {
   name:
