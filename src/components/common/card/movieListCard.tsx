@@ -6,11 +6,13 @@ import { imageURL } from "../../../api/tmdb/commonURL";
 
 const MovieCardContainer = styled.button`
   width: 103px;
-  height: 153px;
+  height: 155px;
   ${tw`
     gap-1
     ml-1
     mr-1
+    border
+    border-transparent
   `}
   & :hover {
     border-width: 1px;
@@ -26,6 +28,7 @@ const MovieTitle = styled.div`
     text-center
     truncate
     leading-[21px]
+    pointer-events-none
   `}
 `;
 
@@ -33,9 +36,11 @@ const MovieImage = styled.div<{ path?: any }>`
   ${tw`
     w-[103px]
     h-[128px]
-    justify-center
-    items-center
-    inline-block
+    flex
+    justify-end
+    items-end
+    pr-1
+    pb-2
     rounded-lg
     bg-cover
     bg-no-repeat
@@ -55,12 +60,35 @@ const MovieImage = styled.div<{ path?: any }>`
     `}
 `;
 
+const VoteAverage = styled.span`
+  ${tw`
+    rounded
+    w-[33px]
+    h-[20px]
+    pl-2.5
+    pr-2.5
+    flex
+    justify-center
+    items-center
+    gap-2.5
+    text-white
+    font-extrabold
+    text-sm
+    leading-[21px]
+    pointer-events-none
+  `}
+  background: linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
+  box-shadow: 0px 2px 8px 0px #0000007a;
+`;
+
 export default function MovieListCard(props: MovieProp) {
-  const { poster_path, title } = props;
+  const { poster_path, title, vote_average } = props;
   const url = imageURL + poster_path;
   return (
     <MovieCardContainer>
-      <MovieImage path={url} />
+      <MovieImage path={url}>
+        <VoteAverage aria-disabled>{vote_average}</VoteAverage>
+      </MovieImage>
       <MovieTitle>{title}</MovieTitle>
     </MovieCardContainer>
   );
