@@ -6,7 +6,6 @@ import { MovieListProp } from "../../types/movieList";
 
 const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
   ${tw`
-    w-full
     overflow-hidden
     ml-10
     mr-10

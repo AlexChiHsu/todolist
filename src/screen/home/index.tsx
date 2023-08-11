@@ -12,6 +12,8 @@ import {
   fetchPopularTVListZh,
   fetchPopularTVAnimationList,
 } from "../../reducers/tvListsResucers";
+import Footer from "./footer";
+import HomeHeader from "./homeHeader";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -20,6 +22,13 @@ const HomeContainer = styled.div`
     items-center
   `}
 `;
+
+const MovieContainer = styled.div`
+  ${tw`
+    -mt-[161px]
+  `}
+`;
+
 function HomeScreen() {
   const movieData = useAppSelector((state) => state.movieList.data);
   const { usData, zhData, krData, aniData } = useAppSelector(
@@ -52,13 +61,17 @@ function HomeScreen() {
   return (
     <HomeContainer>
       <WebHeader />
-      {lists.map((item, index) => (
-        <MovieList
-          listTitle={item.title}
-          data={data(item.title)}
-          isShowBg={index % 2 !== 1}
-        />
-      ))}
+      <HomeHeader />
+      <MovieContainer>
+        {lists.map((item, index) => (
+          <MovieList
+            listTitle={item.title}
+            data={data(item.title)}
+            isShowBg={index % 2 !== 1}
+          />
+        ))}
+      </MovieContainer>
+      <Footer />
     </HomeContainer>
   );
 }
