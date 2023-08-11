@@ -1,4 +1,4 @@
-export interface MovieList {
+export interface MovieListProp {
   json: any;
   page: number;
   results: [MovieProp];
@@ -21,4 +21,5 @@ export interface MovieProp {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  name?: string;
 }

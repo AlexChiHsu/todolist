@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { MovieList } from "../types/movieList";
+import { MovieListProp } from "../types/movieList";
 import { getPopularMovieList } from "../api/tmdb/fetchAPI";
 
 export const fetchPopularMovieList = createAsyncThunk(
-  "fetch/popularMoviList",
-  async (): Promise<MovieList> => {
+  "fetch/popularMovieList",
+  async (language: string): Promise<MovieListProp> => {
     const response = await fetch(
-      getPopularMovieList().fullURL,
-      getPopularMovieList().options
+      getPopularMovieList(language).fullURL,
+      getPopularMovieList(language).options
     );
 
     return response.json();

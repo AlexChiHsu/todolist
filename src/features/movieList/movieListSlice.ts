@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MovieList } from "../../types/movieList";
+import { MovieListProp } from "../../types/movieList";
 import { fetchPopularMovieList } from "../../reducers/movieList";
 
 export interface IMovieListState {
-  data: MovieList;
+  data: MovieListProp;
 }
 
 const initialState: IMovieListState = {

@@ -1,19 +1,12 @@
-import React, { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { fetchPopularMovieList } from "../../reducers/movieList";
 import MovieListCard from "../../components/common/card/movieListCard";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../components/common/icons/icon";
+import { MovieListProp } from "../../types/movieList";
 
-const MovieListContainer = styled.div`
+const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
   ${tw`
     w-full
-    h-[350px]
-    items-center
-    flex
-    flex-row
-    justify-center
     overflow-hidden
     ml-10
     mr-10
@@ -22,6 +15,27 @@ const MovieListContainer = styled.div`
     rounded-[20px]
     gap-3.5
     bg-[#686B721A]
+    mt-5
+    mb-5
+  `}
+
+  ${({ isShowBg }) =>
+    isShowBg &&
+    css`
+      background-color: transparent;
+    `}
+`;
+
+const ListContainer = styled.div`
+  ${tw`
+    w-full
+    items-center
+    flex
+    flex-row
+    justify-center
+    overflow-hidden
+    gap-3.5
+    mb-10
   `}
 `;
 
@@ -42,7 +56,7 @@ const ScrollContainer = styled.div`
     w-full
     overflow-hidden
     box-border
-    h-[260px]
+    h-[200px]
     flex
     items-center
     mr-2.5
@@ -54,7 +68,7 @@ const ScrollList = styled.div`
   ${tw`
     flex
     items-center
-    h-[260px]
+    h-[200px]
     overflow-x-scroll
     overflow-y-hidden
     whitespace-nowrap
@@ -69,28 +83,52 @@ const ScrollList = styled.div`
   -ms-overflow-style: none;
   overflow: auto;
 `;
-export default function MovieList() {
-  const { data } = useAppSelector((state) => state.movieList);
-  const popularMovieListDispatch = useAppDispatch();
-  useEffect(() => {
-    popularMovieListDispatch(fetchPopularMovieList());
-  }, [popularMovieListDispatch]);
+
+const ListTitle = styled.div`
+  ${tw`
+    w-full
+    text-white
+    font-normal
+    text-xl
+    text-start
+    truncate
+    items-start
+    leading-[30px]
+    mt-10
+    mb-3.5
+    pl-2.5
+    ml-[63px]
+    pointer-events-none
+  `}
+`;
+
+interface IMovieListProp {
+  listTitle: string;
+  data: MovieListProp;
+  isShowBg: boolean;
+}
+
+export default function MovieList(props: IMovieListProp) {
+  const { listTitle, data, isShowBg } = props;
 
   return (
-    <MovieListContainer>
-      <IconBackground>
-        <Icon name={"arrowLeft"} fill="white" width={48} height={27} />
-      </IconBackground>
-      <ScrollContainer>
-        <ScrollList>
-          {data.results.map((item) => (
-            <MovieListCard {...item} />
-          ))}
-        </ScrollList>
-      </ScrollContainer>
-      <IconBackground>
-        <Icon name={"arrowRight"} fill="white" width={48} height={27} />
-      </IconBackground>
+    <MovieListContainer isShowBg={isShowBg}>
+      <ListTitle>{listTitle}</ListTitle>
+      <ListContainer>
+        <IconBackground>
+          <Icon name={"arrowLeft"} fill="white" width={48} height={27} />
+        </IconBackground>
+        <ScrollContainer>
+          <ScrollList>
+            {data?.results.map((item) => (
+              <MovieListCard {...item} />
+            ))}
+          </ScrollList>
+        </ScrollContainer>
+        <IconBackground>
+          <Icon name={"arrowRight"} fill="white" width={48} height={27} />
+        </IconBackground>
+      </ListContainer>
     </MovieListContainer>
   );
 }

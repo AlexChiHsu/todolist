@@ -82,14 +82,14 @@ const VoteAverage = styled.span`
 `;
 
 export default function MovieListCard(props: MovieProp) {
-  const { poster_path, title, vote_average } = props;
+  const { poster_path, title, vote_average, name } = props;
   const url = imageURL + poster_path;
   return (
     <MovieCardContainer>
       <MovieImage path={url}>
         <VoteAverage aria-disabled>{vote_average}</VoteAverage>
       </MovieImage>
-      <MovieTitle>{title}</MovieTitle>
+      <MovieTitle>{title ?? name}</MovieTitle>
     </MovieCardContainer>
   );
 }
