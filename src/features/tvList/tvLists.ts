@@ -5,6 +5,7 @@ import {
   fetchPopularTVListZh,
   fetchPopularTVListKr,
   fetchPopularTVAnimationList,
+  fetchTopRatedTVList,
 } from "../../reducers/tvListsResucers";
 
 export interface IMovieListState {
@@ -12,6 +13,7 @@ export interface IMovieListState {
   zhData: MovieListProp;
   krData: MovieListProp;
   aniData: MovieListProp;
+  topRatedData: MovieListProp;
 }
 
 const initialState: IMovieListState = {
@@ -115,6 +117,30 @@ const initialState: IMovieListState = {
     total_pages: 0,
     total_results: 0,
   },
+  topRatedData: {
+    json: null,
+    page: 0,
+    results: [
+      {
+        adult: false,
+        backdrop_path: "",
+        genre_ids: [0],
+        id: 0,
+        original_language: "",
+        original_title: "",
+        overview: "",
+        popularity: 0,
+        poster_path: "",
+        release_date: "",
+        title: "",
+        video: false,
+        vote_average: 0,
+        vote_count: 0,
+      },
+    ],
+    total_pages: 0,
+    total_results: 0,
+  },
 };
 
 export const tvLists = createSlice({
@@ -134,6 +160,9 @@ export const tvLists = createSlice({
 
     builder.addCase(fetchPopularTVAnimationList.fulfilled, (state, action) => {
       state.aniData = action.payload;
+    });
+    builder.addCase(fetchTopRatedTVList.fulfilled, (state, action) => {
+      state.topRatedData = action.payload;
     });
   },
 });

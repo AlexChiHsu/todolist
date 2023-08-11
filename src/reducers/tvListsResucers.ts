@@ -3,6 +3,7 @@ import { MovieListProp } from "../types/movieList";
 import {
   getPopularTVAnimationList,
   getPopularTVList,
+  getTvTopRated,
 } from "../api/tmdb/fetchAPI";
 
 export const fetchPopularTVListUs = createAsyncThunk(
@@ -56,6 +57,18 @@ export const fetchPopularTVAnimationList = createAsyncThunk(
     const response = await fetch(
       getPopularTVAnimationList().fullURL,
       getPopularTVAnimationList().options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchTopRatedTVList = createAsyncThunk(
+  "fetch/topRatedTVList",
+  async (): Promise<MovieListProp> => {
+    const response = await fetch(
+      getTvTopRated().fullURL,
+      getTvTopRated().options
     );
 
     return response.json();
