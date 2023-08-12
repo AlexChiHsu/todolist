@@ -11,6 +11,7 @@ const FooterContainer = styled.div`
 		font-normal
 		pb-[15px]
 		text-center
+		z-50
 	`}
 
   font-family: 'Roboto';

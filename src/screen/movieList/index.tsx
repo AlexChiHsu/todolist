@@ -16,6 +16,7 @@ const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
     bg-[#686B721A]
     mt-5
     mb-5
+    z-20
   `}
 
   ${({ isShowBg }) =>

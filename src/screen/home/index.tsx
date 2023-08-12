@@ -25,16 +25,20 @@ const HomeContainer = styled.div`
 
 const MovieContainer = styled.div`
   ${tw`
-    -mt-[161px]
+    w-full
+    h-full
+    relative
+    -top-40
+    z-10
   `}
 `;
 
 function HomeScreen() {
+  const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
   const { usData, zhData, krData, aniData } = useAppSelector(
     (state) => state.tvLists
   );
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchPopularTVListUs({ language: "en", country: "US" }));
@@ -59,20 +63,22 @@ function HomeScreen() {
     }
   };
   return (
-    <HomeContainer>
-      <WebHeader />
-      <HomeHeader />
-      <MovieContainer>
-        {lists.map((item, index) => (
-          <MovieList
-            listTitle={item.title}
-            data={data(item.title)}
-            isShowBg={index % 2 !== 1}
-          />
-        ))}
-      </MovieContainer>
-      <Footer />
-    </HomeContainer>
+    <>
+      <HomeContainer>
+        <WebHeader />
+        <HomeHeader />
+        <MovieContainer>
+          {lists.map((item, index) => (
+            <MovieList
+              listTitle={item.title}
+              data={data(item.title)}
+              isShowBg={index % 2 !== 1}
+            />
+          ))}
+          <Footer />
+        </MovieContainer>
+      </HomeContainer>
+    </>
   );
 }
 

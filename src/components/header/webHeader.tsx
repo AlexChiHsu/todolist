@@ -17,6 +17,7 @@ const WebHeaderContainer = styled.div`
     top-0
     pl-10
     pr-10
+    z-50
   `}
   background-color: #1B1E25AD;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.48);
