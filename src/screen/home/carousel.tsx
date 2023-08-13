@@ -8,30 +8,6 @@ interface IDataProp {
   data: MovieProp[];
 }
 
-const BackgroundImage = styled.div<{ path?: any }>`
-  ${tw`
-		inline-flex
-		w-full
-		h-full
-    bg-cover
-    bg-no-repeat
-		bg-center
-		flex-col
-		pl-[114px]
-		justify-end
-		pb-[235px]
-	`}
-  ${({ path }) =>
-    css`
-      background-image: radial-gradient(
-          72.5% 427.7% at 96.33% 50%,
-          rgba(27, 30, 37, 0) 39.58%,
-          rgba(27, 30, 37, 0.93) 94.79%
-        ),
-        linear-gradient(360deg, #1b1e25 0%, rgba(27, 30, 37, 0) 29.22%),
-        url(${path});
-    `}
-`;
 const DotContainer = styled.div`
   ${tw`
 		w-full
