@@ -144,6 +144,15 @@ export default function Poster() {
         <DivContainer>
           <Text index={0} text={`導演  ${data.id}`} />
         </DivContainer>
+        <DivContainer>
+          <Text index={0} text={"劇情介紹"} />
+        </DivContainer>
+        <DivContainer>
+          <Text index={-1} text={data.overview} />
+        </DivContainer>
+        <DivContainer>
+          <Text index={0} text={"播放平台"} />
+        </DivContainer>
       </RightContainer>
     </PosterContainer>
   );

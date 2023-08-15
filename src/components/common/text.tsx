@@ -23,13 +23,20 @@ const TextContainer = styled.div<{ index?: number }>`
     `}
 `;
 
-const LeftBorder = styled.div`
+const LeftBorder = styled.div<{ index?: number }>`
   ${tw`
     w-[3px]
     h-[23px]
     rounded-full
     mr-2
   `}
+
+  ${({ index }) =>
+    index === -1 &&
+    css`
+      width: 0;
+      margin-right: 0;
+    `}
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
 
@@ -45,7 +52,7 @@ export default function Text(props: ITextProp) {
   const { text, index } = props;
   return (
     <TextContainer index={index}>
-      <LeftBorder></LeftBorder>
+      <LeftBorder index={index}></LeftBorder>
       <Content>{text}</Content>
     </TextContainer>
   );
