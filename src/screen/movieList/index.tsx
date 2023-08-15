@@ -3,6 +3,7 @@ import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../components/common/icons/icon";
 import { MovieListProp } from "../../types/movieList";
+import { useRef } from "react";
 
 const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
   ${tw`
@@ -69,6 +70,7 @@ const ScrollList = styled.div`
     flex
     items-center
     h-[200px]
+    scroll-smooth
     overflow-x-scroll
     overflow-y-hidden
     whitespace-nowrap
@@ -110,22 +112,36 @@ interface IMovieListProp {
 
 export default function MovieList(props: IMovieListProp) {
   const { listTitle, data, isShowBg } = props;
+  const scroll = useRef<null | HTMLDivElement>(null);
+  let left = 0;
+
+  const onRightClick = () => {
+    scroll?.current?.scrollTo({
+      left: (left += 500),
+    });
+  };
+
+  const onLeftClick = () => {
+    scroll?.current?.scrollTo({
+      left: (left -= 500),
+    });
+  };
 
   return (
     <MovieListContainer isShowBg={isShowBg}>
       <ListTitle>{listTitle}</ListTitle>
       <ListContainer>
-        <IconBackground>
+        <IconBackground onClick={onLeftClick}>
           <Icon name={"arrowLeft"} fill="white" width={48} height={27} />
         </IconBackground>
         <ScrollContainer>
-          <ScrollList>
+          <ScrollList ref={scroll}>
             {data?.results.map((item) => (
               <MovieListCard {...item} />
             ))}
           </ScrollList>
         </ScrollContainer>
-        <IconBackground>
+        <IconBackground onClick={onRightClick}>
           <Icon name={"arrowRight"} fill="white" width={48} height={27} />
         </IconBackground>
       </ListContainer>
