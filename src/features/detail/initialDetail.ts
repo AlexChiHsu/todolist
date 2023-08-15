@@ -1,3 +1,4 @@
+import { CreditsProp } from "../../types/credits";
 import { DetailProp } from "../../types/movieList";
 
 export const initialDetail = {
@@ -96,4 +97,44 @@ export const initialDetail = {
   type: "",
   vote_average: 0,
   vote_count: 0,
+  title: "",
+  release_date: "",
+  runtime: 0,
 } as DetailProp;
+
+export const initialCredits = {
+  id: 0,
+  cast: [
+    {
+      adult: false,
+      gender: 0,
+      id: 0,
+      known_for_department: "",
+      name: "",
+      original_name: "",
+      popularity: 0,
+      profile_path: "",
+      cast_id: 0,
+      character: "",
+      credit_id: "",
+      order: 0,
+      department: "",
+      job: "",
+    },
+  ],
+  crew: [
+    {
+      adult: false,
+      gender: 0,
+      id: 0,
+      known_for_department: "",
+      name: "",
+      original_name: "",
+      popularity: 0,
+      profile_path: "",
+      credit_id: "",
+      department: "",
+      job: "",
+    },
+  ],
+} as CreditsProp;

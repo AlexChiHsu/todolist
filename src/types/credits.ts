@@ -14,6 +14,8 @@ export interface CreditsProp {
       character: string;
       credit_id: string;
       order: number;
+      job: string;
+      department: string;
     }
   ];
   crew: [

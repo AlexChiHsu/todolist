@@ -105,8 +105,13 @@ const Rated = styled.h2`
 `;
 
 export default function Poster() {
-  const { movieDetail, tvDetail } = useAppSelector((state) => state.detail);
+  const { movieDetail, tvDetail, tvCredits, movieCredits } = useAppSelector(
+    (state) => state.detail
+  );
   const data = movieDetail ?? tvDetail;
+
+  const credits = tvCredits ?? movieCredits;
+
   return (
     <PosterContainer>
       <LeftContainer>
@@ -142,7 +147,7 @@ export default function Poster() {
           ></Text>
         </DivContainer>
         <DivContainer>
-          <Text index={0} text={`導演  ${data.id}`} />
+          <Text index={0} text={`導演 `} />
         </DivContainer>
         <DivContainer>
           <Text index={0} text={"劇情介紹"} />

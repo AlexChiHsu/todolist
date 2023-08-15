@@ -4,8 +4,10 @@ import {
   getPopularTVAnimationList,
   getPopularTVList,
   getTVDetail,
+  getTvCredits,
   getTvTopRated,
 } from "../api/tmdb/fetchAPI";
+import { CreditsProp } from "../types/credits";
 
 export const fetchPopularTVListUs = createAsyncThunk(
   "fetch/popularUsTVList",
@@ -82,6 +84,18 @@ export const fetchTVDetail = createAsyncThunk(
     const response = await fetch(
       getTVDetail(id).fullURL,
       getTVDetail(id).options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchTVCredits = createAsyncThunk(
+  "fetch/tvCredits",
+  async (id: string): Promise<CreditsProp> => {
+    const response = await fetch(
+      getTvCredits(id).fullURL,
+      getTvCredits(id).options
     );
 
     return response.json();

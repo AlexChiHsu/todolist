@@ -10,6 +10,7 @@ const URL = {
   GET_MOVIE_DETAIL: "/movie/{MOVIE_ID}?language=zh-TW",
   GET_TV_DETAIL: "/tv/{TV_ID}?language=zh-TW",
   GET_MOVIE_CREDITS: "/movie/{MOVIE_ID}/credits?language=zh-TW",
+  GET_TV_CREITS: "/tv/{TV_ID}/credits?language=zh-TW",
 };
 const options = {
   method: "GET",
@@ -83,6 +84,14 @@ export function getTVDetail(id: string) {
 
 export function getMovieCredits(id: string) {
   const fullURL = apiURL + URL.GET_MOVIE_CREDITS.replace("{MOVIE_ID}", id);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getTvCredits(id: string) {
+  const fullURL = apiURL + URL.GET_TV_CREITS.replace("{TV_ID}", id);
   return {
     fullURL,
     options,
