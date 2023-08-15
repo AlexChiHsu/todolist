@@ -6,7 +6,8 @@ import {
   fetchPopularTVListKr,
   fetchPopularTVAnimationList,
   fetchTopRatedTVList,
-} from "../../reducers/tvListsResucers";
+} from "../../reducers/tvListsReducers";
+import { initialList } from "../movieList/initialList";
 
 export interface IMovieListState {
   usData: MovieListProp;
@@ -17,130 +18,11 @@ export interface IMovieListState {
 }
 
 const initialState: IMovieListState = {
-  usData: {
-    json: null,
-    page: 0,
-    results: [
-      {
-        adult: false,
-        backdrop_path: "",
-        genre_ids: [0],
-        id: 0,
-        original_language: "",
-        original_title: "",
-        overview: "",
-        popularity: 0,
-        poster_path: "",
-        release_date: "",
-        title: "",
-        video: false,
-        vote_average: 0,
-        vote_count: 0,
-        name: "",
-      },
-    ],
-    total_pages: 0,
-    total_results: 0,
-  },
-  zhData: {
-    json: null,
-    page: 0,
-    results: [
-      {
-        adult: false,
-        backdrop_path: "",
-        genre_ids: [0],
-        id: 0,
-        original_language: "",
-        original_title: "",
-        overview: "",
-        popularity: 0,
-        poster_path: "",
-        release_date: "",
-        title: "",
-        video: false,
-        vote_average: 0,
-        vote_count: 0,
-        name: "",
-      },
-    ],
-    total_pages: 0,
-    total_results: 0,
-  },
-  krData: {
-    json: null,
-    page: 0,
-    results: [
-      {
-        adult: false,
-        backdrop_path: "",
-        genre_ids: [0],
-        id: 0,
-        original_language: "",
-        original_title: "",
-        overview: "",
-        popularity: 0,
-        poster_path: "",
-        release_date: "",
-        title: "",
-        video: false,
-        vote_average: 0,
-        vote_count: 0,
-        name: "",
-      },
-    ],
-    total_pages: 0,
-    total_results: 0,
-  },
-  aniData: {
-    json: null,
-    page: 0,
-    results: [
-      {
-        adult: false,
-        backdrop_path: "",
-        genre_ids: [0],
-        id: 0,
-        original_language: "",
-        original_title: "",
-        overview: "",
-        popularity: 0,
-        poster_path: "",
-        release_date: "",
-        title: "",
-        video: false,
-        vote_average: 0,
-        vote_count: 0,
-        name: "",
-      },
-    ],
-    total_pages: 0,
-    total_results: 0,
-  },
-  topRatedData: {
-    json: null,
-    page: 0,
-    results: [
-      {
-        adult: false,
-        backdrop_path: "",
-        genre_ids: [0],
-        id: 0,
-        original_language: "",
-        original_title: "",
-        overview: "",
-        popularity: 0,
-        poster_path: "",
-        release_date: "",
-        title: "",
-        video: false,
-        vote_average: 0,
-        vote_count: 0,
-      },
-    ],
-    total_pages: 0,
-    total_results: 0,
-  },
+  usData: initialList,
+  zhData: initialList,
+  krData: initialList,
+  aniData: initialList,
+  topRatedData: initialList,
 };
 
 export const tvLists = createSlice({

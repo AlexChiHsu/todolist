@@ -7,6 +7,8 @@ const URL = {
   GET_POPULAR_TV_ANIMATION_LIST: "/discover/tv?with_genres=16",
   GET_MOVIE_TOP_RATED: "/movie/top_rated?language=zh-TW",
   GET_TV_TOP_RATED: "/tv/top_rated?language=zh-TW",
+  GET_MOVIE_DETAIL: "/movie/{MOVIE_ID}?language=zh-TW",
+  GET_TV_DETAIL: "/tv/{TV_ID}?language=zh-TW",
 };
 const options = {
   method: "GET",
@@ -56,6 +58,22 @@ export function getMovieTopRated() {
 
 export function getTvTopRated() {
   const fullURL = apiURL + URL.GET_TV_TOP_RATED;
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getMovieDetail(id: string) {
+  const fullURL = apiURL + URL.GET_MOVIE_DETAIL.replace("{MOVIE_ID}", id);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getTVDetail(id: string) {
+  const fullURL = apiURL + URL.GET_TV_DETAIL.replace("{TV_ID}", id);
   return {
     fullURL,
     options,

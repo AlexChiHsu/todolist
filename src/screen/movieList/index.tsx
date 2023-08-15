@@ -126,7 +126,6 @@ export default function MovieList(props: IMovieListProp) {
       left: (left -= 500),
     });
   };
-
   return (
     <MovieListContainer isShowBg={isShowBg}>
       <ListTitle>{listTitle}</ListTitle>

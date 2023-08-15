@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { MovieListProp } from "../types/movieList";
+import { DetailProp, MovieListProp } from "../types/movieList";
 import {
   getPopularTVAnimationList,
   getPopularTVList,
+  getTVDetail,
   getTvTopRated,
 } from "../api/tmdb/fetchAPI";
 
@@ -69,6 +70,18 @@ export const fetchTopRatedTVList = createAsyncThunk(
     const response = await fetch(
       getTvTopRated().fullURL,
       getTvTopRated().options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchTVDetail = createAsyncThunk(
+  "fetch/tvDetail",
+  async (id: string): Promise<DetailProp> => {
+    const response = await fetch(
+      getTVDetail(id).fullURL,
+      getTVDetail(id).options
     );
 
     return response.json();

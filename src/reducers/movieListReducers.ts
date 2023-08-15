@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { MovieListProp } from "../types/movieList";
-import { getMovieTopRated, getPopularMovieList } from "../api/tmdb/fetchAPI";
+import { DetailProp, MovieListProp } from "../types/movieList";
+import {
+  getMovieDetail,
+  getMovieTopRated,
+  getPopularMovieList,
+} from "../api/tmdb/fetchAPI";
 
 export const fetchPopularMovieList = createAsyncThunk(
   "fetch/popularMovieList",
@@ -20,6 +24,18 @@ export const fetchTopRatedMovieList = createAsyncThunk(
     const response = await fetch(
       getMovieTopRated().fullURL,
       getMovieTopRated().options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchMovieDetail = createAsyncThunk(
+  "fetch/movieDetail",
+  async (id: string): Promise<DetailProp> => {
+    const response = await fetch(
+      getMovieDetail(id).fullURL,
+      getMovieDetail(id).options
     );
 
     return response.json();

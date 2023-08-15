@@ -3,6 +3,7 @@ import { MovieProp } from "../../../types/movieList";
 import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import { imageURL } from "../../../api/tmdb/commonURL";
+import { useNavigate } from "react-router-dom";
 
 const MovieCardContainer = styled.button`
   width: 103px;
@@ -82,10 +83,11 @@ const VoteAverage = styled.span`
 `;
 
 export default function MovieListCard(props: MovieProp) {
-  const { poster_path, title, vote_average, name } = props;
+  const { poster_path, title, vote_average, name, id } = props;
+  const navigation = useNavigate();
   const url = imageURL + poster_path;
   return (
-    <MovieCardContainer>
+    <MovieCardContainer onClick={() => navigation(`/detail/${id}`)}>
       <MovieImage path={url}>
         <VoteAverage aria-disabled>{vote_average}</VoteAverage>
       </MovieImage>

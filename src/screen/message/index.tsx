@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import tw from "twin.macro";
 import Text from "../../components/common/text";
 import Button from "../../components/common/button";
+import { useRouteError } from "react-router-dom";
 
 const MessageContainer = styled.div`
   ${tw`
@@ -16,6 +17,8 @@ const MessageContainer = styled.div`
 `;
 
 export default function Message() {
+  const error = useRouteError();
+  console.log("error", error);
   return (
     <MessageContainer>
       <Text

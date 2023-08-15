@@ -1,17 +1,16 @@
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import WebHeader from "../../components/header/webHeader";
 import MovieList from "../movieList";
 import { lists } from "../../components/common/list";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useEffect } from "react";
-import { fetchPopularMovieList } from "../../reducers/movieList";
+import { fetchPopularMovieList } from "../../reducers/movieListReducers";
 import {
   fetchPopularTVListUs,
   fetchPopularTVListKr,
   fetchPopularTVListZh,
   fetchPopularTVAnimationList,
-} from "../../reducers/tvListsResucers";
+} from "../../reducers/tvListsReducers";
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
 
@@ -65,7 +64,6 @@ function HomeScreen() {
   return (
     <>
       <HomeContainer>
-        <WebHeader />
         <HomeHeader />
         <MovieContainer>
           {lists.map((item, index) => (
