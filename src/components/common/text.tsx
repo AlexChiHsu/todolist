@@ -1,26 +1,52 @@
 import React from "react";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import tw from "twin.macro";
 
 export interface ITextProp {
   text: string | any;
+  index: number;
 }
 
-const TextContainer = styled.div`
-  max-width: 208px;
+const TextContainer = styled.div<{ index?: number }>`
   ${tw`
+    flex
+    flex-row
+    justify-between
     items-center
-    justify-center
-    text-white
-    font-normal
-    leading-6
-    text-center
-    whitespace-pre-line
+    ml-4
   `}
-  font-size: 16px;
+
+  ${({ index }) =>
+    index === 0 &&
+    css`
+      margin-left: 0;
+    `}
 `;
 
+const LeftBorder = styled.div`
+  ${tw`
+    w-[3px]
+    h-[23px]
+    rounded-full
+    mr-2
+  `}
+  background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+`;
+
+const Content = styled.div`
+  ${tw`
+    text-white
+    font-normal
+    text-[16px]
+    leading-6
+  `}
+`;
 export default function Text(props: ITextProp) {
-  const { text } = props;
-  return <TextContainer>{text}</TextContainer>;
+  const { text, index } = props;
+  return (
+    <TextContainer index={index}>
+      <LeftBorder></LeftBorder>
+      <Content>{text}</Content>
+    </TextContainer>
+  );
 }

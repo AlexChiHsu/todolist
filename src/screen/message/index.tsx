@@ -15,17 +15,29 @@ const MessageContainer = styled.div`
     mt-96
   `}
 `;
-
+const TextContainer = styled.div`
+  max-width: 208px;
+  ${tw`
+    items-center
+    justify-center
+    text-white
+    font-normal
+    leading-6
+    text-center
+    whitespace-pre-line
+  `}
+  font-size: 16px;
+`;
 export default function Message() {
   const error = useRouteError();
   console.log("error", error);
   return (
     <MessageContainer>
-      <Text
-        text={`非常抱歉！ \n
+      <TextContainer>
+        {`非常抱歉！ \n
         目前網路不穩或伺服器異常，\n
         請稍後再重新試試！`}
-      />
+      </TextContainer>
       <Button
         isOpenBottomBar={false}
         onClick={() => {}}

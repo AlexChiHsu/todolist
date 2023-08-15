@@ -120,4 +120,7 @@ export interface DetailProp {
   type: string;
   vote_average: number;
   vote_count: number;
+  title: string;
+  release_date: string;
+  runtime: number;
 }

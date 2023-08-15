@@ -4,6 +4,7 @@ import tw from "twin.macro";
 import { imagePath } from "../../../components/helper/media";
 import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
+import Text from "../../../components/common/text";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -13,7 +14,6 @@ const PosterContainer = styled.div`
     rounded-[20px]
     flex
     flex-row
-    // justify-center
     items-center
   `}
 `;
@@ -63,6 +63,7 @@ const DivContainer = styled.div`
   ${tw`
     flex
     flex-row
+    items-center
   `}
 `;
 
@@ -80,6 +81,29 @@ const ButtonGradientBg = styled.button`
   box-shadow: 0px 2px 8px 0px #0000007A;
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
+
+const DramaTitle = styled.h1`
+  ${tw`
+      text-white
+      font-medium
+      text-[38px]
+      leading-[55px]
+  `}
+`;
+
+const Rated = styled.h2`
+  ${tw`
+		text-[50px]
+		leading-none
+		font-bold
+		bg-clip-text
+		text-transparent
+    ml-[18px]
+	`}
+  font-family: "Roboto";
+  background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+`;
+
 export default function Poster() {
   const { movieDetail, tvDetail } = useAppSelector((state) => state.detail);
   const data = movieDetail ?? tvDetail;
@@ -99,6 +123,27 @@ export default function Poster() {
             <ButtonGradientBg>加入片單</ButtonGradientBg>
           </DivContainer>
         </RightHeader>
+        <DivContainer>
+          <DramaTitle>{data.name ?? data.title}</DramaTitle>
+          <Rated>{Math.round(data.vote_average * 10) / 10}</Rated>
+        </DivContainer>
+        <DivContainer>
+          <Text text={data.release_date} index={0}></Text>
+          <Text text={data.spoken_languages[0].name} index={1}></Text>
+          <Text
+            index={2}
+            text={
+              "0" +
+              Math.floor((data.runtime ?? data.episode_run_time) / 60) +
+              "時" +
+              Math.floor((data.runtime ?? data.episode_run_time) % 60) +
+              "分"
+            }
+          ></Text>
+        </DivContainer>
+        <DivContainer>
+          <Text index={0} text={`導演  ${data.id}`} />
+        </DivContainer>
       </RightContainer>
     </PosterContainer>
   );
