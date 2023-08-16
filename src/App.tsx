@@ -9,6 +9,7 @@ const AppContainer = styled.div`
     h-full
     flex
     flex-col
+    pt-14
   `}
 `;
 

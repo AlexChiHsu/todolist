@@ -4,9 +4,6 @@ import { imagePath } from "../../../components/helper/media";
 import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
 import Text from "../../../components/common/text";
-import IconButton from "../../../components/common/button/iconButton";
-import Icon from "../../../components/common/icons/icon";
-import Button from "../../../components/common/button";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -17,6 +14,11 @@ const PosterContainer = styled.div`
     flex
     flex-row
     items-center
+    pl-4
+    pr-4
+    pt-5
+    pb-5
+    mb-3
   `}
 `;
 
@@ -27,6 +29,7 @@ const LeftContainer = styled.div`
     bg-amber-100
     rounded-[20px]
     overflow-hidden
+    mr-[35px]
   `}
   box-shadow: 0px 2px 8px 0px #0000007A;
 `;
@@ -48,8 +51,10 @@ const Image = styled.button<{ path?: any }>`
 
 const RightContainer = styled.div`
   ${tw`
+    h-[430px]
     w-full
-    h-full
+    flex
+    flex-col
   `}
 `;
 
@@ -59,6 +64,7 @@ const RightHeader = styled.div`
     flex-row
     justify-between
     items-center
+    mb-3
   `}
 `;
 const DivContainer = styled.div`
@@ -66,6 +72,7 @@ const DivContainer = styled.div`
     flex
     flex-row
     items-center
+    mb-3
   `}
 `;
 
@@ -138,16 +145,18 @@ export default function Poster() {
             index={0}
           ></Text>
           <Text text={data?.spoken_languages[0]?.name} index={1}></Text>
-          <Text
-            index={2}
-            text={
-              "0" +
-              Math.floor((data?.runtime ?? data?.episode_run_time) / 60) +
-              "時" +
-              Math.floor((data?.runtime ?? data?.episode_run_time) % 60) +
-              "分"
-            }
-          ></Text>
+          {data?.runtime && data?.episode_run_time && (
+            <Text
+              index={2}
+              text={
+                "0" +
+                Math.floor((data?.runtime ?? data?.episode_run_time) / 60) +
+                "時" +
+                Math.floor((data?.runtime ?? data?.episode_run_time) % 60) +
+                "分"
+              }
+            ></Text>
+          )}
         </DivContainer>
         <DivContainer>
           <Text
@@ -163,7 +172,7 @@ export default function Poster() {
         <DivContainer>
           <Text index={-1} text={data?.overview} />
         </DivContainer>
-        <DivContainer>
+        {/* <DivContainer>
           <Text index={0} text={"播放平台"} />
         </DivContainer>
         <DivContainer>
@@ -172,7 +181,7 @@ export default function Poster() {
             component={<Icon name={"appletv"} width={36} height={36} />}
             isOpenBottomBar={false}
           />
-        </DivContainer>
+        </DivContainer> */}
       </RightContainer>
     </PosterContainer>
   );
