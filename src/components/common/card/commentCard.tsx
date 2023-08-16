@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ButtonThumbnail,
   CommentCardCenter,
   CommentCardContainer,
   CommentCardLeft,
@@ -12,12 +13,9 @@ export default function CommentCard() {
   return (
     <CommentCardContainer>
       <CommentCardLeft>
-        <Button
-          isOpenBottomBar={false}
-          isFill={false}
-          onClick={() => {}}
-          component={<Thumbnail isLogin={true} />}
-        />
+        <ButtonThumbnail>
+          <Thumbnail isLogin={true} />
+        </ButtonThumbnail>
       </CommentCardLeft>
       <CommentCardCenter></CommentCardCenter>
       <CommentCardRight></CommentCardRight>

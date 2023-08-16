@@ -80,11 +80,16 @@ export const CommentCardContainer = styled.div<{ index?: any }>`
       margin-top: 0px;
     `};
 `;
+export const ButtonThumbnail = styled.button`
+  ${tw`
+    overflow-hidden
+  `}
+`;
 
 export const CommentCardLeft = styled.div`
   ${tw`
+    w-[46px]
     h-full
-    bg-red-500
   `}
 `;
 export const CommentCardCenter = styled.div`
