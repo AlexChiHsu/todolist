@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  CardContainer,
   CommentButton,
   CommentContainer,
   CommentHeaderContainer,
@@ -7,6 +8,7 @@ import {
 } from "../styles/comment";
 import Text from "../../../components/common/text";
 import Icon from "../../../components/common/icons/icon";
+import CommentCard from "../../../components/common/card/commentCard";
 
 export default function Comment() {
   const starts = [0, 1, 2, 3, 4];
@@ -75,6 +77,12 @@ export default function Comment() {
           ))}
         </CommentButton>
       </CommentHeaderContainer>
+      <CardContainer>
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+      </CardContainer>
     </CommentContainer>
   );
 }

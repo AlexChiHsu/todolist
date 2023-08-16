@@ -9,6 +9,7 @@ const URL = {
   GET_TV_TOP_RATED: "/tv/top_rated?language=zh-TW",
   GET_DETAIL: "/{TYPE}/{ID}?language=zh-TW",
   GET_CREDITS: "/{TYPE}/{ID}/credits?language=zh-TW",
+  GET_COMMENTS: "/{TYPE}/{ID}/reviews?language=zh-TW&page=1",
 };
 const options = {
   method: "GET",
@@ -76,6 +77,15 @@ export function getDetail(id: string, type: string | undefined) {
 export function getCredits(id: string, type: string | undefined) {
   const fullURL =
     apiURL + URL.GET_CREDITS.replace("{TYPE}", type ?? "").replace("{ID}", id);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getComments(id: string, type: string | undefined) {
+  const fullURL =
+    apiURL + URL.GET_COMMENTS.replace("{TYPE}", type ?? "").replace("{ID}", id);
   return {
     fullURL,
     options,

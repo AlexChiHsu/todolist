@@ -54,3 +54,48 @@ export const StartsContainer = styled.div<{ index?: any }>`
     `};
   box-shadow: 0px 2px 8px 0px #0000007a;
 `;
+
+export const CardContainer = styled.div`
+  ${tw`
+    w-full
+    max-h-[498px]
+  `}
+`;
+
+export const CommentCardContainer = styled.div<{ index?: any }>`
+  ${tw`
+    w-full
+    h-[90px]
+    rounded-[10px]
+    bg-[#1B1E25]
+    mt-1.5
+    mb-1.5
+    flex
+    flex-row
+  `}
+
+  ${({ index }) =>
+    index === 0 &&
+    css`
+      margin-top: 0px;
+    `};
+`;
+
+export const CommentCardLeft = styled.div`
+  ${tw`
+    h-full
+    bg-red-500
+  `}
+`;
+export const CommentCardCenter = styled.div`
+  ${tw`
+    h-full
+    bg-blue-500
+  `}
+`;
+export const CommentCardRight = styled.div`
+  ${tw`
+    h-full
+    bg-green-500
+  `}
+`;

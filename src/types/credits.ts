@@ -34,3 +34,26 @@ export interface CreditsProp {
     }
   ];
 }
+
+export interface CommentsProp {
+  id: number;
+  page: number;
+  results: [
+    {
+      author: string;
+      author_details: {
+        name: string;
+        username: string;
+        avatar_path: string;
+        rating: string;
+      };
+      content: string;
+      created_at: string;
+      id: string;
+      updated_at: string;
+      url: string;
+    }
+  ];
+  total_pages: number;
+  total_results: number;
+}
