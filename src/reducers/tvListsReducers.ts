@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { DetailProp, MovieListProp } from "../types/movieList";
 import {
+  getCredits,
+  getDetail,
   getPopularTVAnimationList,
   getPopularTVList,
-  getTVDetail,
-  getTvCredits,
   getTvTopRated,
 } from "../api/tmdb/fetchAPI";
 import { CreditsProp } from "../types/credits";
@@ -78,24 +78,30 @@ export const fetchTopRatedTVList = createAsyncThunk(
   }
 );
 
-export const fetchTVDetail = createAsyncThunk(
-  "fetch/tvDetail",
-  async (id: string): Promise<DetailProp> => {
+export const fetchDetail = createAsyncThunk(
+  "fetch/detail",
+  async (payload: {
+    type: string | undefined;
+    id: string;
+  }): Promise<DetailProp> => {
     const response = await fetch(
-      getTVDetail(id).fullURL,
-      getTVDetail(id).options
+      getDetail(payload.id, payload?.type).fullURL,
+      getDetail(payload.id, payload?.type).options
     );
 
     return response.json();
   }
 );
 
-export const fetchTVCredits = createAsyncThunk(
-  "fetch/tvCredits",
-  async (id: string): Promise<CreditsProp> => {
+export const fetchCredits = createAsyncThunk(
+  "fetch/credits",
+  async (payload: {
+    type: string | undefined;
+    id: string;
+  }): Promise<CreditsProp> => {
     const response = await fetch(
-      getTvCredits(id).fullURL,
-      getTvCredits(id).options
+      getCredits(payload.id, payload?.type).fullURL,
+      getCredits(payload.id, payload?.type).options
     );
 
     return response.json();

@@ -7,10 +7,8 @@ const URL = {
   GET_POPULAR_TV_ANIMATION_LIST: "/discover/tv?with_genres=16",
   GET_MOVIE_TOP_RATED: "/movie/top_rated?language=zh-TW",
   GET_TV_TOP_RATED: "/tv/top_rated?language=zh-TW",
-  GET_MOVIE_DETAIL: "/movie/{MOVIE_ID}?language=zh-TW",
-  GET_TV_DETAIL: "/tv/{TV_ID}?language=zh-TW",
-  GET_MOVIE_CREDITS: "/movie/{MOVIE_ID}/credits?language=zh-TW",
-  GET_TV_CREITS: "/tv/{TV_ID}/credits?language=zh-TW",
+  GET_DETAIL: "/{TYPE}/{ID}?language=zh-TW",
+  GET_CREDITS: "/{TYPE}/{ID}/credits?language=zh-TW",
 };
 const options = {
   method: "GET",
@@ -66,32 +64,18 @@ export function getTvTopRated() {
   };
 }
 
-export function getMovieDetail(id: string) {
-  const fullURL = apiURL + URL.GET_MOVIE_DETAIL.replace("{MOVIE_ID}", id);
+export function getDetail(id: string, type: string | undefined) {
+  const fullURL =
+    apiURL + URL.GET_DETAIL.replace("{TYPE}", type ?? "").replace("{ID}", id);
   return {
     fullURL,
     options,
   };
 }
 
-export function getTVDetail(id: string) {
-  const fullURL = apiURL + URL.GET_TV_DETAIL.replace("{TV_ID}", id);
-  return {
-    fullURL,
-    options,
-  };
-}
-
-export function getMovieCredits(id: string) {
-  const fullURL = apiURL + URL.GET_MOVIE_CREDITS.replace("{MOVIE_ID}", id);
-  return {
-    fullURL,
-    options,
-  };
-}
-
-export function getTvCredits(id: string) {
-  const fullURL = apiURL + URL.GET_TV_CREITS.replace("{TV_ID}", id);
+export function getCredits(id: string, type: string | undefined) {
+  const fullURL =
+    apiURL + URL.GET_CREDITS.replace("{TYPE}", type ?? "").replace("{ID}", id);
   return {
     fullURL,
     options,

@@ -82,12 +82,17 @@ const VoteAverage = styled.span`
   box-shadow: 0px 2px 8px 0px #0000007a;
 `;
 
-export default function MovieListCard(props: MovieProp) {
-  const { poster_path, title, vote_average, name, id } = props;
+interface ICardProp {
+  movie: MovieProp;
+  type: string;
+}
+export default function MovieListCard(props: ICardProp) {
+  const { poster_path, title, vote_average, name, id } = props.movie;
+  const { type } = props;
   const navigation = useNavigate();
   const url = imageURL + poster_path;
   return (
-    <MovieCardContainer onClick={() => navigation(`/detail/${id}`)}>
+    <MovieCardContainer onClick={() => navigation(`/detail/${type}/${id}`)}>
       <MovieImage path={url}>
         <VoteAverage aria-disabled>{vote_average}</VoteAverage>
       </MovieImage>

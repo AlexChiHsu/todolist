@@ -126,6 +126,7 @@ export default function MovieList(props: IMovieListProp) {
       left: (left -= 500),
     });
   };
+
   return (
     <MovieListContainer isShowBg={isShowBg}>
       <ListTitle>{listTitle}</ListTitle>
@@ -136,7 +137,10 @@ export default function MovieList(props: IMovieListProp) {
         <ScrollContainer>
           <ScrollList ref={scroll}>
             {data?.results.map((item) => (
-              <MovieListCard {...item} />
+              <MovieListCard
+                movie={item}
+                type={listTitle === "熱門電影" ? "movie" : "tv"}
+              />
             ))}
           </ScrollList>
         </ScrollContainer>

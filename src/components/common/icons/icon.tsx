@@ -16,6 +16,9 @@ import { ReactComponent as Search } from "../../../assets/images/search.svg";
 import { ReactComponent as Logout } from "../../../assets/images/logout.svg";
 import { ReactComponent as ArrowLeft } from "../../../assets/images/arrow-left.svg";
 import { ReactComponent as ArrowRight } from "../../../assets/images/arrow-right.svg";
+import { ReactComponent as Netflix } from "../../../assets/images/netflix.svg";
+import { ReactComponent as Appletv } from "../../../assets/images/appletv.svg";
+import { ReactComponent as Iqi } from "../../../assets/images/iqi.svg";
 
 interface IIconsProp {
   name:
@@ -36,6 +39,9 @@ interface IIconsProp {
     | "logo"
     | "search"
     | "logout"
+    | "netflix"
+    | "iqi"
+    | "appletv"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -205,6 +211,33 @@ export default function Icon(props: IIconsProp) {
     case "logout":
       return (
         <Logout
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "appletv":
+      return (
+        <Appletv
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "iqi":
+      return (
+        <Iqi
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "netflix":
+      return (
+        <Netflix
           fill={fillColor}
           stroke={strokeColor}
           width={width}

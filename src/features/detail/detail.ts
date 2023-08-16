@@ -1,24 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DetailProp } from "../../types/movieList";
-import { fetchTVCredits, fetchTVDetail } from "../../reducers/tvListsReducers";
-import {
-  fetchMovieCredits,
-  fetchMovieDetail,
-} from "../../reducers/movieListReducers";
+import { fetchCredits, fetchDetail } from "../../reducers/tvListsReducers";
 import { initialCredits, initialDetail } from "./initialDetail";
 import { CreditsProp } from "../../types/credits";
 
 export interface IDetailState {
-  movieDetail: DetailProp;
-  tvDetail: DetailProp;
-  movieCredits: CreditsProp;
+  detail: DetailProp;
+  credits: CreditsProp;
   tvCredits: CreditsProp;
 }
 
 const initialState: IDetailState = {
-  movieDetail: initialDetail,
-  tvDetail: initialDetail,
-  movieCredits: initialCredits,
+  detail: initialDetail,
+  credits: initialCredits,
   tvCredits: initialCredits,
 };
 
@@ -27,17 +21,11 @@ export const detail = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchMovieDetail.fulfilled, (state, action) => {
-      state.movieDetail = action.payload;
+    builder.addCase(fetchDetail.fulfilled, (state, action) => {
+      state.detail = action.payload;
     });
-    builder.addCase(fetchTVDetail.fulfilled, (state, action) => {
-      state.tvDetail = action.payload;
-    });
-    builder.addCase(fetchTVCredits.fulfilled, (state, action) => {
-      state.tvCredits = action.payload;
-    });
-    builder.addCase(fetchMovieCredits.fulfilled, (state, action) => {
-      state.movieCredits = action.payload;
+    builder.addCase(fetchCredits.fulfilled, (state, action) => {
+      state.credits = action.payload;
     });
   },
 });

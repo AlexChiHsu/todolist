@@ -1,10 +1,12 @@
-import React from "react";
 import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import { imagePath } from "../../../components/helper/media";
 import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
 import Text from "../../../components/common/text";
+import IconButton from "../../../components/common/button/iconButton";
+import Icon from "../../../components/common/icons/icon";
+import Button from "../../../components/common/button";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -105,24 +107,22 @@ const Rated = styled.h2`
 `;
 
 export default function Poster() {
-  const { movieDetail, tvDetail, tvCredits, movieCredits } = useAppSelector(
-    (state) => state.detail
+  const { detail, credits } = useAppSelector((state) => state.detail);
+  const data = detail;
+  const director = credits.crew.find(
+    (item) => item.job === "Director" ?? item.job === "Writer"
   );
-  const data = movieDetail ?? tvDetail;
-
-  const credits = tvCredits ?? movieCredits;
 
   return (
     <PosterContainer>
       <LeftContainer>
-        <Image path={imagePath(data.backdrop_path)} />
+        <Image path={imagePath(data?.backdrop_path)} />
       </LeftContainer>
       <RightContainer>
         <RightHeader>
           <DivContainer>
-            {data.genres.map((item) => (
-              <LabelButton name={item.name} />
-            ))}
+            {data?.genres &&
+              data?.genres?.map((item) => <LabelButton name={item?.name} />)}
           </DivContainer>
           <DivContainer>
             <ButtonGradientBg>加入片單</ButtonGradientBg>
@@ -130,33 +130,48 @@ export default function Poster() {
         </RightHeader>
         <DivContainer>
           <DramaTitle>{data.name ?? data.title}</DramaTitle>
-          <Rated>{Math.round(data.vote_average * 10) / 10}</Rated>
+          <Rated>{Math.round(data?.vote_average * 10) / 10}</Rated>
         </DivContainer>
         <DivContainer>
-          <Text text={data.release_date} index={0}></Text>
-          <Text text={data.spoken_languages[0].name} index={1}></Text>
+          <Text
+            text={data?.release_date ?? data?.first_air_date}
+            index={0}
+          ></Text>
+          <Text text={data?.spoken_languages[0]?.name} index={1}></Text>
           <Text
             index={2}
             text={
               "0" +
-              Math.floor((data.runtime ?? data.episode_run_time) / 60) +
+              Math.floor((data?.runtime ?? data?.episode_run_time) / 60) +
               "時" +
-              Math.floor((data.runtime ?? data.episode_run_time) % 60) +
+              Math.floor((data?.runtime ?? data?.episode_run_time) % 60) +
               "分"
             }
           ></Text>
         </DivContainer>
         <DivContainer>
-          <Text index={0} text={`導演 `} />
+          <Text
+            index={0}
+            text={`${director?.job === "Writer" ? "創作者" : "導演"} ${
+              director?.name
+            }`}
+          />
         </DivContainer>
         <DivContainer>
           <Text index={0} text={"劇情介紹"} />
         </DivContainer>
         <DivContainer>
-          <Text index={-1} text={data.overview} />
+          <Text index={-1} text={data?.overview} />
         </DivContainer>
         <DivContainer>
           <Text index={0} text={"播放平台"} />
+        </DivContainer>
+        <DivContainer>
+          <Button
+            onClick={() => {}}
+            component={<Icon name={"appletv"} width={36} height={36} />}
+            isOpenBottomBar={false}
+          />
         </DivContainer>
       </RightContainer>
     </PosterContainer>

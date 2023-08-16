@@ -21,6 +21,11 @@ const TextContainer = styled.div<{ index?: number }>`
     css`
       margin-left: 0;
     `}
+    ${({ index }) =>
+    index === -1 &&
+    css`
+      margin-left: 0;
+    `}
 `;
 
 const LeftBorder = styled.div<{ index?: number }>`
@@ -34,8 +39,10 @@ const LeftBorder = styled.div<{ index?: number }>`
   ${({ index }) =>
     index === -1 &&
     css`
-      width: 0;
-      margin-right: 0;
+      width: 3px;
+      height: auto;
+      margin-right: 10px;
+      background-color: transparent;
     `}
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
@@ -46,6 +53,8 @@ const Content = styled.div`
     font-normal
     text-[16px]
     leading-6
+		line-clamp-3
+		whitespace-normal
   `}
 `;
 export default function Text(props: ITextProp) {

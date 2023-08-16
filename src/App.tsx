@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import HomeScreen from "./screen/home";
+import WebHeader from "./components/header/webHeader";
+import { Outlet } from "react-router-dom";
 
 const AppContainer = styled.div`
   ${tw`
@@ -14,7 +15,8 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <HomeScreen />
+      <WebHeader />
+      <Outlet />
     </AppContainer>
   );
 }

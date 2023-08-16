@@ -7,14 +7,12 @@ import "./index.css";
 import { ThemeProvider } from "@material-tailwind/react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./components/router/router";
-import WebHeader from "./components/header/webHeader";
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <WebHeader />
       <ThemeProvider>
         <RouterProvider router={router} />
       </ThemeProvider>
