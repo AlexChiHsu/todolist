@@ -28,8 +28,9 @@ export const CastCardButton = styled.button`
     flex
     flex-col
     justify-between
+    ml-1.5
+    mr-1.5
     pb-1
-    mr-2.5
     mb-3
   `}
 `;

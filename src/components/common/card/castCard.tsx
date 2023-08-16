@@ -4,7 +4,7 @@ import {
   CastCardButton,
   Name,
 } from "../../../screen/detail/styles/castComponent";
-import path from "path";
+import Icon from "../icons/icon";
 
 interface ICastCardProp {
   path: string;
@@ -14,7 +14,7 @@ export default function CastCard(props: ICastCardProp) {
   const { path, name } = props;
   return (
     <CastCardButton>
-      <BgImage path={path} />
+      {path !== "" ? <BgImage path={path} /> : <Icon name={"non-person"} />}
       <Name>{name}</Name>
     </CastCardButton>
   );

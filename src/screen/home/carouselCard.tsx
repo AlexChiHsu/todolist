@@ -47,9 +47,11 @@ const Rated = styled.h2`
 
 const MovieTitle = styled.h1`
   ${tw`
+		max-w-[560px]
 		text-[76px]
 		text-white
 		font-medium
+		truncate
 		leading-[90px]
 	`}
 `;

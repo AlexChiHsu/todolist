@@ -19,6 +19,8 @@ import { ReactComponent as ArrowRight } from "../../../assets/images/arrow-right
 import { ReactComponent as Netflix } from "../../../assets/images/netflix.svg";
 import { ReactComponent as Appletv } from "../../../assets/images/appletv.svg";
 import { ReactComponent as Iqi } from "../../../assets/images/iqi.svg";
+import { ReactComponent as NonPerson } from "../../../assets/images/non-person.svg";
+import { ReactComponent as Star } from "../../../assets/images/star.svg";
 
 interface IIconsProp {
   name:
@@ -42,6 +44,8 @@ interface IIconsProp {
     | "netflix"
     | "iqi"
     | "appletv"
+    | "non-person"
+    | "star"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -238,6 +242,24 @@ export default function Icon(props: IIconsProp) {
     case "netflix":
       return (
         <Netflix
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "non-person":
+      return (
+        <NonPerson
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "star":
+      return (
+        <Star
           fill={fillColor}
           stroke={strokeColor}
           width={width}

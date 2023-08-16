@@ -144,7 +144,9 @@ export default function Poster() {
             text={data?.release_date ?? data?.first_air_date}
             index={0}
           ></Text>
-          <Text text={data?.spoken_languages[0]?.name} index={1}></Text>
+          {data?.spoken_languages[0]?.name && (
+            <Text text={data?.spoken_languages[0]?.name} index={1}></Text>
+          )}
           {data?.runtime && data?.episode_run_time && (
             <Text
               index={2}

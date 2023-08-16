@@ -6,6 +6,7 @@ import tw from "twin.macro";
 import Poster from "./component/poster";
 import { fetchCredits, fetchDetail } from "../../reducers/tvListsReducers";
 import CastComponent from "./component/castComponent";
+import Comment from "./component/comment";
 
 const DetailContainer = styled.div`
   ${tw`
@@ -14,6 +15,7 @@ const DetailContainer = styled.div`
     pt-6
     pr-[42px]
     pl-[42px]
+    overflow-auto
   `}
 `;
 
@@ -32,6 +34,7 @@ export default function Detail() {
     <DetailContainer>
       <Poster />
       <CastComponent />
+      <Comment />
     </DetailContainer>
   );
 }
