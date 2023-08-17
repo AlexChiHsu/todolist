@@ -2,7 +2,7 @@
   "name": "front_end",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AlexChiHsu.github.io/w-movie/home",
+  "homepage": "https://AlexChiHsu.github.io/w-movie",
   "dependencies": {
     "@material-tailwind/react": "^2.1.0",
     "@reduxjs/toolkit": "^1.8.1",
