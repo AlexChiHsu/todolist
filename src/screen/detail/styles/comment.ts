@@ -70,6 +70,10 @@ export const CommentCardContainer = styled.div<{ index?: any }>`
     bg-[#1B1E25]
     mt-1.5
     mb-1.5
+    pt-2.5
+    pb-2.5
+    pl-4
+    pr-4
     flex
     flex-row
   `}
@@ -94,13 +98,60 @@ export const CommentCardLeft = styled.div`
 `;
 export const CommentCardCenter = styled.div`
   ${tw`
+    w-full
     h-full
-    bg-blue-500
+    flex
+    flex-col
+    justify-between
+    ml-3.5
+    mr-3.5
+    overflow-x-scroll
   `}
 `;
 export const CommentCardRight = styled.div`
   ${tw`
-    h-full
-    bg-green-500
+    w-[35px]
+    h-full    
+  `}
+`;
+
+export const UserNameText = styled.h3`
+  ${tw`
+    text-white
+    font-bold
+    text-[16px]
+    leading-6
+  `}
+`;
+
+export const CardStartsContainer = styled.div`
+  ${tw`
+    w-[125px]
+    flex
+    flex-row
+    items-center
+    justify-between
+  `}
+`;
+
+export const UserComment = styled.h5`
+  ${tw`
+    w-full
+    max-h-[21px]
+    flex-wrap
+    text-clip
+    font-normal
+    text-sm
+    leading-[21px]
+    text-white
+  `}
+`;
+
+export const UserEditButton = styled.button`
+  ${tw`
+    text-sm
+    font-normal
+    leading-[21px]
+    text-[#C10171]
   `}
 `;
