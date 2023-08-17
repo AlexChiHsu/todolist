@@ -38,7 +38,7 @@ export default function Detail() {
     dispatch(fetchCredits(fetch));
     dispatch(fetchSimilar(fetch));
     dispatch(fetchComments(fetch));
-  }, [dispatch, fetch, param.detailId]);
+  }, []);
 
   return (
     <DetailContainer>

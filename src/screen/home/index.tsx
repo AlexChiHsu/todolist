@@ -71,6 +71,7 @@ function HomeScreen() {
               listTitle={item.title}
               data={data(item.title)}
               isShowBg={index % 2 !== 1}
+              isDetail={false}
             />
           ))}
           <Footer />
