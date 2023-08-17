@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     errorElement: <Message />,
     children: [
       {
-        path: "/home",
+        path: "/w-move",
         element: <HomeScreen />,
       },
       {

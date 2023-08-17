@@ -40,7 +40,7 @@ export default function Message() {
       </TextContainer>
       <Button
         isOpenBottomBar={false}
-        onClick={() => navigate(`/home`)}
+        onClick={() => navigate(`/w-movie`)}
         text="重新載入"
         isFill
       />
