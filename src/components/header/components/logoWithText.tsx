@@ -36,7 +36,7 @@ const LogoButton = styled.button`
 export default function LogoWithText() {
   const navigation = useNavigate();
   return (
-    <LogoWithTextContainer onClick={() => navigation(`/w-movie`)}>
+    <LogoWithTextContainer onClick={() => navigation(`/`)}>
       <LogoButton>
         <Icon name={"logo"} width={38} />
         <BrandText>WoW ! Movie</BrandText>
