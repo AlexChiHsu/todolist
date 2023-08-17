@@ -1,10 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from "../../App";
 import Message from "../../screen/message";
 import Detail from "../../screen/detail";
 import HomeScreen from "../../screen/home";
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   [
     {
       path: "/",
