@@ -5,7 +5,10 @@ import Icon from "../../components/common/icons/icon";
 import { MovieListProp } from "../../types/movieList";
 import { useRef } from "react";
 
-const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
+const MovieListContainer = styled.div<{
+  isShowBg?: boolean;
+  isDetail?: boolean;
+}>`
   ${tw`
     overflow-hidden
     ml-10
@@ -24,6 +27,13 @@ const MovieListContainer = styled.div<{ isShowBg?: boolean }>`
     isShowBg &&
     css`
       background-color: transparent;
+    `}
+  
+    ${({ isDetail }) =>
+    isDetail &&
+    tw`
+      ml-0
+      mr-0
     `}
 `;
 
@@ -108,10 +118,11 @@ interface IMovieListProp {
   listTitle: string;
   data: MovieListProp;
   isShowBg: boolean;
+  isDetail?: boolean;
 }
 
 export default function MovieList(props: IMovieListProp) {
-  const { listTitle, data, isShowBg } = props;
+  const { listTitle, data, isShowBg, isDetail } = props;
   const scroll = useRef<null | HTMLDivElement>(null);
   let left = 0;
 
@@ -128,7 +139,7 @@ export default function MovieList(props: IMovieListProp) {
   };
 
   return (
-    <MovieListContainer isShowBg={isShowBg}>
+    <MovieListContainer isShowBg={isShowBg} isDetail={isDetail}>
       <ListTitle>{listTitle}</ListTitle>
       <ListContainer>
         <IconBackground onClick={onLeftClick}>

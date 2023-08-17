@@ -4,7 +4,7 @@ import tw from "twin.macro";
 export const CommentContainer = styled.div`
   ${tw`
     w-full
-    max-h-[250px]
+    max-h-[620px]
     bg-[#686B721A]
     rounded-[20px]
     items-center

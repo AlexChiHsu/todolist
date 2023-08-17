@@ -1,13 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DetailProp, MovieListProp } from "../types/movieList";
+import { MovieListProp } from "../types/movieList";
 import {
-  getCredits,
-  getDetail,
   getPopularTVAnimationList,
   getPopularTVList,
   getTvTopRated,
 } from "../api/tmdb/fetchAPI";
-import { CreditsProp } from "../types/credits";
 
 export const fetchPopularTVListUs = createAsyncThunk(
   "fetch/popularUsTVList",
@@ -72,36 +69,6 @@ export const fetchTopRatedTVList = createAsyncThunk(
     const response = await fetch(
       getTvTopRated().fullURL,
       getTvTopRated().options
-    );
-
-    return response.json();
-  }
-);
-
-export const fetchDetail = createAsyncThunk(
-  "fetch/detail",
-  async (payload: {
-    type: string | undefined;
-    id: string;
-  }): Promise<DetailProp> => {
-    const response = await fetch(
-      getDetail(payload.id, payload?.type).fullURL,
-      getDetail(payload.id, payload?.type).options
-    );
-
-    return response.json();
-  }
-);
-
-export const fetchCredits = createAsyncThunk(
-  "fetch/credits",
-  async (payload: {
-    type: string | undefined;
-    id: string;
-  }): Promise<CreditsProp> => {
-    const response = await fetch(
-      getCredits(payload.id, payload?.type).fullURL,
-      getCredits(payload.id, payload?.type).options
     );
 
     return response.json();

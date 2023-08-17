@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DetailProp } from "../../types/movieList";
-import { fetchCredits, fetchDetail } from "../../reducers/tvListsReducers";
+import { DetailProp, MovieListProp } from "../../types/movieList";
 import { initialCredits, initialDetail } from "./initialDetail";
 import { CreditsProp } from "../../types/credits";
+import { initialList } from "../movieList/initialList";
+import {
+  fetchDetail,
+  fetchCredits,
+  fetchSimilar,
+} from "../../reducers/detailReducers";
 
 export interface IDetailState {
   detail: DetailProp;
   credits: CreditsProp;
   tvCredits: CreditsProp;
+  similar: MovieListProp;
 }
 
 const initialState: IDetailState = {
   detail: initialDetail,
   credits: initialCredits,
   tvCredits: initialCredits,
+  similar: initialList,
 };
 
 export const detail = createSlice({
@@ -26,6 +33,10 @@ export const detail = createSlice({
     });
     builder.addCase(fetchCredits.fulfilled, (state, action) => {
       state.credits = action.payload;
+    });
+
+    builder.addCase(fetchSimilar.fulfilled, (state, action) => {
+      state.similar = action.payload;
     });
   },
 });

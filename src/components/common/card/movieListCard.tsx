@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MovieProp } from "../../../types/movieList";
 import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import { imageURL } from "../../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
+import withoutImg from "../../../assets/images/withoutImg.svg";
 
 const MovieCardContainer = styled.button`
   width: 103px;
@@ -46,7 +47,6 @@ const MovieImage = styled.div<{ path?: any }>`
     bg-cover
     bg-no-repeat
     mb-1
-    bg-amber-200
   `}
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.48);
 
@@ -90,11 +90,14 @@ export default function MovieListCard(props: ICardProp) {
   const { poster_path, title, vote_average, name, id } = props.movie;
   const { type } = props;
   const navigation = useNavigate();
-  const url = imageURL + poster_path;
+  const url = poster_path === null ? `${withoutImg}` : imageURL + poster_path;
+
   return (
     <MovieCardContainer onClick={() => navigation(`/detail/${type}/${id}`)}>
       <MovieImage path={url}>
-        <VoteAverage aria-disabled>{vote_average}</VoteAverage>
+        <VoteAverage aria-disabled>
+          {Math.round(vote_average * 10) / 10}
+        </VoteAverage>
       </MovieImage>
       <MovieTitle>{title ?? name}</MovieTitle>
     </MovieCardContainer>

@@ -10,6 +10,7 @@ const URL = {
   GET_DETAIL: "/{TYPE}/{ID}?language=zh-TW",
   GET_CREDITS: "/{TYPE}/{ID}/credits?language=zh-TW",
   GET_COMMENTS: "/{TYPE}/{ID}/reviews?language=zh-TW&page=1",
+  GET_SIMILAR: "/{TYPE}/{ID}/similar?language=zh-TW&page=1",
 };
 const options = {
   method: "GET",
@@ -86,6 +87,15 @@ export function getCredits(id: string, type: string | undefined) {
 export function getComments(id: string, type: string | undefined) {
   const fullURL =
     apiURL + URL.GET_COMMENTS.replace("{TYPE}", type ?? "").replace("{ID}", id);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getSimilar(id: string, type: string | undefined) {
+  const fullURL =
+    apiURL + URL.GET_SIMILAR.replace("{TYPE}", type ?? "").replace("{ID}", id);
   return {
     fullURL,
     options,
