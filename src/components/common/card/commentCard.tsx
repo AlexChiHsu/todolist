@@ -13,29 +13,89 @@ import {
 import Thumbnail from "../../header/components/thumbnail";
 import Icon from "../icons/icon";
 
-export default function CommentCard() {
+interface CommentCardProp {
+  userName: string;
+  rating: number;
+  content: string;
+  thumbnailUrl: string;
+}
+
+export default function CommentCard(props: CommentCardProp) {
+  const { userName, rating, content, thumbnailUrl } = props;
   const starts = [0, 1, 2, 3, 4];
+  const hightLight: number[] = [];
+  const isLogin = userName === "AlexChiHsu";
+  let defaultContent = "";
+
+  switch (Math.round(rating / 2)) {
+    case 1:
+      hightLight.push(0);
+      defaultContent = "糟透了";
+      break;
+    case 2:
+      hightLight.push(0);
+      hightLight.push(1);
+      defaultContent = "我覺得不行...";
+      break;
+    case 3:
+      hightLight.push(0);
+      hightLight.push(1);
+      hightLight.push(2);
+      defaultContent = "還不錯";
+      break;
+    case 4:
+      hightLight.push(0);
+      hightLight.push(1);
+      hightLight.push(2);
+      hightLight.push(3);
+      defaultContent = "推薦";
+      break;
+    case 5:
+      hightLight.push(0);
+      hightLight.push(1);
+      hightLight.push(2);
+      hightLight.push(3);
+      hightLight.push(4);
+      defaultContent = "極度好評!";
+      break;
+  }
+
   return (
     <CommentCardContainer>
       <CommentCardLeft>
         <ButtonThumbnail>
-          <Thumbnail isLogin={true} />
+          <Thumbnail isLogin={true} url={thumbnailUrl} />
         </ButtonThumbnail>
       </CommentCardLeft>
       <CommentCardCenter>
-        <UserNameText>過客</UserNameText>
+        <UserNameText>{userName}</UserNameText>
         <CardStartsContainer>
-          {starts.map((item) => (
-            <Icon name={"star"} width={17} height={17} fill={"#686B72"} />
+          {starts.map((item, index) => (
+            <Icon
+              name={"star"}
+              width={17}
+              height={17}
+              fill={
+                hightLight.length === 0
+                  ? "#686B72"
+                  : hightLight[item] === index
+                  ? "#C10171"
+                  : "#686B72"
+              }
+            />
           ))}
         </CardStartsContainer>
         <UserComment>
-          老實說要不是演員感覺很努力在演，連兩顆星都懶得給.....
+          {content === "" || content === null || content === undefined
+            ? defaultContent
+            : content}
         </UserComment>
       </CommentCardCenter>
-      <CommentCardRight>
-        <UserEditButton>編輯</UserEditButton>
-      </CommentCardRight>
+      {isLogin && (
+        <CommentCardRight>
+          <UserEditButton>編輯</UserEditButton>
+        </CommentCardRight>
+      )}
     </CommentCardContainer>
   );
 }

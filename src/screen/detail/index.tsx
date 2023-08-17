@@ -10,6 +10,7 @@ import {
   fetchDetail,
   fetchCredits,
   fetchSimilar,
+  fetchComments,
 } from "../../reducers/detailReducers";
 import MovieList from "../movieList";
 
@@ -30,11 +31,13 @@ export default function Detail() {
   const id = param.detailId + "";
   const type = param?.type;
   const similar = useAppSelector((state) => state.detail.similar);
+  const fetch = { id: id, type: type };
 
   useEffect(() => {
-    dispatch(fetchDetail({ id: id, type: type }));
-    dispatch(fetchCredits({ id: id, type: type }));
-    dispatch(fetchSimilar({ id: id, type: type }));
+    dispatch(fetchDetail(fetch));
+    dispatch(fetchCredits(fetch));
+    dispatch(fetchSimilar(fetch));
+    dispatch(fetchComments(fetch));
   }, [dispatch, id, param.detailId, type]);
 
   return (

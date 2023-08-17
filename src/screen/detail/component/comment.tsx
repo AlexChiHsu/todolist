@@ -9,8 +9,10 @@ import {
 import Text from "../../../components/common/text";
 import Icon from "../../../components/common/icons/icon";
 import CommentCard from "../../../components/common/card/commentCard";
+import { useAppSelector } from "../../../app/hooks";
 
 export default function Comment() {
+  const comments = useAppSelector((state) => state.detail.comments);
   const starts = [0, 1, 2, 3, 4];
   const [selected, setSelected] = useState<number>(-1);
   const [hightLight, setHightLight] = useState<number[]>([]);
@@ -78,10 +80,14 @@ export default function Comment() {
         </CommentButton>
       </CommentHeaderContainer>
       <CardContainer>
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
+        {comments.results.map((item) => (
+          <CommentCard
+            userName={item.author}
+            rating={item.author_details.rating}
+            content={item.content}
+            thumbnailUrl={item.author_details.avatar_path}
+          />
+        ))}
       </CardContainer>
     </CommentContainer>
   );

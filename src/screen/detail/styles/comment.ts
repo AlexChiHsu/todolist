@@ -74,6 +74,7 @@ export const CommentCardContainer = styled.div<{ index?: any }>`
     pb-2.5
     pl-4
     pr-4
+    mt-[30px]
     flex
     flex-row
   `}

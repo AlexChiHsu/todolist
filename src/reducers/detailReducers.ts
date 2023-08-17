@@ -1,7 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { DetailProp, MovieListProp } from "../types/movieList";
-import { getCredits, getDetail, getSimilar } from "../api/tmdb/fetchAPI";
-import { CreditsProp } from "../types/credits";
+import {
+  getComments,
+  getCredits,
+  getDetail,
+  getSimilar,
+} from "../api/tmdb/fetchAPI";
+import { CommentsProp, CreditsProp } from "../types/credits";
 
 export const fetchDetail = createAsyncThunk(
   "fetch/detail",
@@ -42,6 +47,21 @@ export const fetchSimilar = createAsyncThunk(
     const response = await fetch(
       getSimilar(payload.id, payload?.type).fullURL,
       getSimilar(payload.id, payload?.type).options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchComments = createAsyncThunk(
+  "fetch/comments",
+  async (payload: {
+    type: string | undefined;
+    id: string;
+  }): Promise<CommentsProp> => {
+    const response = await fetch(
+      getComments(payload.id, payload?.type).fullURL,
+      getComments(payload.id, payload?.type).options
     );
 
     return response.json();

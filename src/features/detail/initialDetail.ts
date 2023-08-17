@@ -1,4 +1,4 @@
-import { CreditsProp } from "../../types/credits";
+import { CommentsProp, CreditsProp } from "../../types/credits";
 import { DetailProp } from "../../types/movieList";
 
 export const initialDetail = {
@@ -138,3 +138,26 @@ export const initialCredits = {
     },
   ],
 } as CreditsProp;
+
+export const initialCommentsList = {
+  id: 0,
+  page: 0,
+  results: [
+    {
+      author: "",
+      author_details: {
+        name: "",
+        username: "",
+        avatar_path: "",
+        rating: 0,
+      },
+      content: "",
+      created_at: "",
+      id: "",
+      updated_at: "",
+      url: "",
+    },
+  ],
+  total_pages: 0,
+  total_results: 0,
+} as CommentsProp;

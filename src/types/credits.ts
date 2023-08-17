@@ -45,7 +45,7 @@ export interface CommentsProp {
         name: string;
         username: string;
         avatar_path: string;
-        rating: string;
+        rating: number;
       };
       content: string;
       created_at: string;

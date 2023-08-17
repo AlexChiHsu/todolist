@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DetailProp, MovieListProp } from "../../types/movieList";
-import { initialCredits, initialDetail } from "./initialDetail";
-import { CreditsProp } from "../../types/credits";
+import {
+  initialCommentsList,
+  initialCredits,
+  initialDetail,
+} from "./initialDetail";
+import { CommentsProp, CreditsProp } from "../../types/credits";
 import { initialList } from "../movieList/initialList";
 import {
   fetchDetail,
   fetchCredits,
   fetchSimilar,
+  fetchComments,
 } from "../../reducers/detailReducers";
 
 export interface IDetailState {
@@ -14,6 +19,7 @@ export interface IDetailState {
   credits: CreditsProp;
   tvCredits: CreditsProp;
   similar: MovieListProp;
+  comments: CommentsProp;
 }
 
 const initialState: IDetailState = {
@@ -21,6 +27,7 @@ const initialState: IDetailState = {
   credits: initialCredits,
   tvCredits: initialCredits,
   similar: initialList,
+  comments: initialCommentsList,
 };
 
 export const detail = createSlice({
@@ -37,6 +44,9 @@ export const detail = createSlice({
 
     builder.addCase(fetchSimilar.fulfilled, (state, action) => {
       state.similar = action.payload;
+    });
+    builder.addCase(fetchComments.fulfilled, (state, action) => {
+      state.comments = action.payload;
     });
   },
 });
