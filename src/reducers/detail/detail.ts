@@ -14,7 +14,7 @@ import {
   fetchSimilar,
   fetchComments,
   fetchCombinedCredits,
-} from "../../reducers/detailReducers";
+} from "../../actions/detailActions";
 import { PersonWorksProp } from "../../types/personWorks";
 
 export interface IDetailState {

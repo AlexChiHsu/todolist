@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
-import { fetchTopRatedMovieList } from "../../reducers/movieListReducers";
+import { fetchTopRatedMovieList } from "../../actions/movieListActions";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { fetchTopRatedTVList } from "../../reducers/tvListsReducers";
+import { fetchTopRatedTVList } from "../../actions/tvListsActions";
 import { imageURL } from "../../api/tmdb/commonURL";
 import { CarouselCustomNavigation } from "./carousel";
 

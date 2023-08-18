@@ -1,8 +1,8 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import movieListReducer from "../features/movieList/movieListSlice";
-import homeReducer from "../features/home/homeSlice";
-import tvListsReducer from "../features/tvList/tvLists";
-import detailReducer from "../features/detail/detail";
+import movieListReducer from "../reducers/movieList/movieListSlice";
+import homeReducer from "../reducers/home/homeSlice";
+import tvListsReducer from "../reducers/tvList/tvLists";
+import detailReducer from "../reducers/detail/detail";
 
 export const store = configureStore({
   reducer: {

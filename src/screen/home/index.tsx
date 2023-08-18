@@ -4,13 +4,13 @@ import MovieList from "../movieList";
 import { lists } from "../../components/common/list";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useEffect } from "react";
-import { fetchPopularMovieList } from "../../reducers/movieListReducers";
+import { fetchPopularMovieList } from "../../actions/movieListActions";
 import {
   fetchPopularTVListUs,
   fetchPopularTVListKr,
   fetchPopularTVListZh,
   fetchPopularTVAnimationList,
-} from "../../reducers/tvListsReducers";
+} from "../../actions/tvListsActions";
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
 

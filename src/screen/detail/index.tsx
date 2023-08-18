@@ -11,7 +11,7 @@ import {
   fetchCredits,
   fetchSimilar,
   fetchComments,
-} from "../../reducers/detailReducers";
+} from "../../actions/detailActions";
 import MovieList from "../movieList";
 
 const DetailContainer = styled.div`

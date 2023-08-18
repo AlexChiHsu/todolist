@@ -3,7 +3,7 @@ import { MovieListProp } from "../../types/movieList";
 import {
   fetchPopularMovieList,
   fetchTopRatedMovieList,
-} from "../../reducers/movieListReducers";
+} from "../../actions/movieListActions";
 import { initialList } from "./initialList";
 
 export interface IMovieListState {

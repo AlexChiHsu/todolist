@@ -6,7 +6,7 @@ import {
   fetchPopularTVListKr,
   fetchPopularTVAnimationList,
   fetchTopRatedTVList,
-} from "../../reducers/tvListsReducers";
+} from "../../actions/tvListsActions";
 import { initialList } from "../movieList/initialList";
 
 export interface IMovieListState {

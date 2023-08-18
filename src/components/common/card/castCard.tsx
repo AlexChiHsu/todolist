@@ -6,7 +6,7 @@ import {
 } from "../../../screen/detail/styles/castComponent";
 import Icon from "../icons/icon";
 import { useDispatch } from "react-redux";
-import { fetchCombinedCredits } from "../../../reducers/detailReducers";
+import { fetchCombinedCredits } from "../../../actions/detailActions";
 import { useAppDispatch } from "../../../app/hooks";
 import { useNavigate, useNavigation } from "react-router-dom";
 
