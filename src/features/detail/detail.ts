@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DetailProp, MovieListProp } from "../../types/movieList";
 import {
+  initialCombinedCredits,
   initialCommentsList,
   initialCredits,
   initialDetail,
@@ -12,7 +13,9 @@ import {
   fetchCredits,
   fetchSimilar,
   fetchComments,
+  fetchCombinedCredits,
 } from "../../reducers/detailReducers";
+import { PersonWorksProp } from "../../types/personWorks";
 
 export interface IDetailState {
   detail: DetailProp;
@@ -20,6 +23,7 @@ export interface IDetailState {
   tvCredits: CreditsProp;
   similar: MovieListProp;
   comments: CommentsProp;
+  combinedCredits: PersonWorksProp;
 }
 
 const initialState: IDetailState = {
@@ -28,6 +32,7 @@ const initialState: IDetailState = {
   tvCredits: initialCredits,
   similar: initialList,
   comments: initialCommentsList,
+  combinedCredits: initialCombinedCredits,
 };
 
 export const detail = createSlice({
@@ -47,6 +52,9 @@ export const detail = createSlice({
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.comments = action.payload;
+    });
+    builder.addCase(fetchCombinedCredits.fulfilled, (state, action) => {
+      state.combinedCredits = action.payload;
     });
   },
 });

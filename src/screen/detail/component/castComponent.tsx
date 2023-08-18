@@ -13,6 +13,7 @@ export default function CastComponent() {
       {cast &&
         cast.map((item) => (
           <CastCard
+            id={item.id}
             path={
               item.profile_path !== null ? imagePath(item.profile_path) : ""
             }

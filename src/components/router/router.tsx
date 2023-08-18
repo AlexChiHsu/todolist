@@ -3,6 +3,7 @@ import App from "../../App";
 import Message from "../../screen/message";
 import Detail from "../../screen/detail";
 import HomeScreen from "../../screen/home";
+import CastDetail from "../../screen/castDetail";
 
 export const router = createHashRouter(
   [
@@ -18,6 +19,10 @@ export const router = createHashRouter(
         {
           path: "/detail/:type/:detailId",
           element: <Detail />,
+        },
+        {
+          path: "/person/combined-credits",
+          element: <CastDetail />,
         },
       ],
     },

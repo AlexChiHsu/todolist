@@ -1,5 +1,6 @@
 import { CommentsProp, CreditsProp } from "../../types/credits";
 import { DetailProp } from "../../types/movieList";
+import { PersonWorksProp } from "../../types/personWorks";
 
 export const initialDetail = {
   adult: false,
@@ -161,3 +162,53 @@ export const initialCommentsList = {
   total_pages: 0,
   total_results: 0,
 } as CommentsProp;
+
+export const initialCombinedCredits = {
+  id: 0,
+  cast: [
+    {
+      adult: false,
+      backdrop_path: null,
+      genre_ids: [0],
+      id: 0,
+      original_language: "",
+      original_title: "",
+      overview: "",
+      popularity: 0,
+      poster_path: "",
+      release_date: "",
+      title: "",
+      video: false,
+      vote_average: 0,
+      vote_count: 0,
+      character: "",
+      credit_id: "",
+      order: 0,
+      media_type: "",
+    },
+  ],
+  crew: [
+    {
+      adult: false,
+      backdrop_path: null,
+      genre_ids: [0],
+      id: 0,
+      original_language: "",
+      original_title: "",
+      overview: "",
+      popularity: 0,
+      poster_path: "",
+      release_date: "",
+      title: "",
+      video: false,
+      vote_average: 0,
+      vote_count: 0,
+      character: "",
+      credit_id: "",
+      order: 0,
+      media_type: "",
+      department: "",
+      job: "",
+    },
+  ],
+} as PersonWorksProp;
