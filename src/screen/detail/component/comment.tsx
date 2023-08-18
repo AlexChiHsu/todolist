@@ -80,14 +80,20 @@ export default function Comment() {
         </CommentButton>
       </CommentHeaderContainer>
       <CardContainer>
-        {comments.results.map((item) => (
-          <CommentCard
-            userName={item.author}
-            rating={item.author_details.rating}
-            content={item.content}
-            thumbnailUrl={item.author_details.avatar_path}
-          />
-        ))}
+        {comments.results.map(
+          (item: {
+            author: string;
+            author_details: { rating: number; avatar_path: string };
+            content: string;
+          }) => (
+            <CommentCard
+              userName={item.author}
+              rating={item.author_details.rating}
+              content={item.content}
+              thumbnailUrl={item.author_details.avatar_path}
+            />
+          )
+        )}
       </CardContainer>
     </CommentContainer>
   );

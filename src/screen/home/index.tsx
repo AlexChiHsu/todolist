@@ -13,6 +13,7 @@ import {
 } from "../../actions/tvListsActions";
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
+import { store } from "../../app/store";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -61,6 +62,7 @@ function HomeScreen() {
         return movieData;
     }
   };
+
   return (
     <>
       <HomeContainer>

@@ -11,15 +11,17 @@ export default function CastComponent() {
   return (
     <CastComponentContainer>
       {cast &&
-        cast.map((item) => (
-          <CastCard
-            id={item.id}
-            path={
-              item.profile_path !== null ? imagePath(item.profile_path) : ""
-            }
-            name={item.name}
-          />
-        ))}
+        cast.map(
+          (item: { id: number; profile_path: string | null; name: string }) => (
+            <CastCard
+              id={item.id}
+              path={
+                item.profile_path !== null ? imagePath(item.profile_path) : ""
+              }
+              name={item.name}
+            />
+          )
+        )}
     </CastComponentContainer>
   );
 }

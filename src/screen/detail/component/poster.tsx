@@ -117,7 +117,7 @@ export default function Poster() {
   const { detail, credits } = useAppSelector((state) => state.detail);
   const data = detail;
   const director = credits.crew.find(
-    (item) => item.job === "Director" ?? item.job === "Writer"
+    (item: { job: string }) => item.job === "Director" ?? item.job === "Writer"
   );
 
   return (
@@ -129,7 +129,9 @@ export default function Poster() {
         <RightHeader>
           <DivContainer>
             {data?.genres &&
-              data?.genres?.map((item) => <LabelButton name={item?.name} />)}
+              data?.genres?.map((item: { name: string }) => (
+                <LabelButton name={item?.name} />
+              ))}
           </DivContainer>
           <DivContainer>
             <ButtonGradientBg>加入片單</ButtonGradientBg>

@@ -7,6 +7,7 @@ import {
 } from "./styles/castDetailStyles";
 import Text from "../../components/common/text";
 import MovieListCard from "../../components/common/card/movieListCard";
+import { MovieProp } from "../../types/movieList";
 
 export default function CastDetail() {
   const cast = useAppSelector((state) => state.detail.combinedCredits);
@@ -18,7 +19,7 @@ export default function CastDetail() {
         <Text text={name + " " + "的其他作品"} index={0} />
       </CastDetailTitleContainer>
       <CastDetailCreditsContainer>
-        {cast.cast.map((item) => (
+        {cast.cast.map((item: MovieProp) => (
           <MovieListCard
             isCastCombinedCredits={true}
             movie={item}
