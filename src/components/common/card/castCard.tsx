@@ -21,7 +21,7 @@ export default function CastCard(props: ICastCardProp) {
   const navigate = useNavigate();
   const onClick = () => {
     dispatch(fetchCombinedCredits({ id: id + "" }));
-    navigate("/person/combined-credits");
+    navigate("/person/combined-credits", { state: { name: name } });
   };
   return (
     <CastCardButton onClick={onClick}>

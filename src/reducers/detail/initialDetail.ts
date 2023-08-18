@@ -168,7 +168,7 @@ export const initialCombinedCredits = {
   cast: [
     {
       adult: false,
-      backdrop_path: null,
+      backdrop_path: "",
       genre_ids: [0],
       id: 0,
       original_language: "",
@@ -185,12 +185,15 @@ export const initialCombinedCredits = {
       credit_id: "",
       order: 0,
       media_type: "",
+      name: "",
+      job: "",
+      department: "",
     },
   ],
   crew: [
     {
       adult: false,
-      backdrop_path: null,
+      backdrop_path: "",
       genre_ids: [0],
       id: 0,
       original_language: "",

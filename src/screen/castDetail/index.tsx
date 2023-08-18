@@ -1,9 +1,31 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
+import {
+  CastDetailContainer,
+  CastDetailCreditsContainer,
+  CastDetailTitleContainer,
+} from "./styles/castDetailStyles";
+import Text from "../../components/common/text";
+import MovieListCard from "../../components/common/card/movieListCard";
 
 export default function CastDetail() {
   const cast = useAppSelector((state) => state.detail.combinedCredits);
+  const name = useLocation().state.name;
 
-  return <div className="text-white">{JSON.stringify(cast)}</div>;
+  return (
+    <CastDetailContainer>
+      <CastDetailTitleContainer>
+        <Text text={name + " " + "的其他作品"} index={0} />
+      </CastDetailTitleContainer>
+      <CastDetailCreditsContainer>
+        {cast.cast.map((item) => (
+          <MovieListCard
+            isCastCombinedCredits={true}
+            movie={item}
+            type={item.media_type}
+          />
+        ))}
+      </CastDetailCreditsContainer>
+    </CastDetailContainer>
+  );
 }

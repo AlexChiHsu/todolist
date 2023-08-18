@@ -6,7 +6,7 @@ import { imageURL } from "../../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
 import withoutImg from "../../../assets/images/withoutImg.svg";
 
-const MovieCardContainer = styled.button`
+const MovieCardContainer = styled.button<{ isCombined?: boolean }>`
   width: 103px;
   height: 155px;
   ${tw`
@@ -17,9 +17,17 @@ const MovieCardContainer = styled.button`
     border-transparent
   `}
   & :hover {
-    border-width: 1px;
+    border-width: 0.5px;
     border-color: white;
   }
+  ${({ isCombined }) =>
+    isCombined &&
+    css`
+      width: 152px;
+      height: 226px;
+      margin-right: 16px;
+      margin-bottom: 14px;
+    `}
 `;
 
 const MovieTitle = styled.div`
@@ -34,7 +42,7 @@ const MovieTitle = styled.div`
   `}
 `;
 
-const MovieImage = styled.div<{ path?: any }>`
+const MovieImage = styled.div<{ path?: any; isCombined?: boolean }>`
   ${tw`
     w-[103px]
     h-[128px]
@@ -46,6 +54,7 @@ const MovieImage = styled.div<{ path?: any }>`
     rounded-lg
     bg-cover
     bg-no-repeat
+    bg-center
     mb-1
   `}
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.48);
@@ -58,6 +67,13 @@ const MovieImage = styled.div<{ path?: any }>`
           rgba(22, 22, 22, 0.98) 100%
         ),
         url(${path});
+    `}
+  ${({ isCombined }) =>
+    isCombined &&
+    css`
+      width: 152px;
+      height: 201px;
+      border-radius: 8px;
     `}
 `;
 
@@ -85,16 +101,20 @@ const VoteAverage = styled.span`
 interface ICardProp {
   movie: MovieProp;
   type: string;
+  isCastCombinedCredits?: boolean;
 }
 export default function MovieListCard(props: ICardProp) {
   const { poster_path, title, vote_average, name, id } = props.movie;
-  const { type } = props;
+  const { type, isCastCombinedCredits } = props;
   const navigation = useNavigate();
   const url = poster_path === null ? `${withoutImg}` : imageURL + poster_path;
 
   return (
-    <MovieCardContainer onClick={() => navigation(`/detail/${type}/${id}`)}>
-      <MovieImage path={url}>
+    <MovieCardContainer
+      isCombined={isCastCombinedCredits}
+      onClick={() => navigation(`/detail/${type}/${id}`)}
+    >
+      <MovieImage isCombined={isCastCombinedCredits} path={url}>
         <VoteAverage aria-disabled>
           {Math.round(vote_average * 10) / 10}
         </VoteAverage>

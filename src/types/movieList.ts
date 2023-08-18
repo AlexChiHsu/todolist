@@ -21,7 +21,13 @@ export interface MovieProp {
   video: boolean;
   vote_average: number;
   vote_count: number;
-  name?: string;
+  name: string;
+  character: string;
+  credit_id: string;
+  order: number;
+  media_type: string;
+  department: string;
+  job: string;
 }
 
 export interface DetailProp {
