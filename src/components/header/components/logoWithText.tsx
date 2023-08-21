@@ -4,6 +4,8 @@ import tw from "twin.macro";
 import Icon from "../../common/icons/icon";
 import SearchBox from "../../searchBox/searchBox";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { SCREENS } from "../../common/screen";
 
 const LogoWithTextContainer = styled.div`
   ${tw`
@@ -12,15 +14,26 @@ const LogoWithTextContainer = styled.div`
     flex-row
     justify-start
     items-center
+    pl-2.5
+    sm:pl-0
   `}
+
+  @media (max-width: 639px) {
+    width: 100%;
+  }
 `;
 
 const BrandText = styled.h1`
   ${tw`
     text-white
-    text-xl
+    lg:text-xl
+    sm:text-lg
+    bg-blue-400
+    text-[16px]
+    font-normal
+    lg:ml-2.5
+    sm:ml-2.5
     ml-2.5
-    mr-5
   `}
 `;
 
@@ -30,15 +43,18 @@ const LogoButton = styled.button`
     flex-row
     justify-center
     items-center
+    mr-2.5
+    sm:mr-5
   `}
 `;
 
 export default function LogoWithText() {
   const navigation = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
-    <LogoWithTextContainer onClick={() => navigation(`/`)}>
-      <LogoButton>
-        <Icon name={"logo"} width={38} />
+    <LogoWithTextContainer>
+      <LogoButton onClick={() => navigation(`/`)}>
+        <Icon name={"logo"} width={isMobile ? 30 : 38} />
         <BrandText>WoW ! Movie</BrandText>
       </LogoButton>
       <SearchBox />

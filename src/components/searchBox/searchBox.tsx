@@ -4,8 +4,13 @@ import tw from "twin.macro";
 import Icon from "../common/icons/icon";
 
 const SearchBoxContainer = styled.div`
-  min-width: 448px;
-  min-height: 38px;
+  ${tw`
+    xl:min-w-[448px]
+    lg:min-w-[300px]
+    lg:min-h-[38px]
+    sm:max-w-[216px]
+    max-w-[230px]
+  `}
 `;
 const Box = styled.div`
   ${tw`

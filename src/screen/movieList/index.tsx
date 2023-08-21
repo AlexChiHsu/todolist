@@ -123,6 +123,7 @@ interface IMovieListProp {
 
 export default function MovieList(props: IMovieListProp) {
   const { listTitle, data, isShowBg, isDetail } = props;
+
   const scroll = useRef<null | HTMLDivElement>(null);
   let left = 0;
 
