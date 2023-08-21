@@ -38,6 +38,8 @@ const TestButton = styled.button`
     w-8
     h-8
     z-50
+    bg-blue-100
+    m-1.5
   `}
 `;
 
