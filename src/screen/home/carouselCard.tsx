@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { MovieProp } from "../../types/movieList";
 import { imageURL } from "../../api/tmdb/commonURL";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
 
 interface CarouselCardProp {
   item: MovieProp;
@@ -116,7 +118,17 @@ const ButtonGradientBg = styled(ButtonWithBlackBg)`
 `;
 
 export default function CarouselCard(props: CarouselCardProp) {
+  const movieTopRated = useAppSelector((state) => state.movieList.topRatedData);
+  const navigation = useNavigate();
   const { item } = props;
+  const moreInfo = () => {
+    const movie = movieTopRated.results.filter((i) => i.id === item.id);
+    if (movie.length === 0) {
+      navigation(`/detail/tv/${item.id}`);
+    } else {
+      navigation(`/detail/movie/${item.id}`);
+    }
+  };
   return (
     <BackgroundImage path={imageURL + item.backdrop_path}>
       <Rated>{item.vote_average}</Rated>
@@ -124,7 +136,7 @@ export default function CarouselCard(props: CarouselCardProp) {
       <MovieDescription>{item.overview}</MovieDescription>
       <ButtonContainer>
         <ButtonWithoutBg>
-          <ButtonWithBlackBg>更多資訊</ButtonWithBlackBg>
+          <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
         </ButtonWithoutBg>
         <ButtonGradientBg>加入片單</ButtonGradientBg>
       </ButtonContainer>

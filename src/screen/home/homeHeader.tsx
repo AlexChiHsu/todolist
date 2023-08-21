@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled, { css } from "styled-components";
+import { useEffect } from "react";
+import styled from "styled-components";
 import tw from "twin.macro";
 import { fetchTopRatedMovieList } from "../../actions/movieListActions";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchTopRatedTVList } from "../../actions/tvListsActions";
-import { imageURL } from "../../api/tmdb/commonURL";
 import { CarouselCustomNavigation } from "./carousel";
 
 const HomeHeaderContainer = styled.div`
@@ -32,6 +31,7 @@ export default function HomeHeader() {
     .sort((a, b) => b.vote_average - a.vote_average)
     .slice(0, 10);
 
+  console.log(JSON.stringify(allData));
   useEffect(() => {
     dispatch(fetchTopRatedMovieList());
     dispatch(fetchTopRatedTVList());

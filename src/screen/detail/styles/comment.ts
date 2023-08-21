@@ -108,6 +108,12 @@ export const CommentCardCenter = styled.div`
     mr-3.5
     overflow-x-scroll
   `}
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;
 export const CommentCardRight = styled.div`
   ${tw`

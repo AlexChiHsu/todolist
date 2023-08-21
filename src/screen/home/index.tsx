@@ -13,6 +13,7 @@ import {
 } from "../../actions/tvListsActions";
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
+import { useNavigate } from "react-router-dom";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -32,12 +33,22 @@ const MovieContainer = styled.div`
   `}
 `;
 
+const TestButton = styled.button`
+  ${tw`
+    bg-amber-300
+    w-8
+    h-8
+    z-50
+  `}
+`;
+
 function HomeScreen() {
   const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
   const { usData, zhData, krData, aniData } = useAppSelector(
     (state) => state.tvLists
   );
+  const navigation = useNavigate();
 
   useEffect(() => {
     dispatch(fetchPopularTVListUs({ language: "en", country: "US" }));
@@ -75,6 +86,7 @@ function HomeScreen() {
               isDetail={false}
             />
           ))}
+          <TestButton onClick={() => navigation(`/test`)} />
           <Footer />
         </MovieContainer>
       </HomeContainer>
