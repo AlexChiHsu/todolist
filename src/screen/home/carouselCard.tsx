@@ -5,6 +5,7 @@ import { MovieProp } from "../../types/movieList";
 import { imageURL } from "../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
+import AddListButton from "../../components/common/button/addListButton";
 
 interface CarouselCardProp {
   item: MovieProp;
@@ -108,15 +109,6 @@ const ButtonWithBlackBg = styled.button`
   background-image: linear-gradient(0deg, #161616, #161616);
 `;
 
-const ButtonGradientBg = styled(ButtonWithBlackBg)`
-  ${tw`
-		w-40
-		h-full
-		bg-transparent
-	`}
-  background-image: linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
-`;
-
 export default function CarouselCard(props: CarouselCardProp) {
   const movieTopRated = useAppSelector((state) => state.movieList.topRatedData);
   const navigation = useNavigate();
@@ -138,7 +130,7 @@ export default function CarouselCard(props: CarouselCardProp) {
         <ButtonWithoutBg>
           <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
         </ButtonWithoutBg>
-        <ButtonGradientBg>加入片單</ButtonGradientBg>
+        <AddListButton />
       </ButtonContainer>
     </BackgroundImage>
   );

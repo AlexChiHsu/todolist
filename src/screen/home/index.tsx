@@ -35,7 +35,6 @@ const MovieContainer = styled.div`
 
 const TestButton = styled.button`
   ${tw`
-    bg-amber-300
     w-8
     h-8
     z-50

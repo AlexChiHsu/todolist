@@ -4,6 +4,7 @@ import { imagePath } from "../../../components/helper/media";
 import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
 import Text from "../../../components/common/text";
+import AddListButton from "../../../components/common/button/addListButton";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -134,7 +135,7 @@ export default function Poster() {
               ))}
           </DivContainer>
           <DivContainer>
-            <ButtonGradientBg>加入片單</ButtonGradientBg>
+            <AddListButton />
           </DivContainer>
         </RightHeader>
         <DivContainer>

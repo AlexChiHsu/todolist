@@ -68,7 +68,6 @@ export const CommentCardContainer = styled.div<{ index?: any }>`
     h-[90px]
     rounded-[10px]
     bg-[#1B1E25]
-    mt-1.5
     mb-1.5
     pt-2.5
     pb-2.5
