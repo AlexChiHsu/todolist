@@ -28,7 +28,6 @@ const BrandText = styled.h1`
     text-white
     lg:text-xl
     sm:text-lg
-    bg-blue-400
     text-[16px]
     font-normal
     lg:ml-2.5
