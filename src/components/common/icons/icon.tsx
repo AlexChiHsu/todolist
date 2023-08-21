@@ -21,6 +21,10 @@ import { ReactComponent as Appletv } from "../../../assets/images/appletv.svg";
 import { ReactComponent as Iqi } from "../../../assets/images/iqi.svg";
 import { ReactComponent as NonPerson } from "../../../assets/images/non-person.svg";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
+import { ReactComponent as Movie } from "../../../assets/images/movie.svg";
+import { ReactComponent as Tv } from "../../../assets/images/tv.svg";
+import { ReactComponent as Collection } from "../../../assets/images/collection.svg";
+import { ReactComponent as Favorite } from "../../../assets/images/favorite.svg";
 
 interface IIconsProp {
   name:
@@ -46,6 +50,10 @@ interface IIconsProp {
     | "appletv"
     | "non-person"
     | "star"
+    | "movie"
+    | "tv"
+    | "collection"
+    | "favorite"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -260,6 +268,42 @@ export default function Icon(props: IIconsProp) {
     case "star":
       return (
         <Star
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "collection":
+      return (
+        <Collection
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "favorite":
+      return (
+        <Favorite
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "movie":
+      return (
+        <Movie
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "tv":
+      return (
+        <Tv
           fill={fillColor}
           stroke={strokeColor}
           width={width}
