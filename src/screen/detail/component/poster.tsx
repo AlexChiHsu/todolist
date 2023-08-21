@@ -77,21 +77,6 @@ const DivContainer = styled.div`
   `}
 `;
 
-const ButtonGradientBg = styled.button`
-  ${tw`
-		w-40
-		h-[42px]
-    rounded-[13px]
-		bg-transparent
-    text-white
-    font-normal
-    text-[16px]
-    leading-6
-	`}
-  box-shadow: 0px 2px 8px 0px #0000007A;
-  background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
-`;
-
 const DramaTitle = styled.h1`
   ${tw`
       text-white

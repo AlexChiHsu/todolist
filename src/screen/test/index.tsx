@@ -1,8 +1,6 @@
 import { useRef } from "react";
-import { useMediaQuery } from "react-responsive";
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import { SCREENS } from "../../components/common/screen";
 import { FixedSizeList as Grid } from "react-window";
 export default function Test() {
   const arr = [
@@ -11,7 +9,6 @@ export default function Test() {
     456, 456, 789, 78,
   ];
   const width = useRef<null | HTMLDivElement>(null);
-  const desktop = useMediaQuery({ minWidth: SCREENS.lg });
 
   const Cell = ({
     columnIndex,
