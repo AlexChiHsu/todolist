@@ -52,17 +52,6 @@ export const SliderContainer = styled.div`
     right-0
   `}
 `;
-export const SliderTrack = styled.div<{ width?: any }>`
-  width: ${({ width }) => width}%;
-  pointer-events: none;
-  ${tw`
-  relative
-  h-[11px]
-  rounded-full
-  bg-slider
-  // z-30
-  `}
-`;
 
 export const SliderBarDiv = styled.div`
   ${tw`
@@ -80,8 +69,11 @@ export const SliderBar = styled.input<{ width?: any }>`
     rounded-full
     appearance-none
     cursor-pointer
-    bg-[#161616]
+    bg-slider
+    bg-no-repeat
   `}
+
+  background-size: ${({ width }) => width}% 100%;
 
   &::-webkit-slider-thumb {
     position: relative;
@@ -93,15 +85,17 @@ export const SliderBar = styled.input<{ width?: any }>`
     border-width: 4px;
     border-style: solid;
     border-color: #161616;
-    cursor: ew-resize;
     background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
   }
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
+    appearance: none;
     height: 11px;
+    width: 100%;
     border-radius: 5px;
     border: none;
-    background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+    background-image: transparent;
+    outline: none;
   }
 
   &::-ms-thumb {

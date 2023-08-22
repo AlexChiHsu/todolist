@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import { FixedSizeList as Grid } from "react-window";
@@ -22,6 +22,11 @@ export default function Test() {
     </Card>
   );
 
+  const [bgSize, setBgSize] = useState(0);
+
+  const handleSlide = (e: any) => {
+    setBgSize(e.target.value);
+  };
   return (
     <Container>
       <CardContainer ref={width}>
@@ -31,6 +36,17 @@ export default function Test() {
             {arr.length}&nbsp;
           </Card>
         ))}
+        <SliderContainer>
+          <ColorSlider
+            onChange={(e) => {
+              handleSlide(e);
+            }}
+            bgSize={bgSize}
+            min={0}
+            max={100}
+            type={"range"}
+          />
+        </SliderContainer>
         {/* <Grid
           columnCount={7}
           columnWidth={182}
@@ -47,6 +63,43 @@ export default function Test() {
     </Container>
   );
 }
+
+export const SliderContainer = styled.div``;
+
+export const ColorSlider = styled.input<{ bgSize?: any }>`
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  background-image: linear-gradient(#ff4500, #ff4500);
+  background-size: ${({ bgSize }) => bgSize}% 100%;
+  background-repeat: no-repeat;
+  border: 1px solid;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -0.5em;
+    // position: relative;
+    appearance: none;
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    background: #4d4945;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 1px solid black;
+  }
+
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    max-width: 500px;
+    outline: none;
+    height: 10px;
+    border-radius: 10px;
+    background-image: transparent;
+  }
+`;
 
 const Container = styled.div`
   ${tw`

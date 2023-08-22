@@ -6,7 +6,6 @@ import {
   SliderBarDiv,
   SliderContainer,
   SliderThumbnail,
-  SliderTrack,
   TypeButton,
 } from "../styles/headerStyles";
 import Text from "../../../components/common/text";
