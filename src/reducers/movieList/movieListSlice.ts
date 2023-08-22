@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MovieListProp } from "../../types/movieList";
+import { GenresProp, MovieListProp } from "../../types/movieList";
 import {
+  fetchMovieGenreList,
   fetchPopularMovieList,
   fetchTopRatedMovieList,
 } from "../../actions/movieListActions";
-import { initialList } from "./initialList";
+import { initialGenresList, initialList } from "./initialList";
 
 export interface IMovieListState {
   data: MovieListProp;
   topRatedData: MovieListProp;
+  movieGenres: GenresProp;
 }
 
 const initialState: IMovieListState = {
   data: initialList,
   topRatedData: initialList,
+  movieGenres: initialGenresList,
 };
 
 export const movieList = createSlice({
@@ -26,6 +29,9 @@ export const movieList = createSlice({
     });
     builder.addCase(fetchTopRatedMovieList.fulfilled, (state, action) => {
       state.topRatedData = action.payload;
+    });
+    builder.addCase(fetchMovieGenreList.fulfilled, (state, action) => {
+      state.movieGenres = action.payload;
     });
   },
 });

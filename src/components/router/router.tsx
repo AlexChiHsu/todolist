@@ -5,6 +5,7 @@ import Detail from "../../screen/detail";
 import HomeScreen from "../../screen/home";
 import CastDetail from "../../screen/castDetail";
 import Test from "../../screen/test";
+import Movie from "../../screen/movie";
 
 export const router = createHashRouter(
   [
@@ -28,6 +29,10 @@ export const router = createHashRouter(
         {
           path: "/test",
           element: <Test />,
+        },
+        {
+          path: "/movie",
+          element: <Movie />,
         },
       ],
     },

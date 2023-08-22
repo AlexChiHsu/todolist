@@ -130,3 +130,12 @@ export interface DetailProp {
   release_date: string;
   runtime: number;
 }
+
+export interface GenresProp {
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}

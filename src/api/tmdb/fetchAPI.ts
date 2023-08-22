@@ -1,7 +1,8 @@
 import { apiURL, headers } from "./commonURL";
 
 const URL = {
-  GET_POPULAR_MOVIE_LIST: "/movie/popular?language={LANGUAGE}&page={PAGE}",
+  GET_POPULAR_MOVIE_LIST:
+    "/movie/popular?language={LANGUAGE}&page={PAGE}&region=TW",
   GET_POPULAR_TV_LIST:
     "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=zh-TW&page=1&sort_by=popularity.desc&with_origin_country={country}&with_original_language={language}",
   GET_POPULAR_TV_ANIMATION_LIST: "/discover/tv?with_genres=16",
@@ -12,6 +13,7 @@ const URL = {
   GET_COMMENTS: "/{TYPE}/{ID}/reviews?language=zh-TW&page=1",
   GET_SIMILAR: "/{TYPE}/{ID}/similar?language=zh-TW&page=1",
   GET_COMBINED_CREDITS: "/person/{ID}/combined_credits?language=zh-TW",
+  GET_GENRE_LIST: "/genre/movie/list?language=zh",
 };
 const options = {
   method: "GET",
@@ -105,6 +107,14 @@ export function getSimilar(id: string, type: string | undefined) {
 
 export function getCombinedCredits(id: string) {
   const fullURL = apiURL + URL.GET_COMBINED_CREDITS.replace("{ID}", id);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getGenreList() {
+  const fullURL = apiURL + URL.GET_GENRE_LIST;
   return {
     fullURL,
     options,

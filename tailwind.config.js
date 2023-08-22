@@ -2,11 +2,27 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = {
-  purge: ["./src/**/*.html", "./src/**/*.js"],
+  purge: [
+    "./src/**/*.html",
+    "./src/**/*.js",
+    "./src/**/*.jsx",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+  ],
   darkMode: false, // or 'media' or 'class'
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{html,js,ts,tsx,jsx}",
+    "./src/**/**/**/*.{html,js,ts,tsx,jsx}",
+    "./src/*.{html,js,ts,tsx,jsx}",
+  ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        13: "repeat(13, minmax(0, 1fr))",
+        14: "repeat(14, minmax(0, 1fr))",
+        15: "repeat(15, minmax(0, 1fr))",
+        16: "repeat(16, minmax(0, 1fr))",
+      },
       animation: {
         fade: "fadeOut 5s ease-in-out",
       },
@@ -45,7 +61,17 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        13: "repeat(13, minmax(0, 1fr))",
+        14: "repeat(14, minmax(0, 1fr))",
+        15: "repeat(15, minmax(0, 1fr))",
+        16: "repeat(16, minmax(0, 1fr))",
+      },
+      backgroundImage: {
+        slider: "linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%)",
+      },
+    },
   },
   plugins: [],
 });

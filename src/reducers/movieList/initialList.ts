@@ -1,4 +1,4 @@
-import { MovieListProp } from "../../types/movieList";
+import { GenresProp, MovieListProp } from "../../types/movieList";
 
 export const initialList = {
   json: null,
@@ -31,3 +31,12 @@ export const initialList = {
   total_pages: 0,
   total_results: 0,
 } as MovieListProp;
+
+export const initialGenresList = {
+  genres: [
+    {
+      id: 0,
+      name: "",
+    },
+  ],
+} as GenresProp;

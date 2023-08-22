@@ -5,11 +5,22 @@ import {
 } from "../styles/bottomBarStyles";
 import Icon from "../../common/icons/icon";
 import Thumbnail from "./thumbnail";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../app/hooks";
+import { fetchMovieGenreList } from "../../../actions/movieListActions";
 
 export default function BottomBar() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   return (
     <BottomBarContainer>
-      <BottomBarItemButton>
+      <BottomBarItemButton
+        onClick={() => {
+          navigate("/movie");
+          dispatch(fetchMovieGenreList());
+        }}
+      >
         <Icon name={"movie"} width={24} />
         電影
       </BottomBarItemButton>

@@ -31,7 +31,6 @@ export default function HomeHeader() {
     .sort((a, b) => b.vote_average - a.vote_average)
     .slice(0, 10);
 
-  console.log(JSON.stringify(allData));
   useEffect(() => {
     dispatch(fetchTopRatedMovieList());
     dispatch(fetchTopRatedTVList());
