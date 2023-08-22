@@ -40,21 +40,20 @@ export default function Header() {
       </GridContainer>
       <DivContainer>
         <Text text={"評分"} index={0} />
-        <Text text={value} index={0} />
+        <SliderContainer>
+          <SliderBarDiv>
+            <SliderBar
+              width={value * 10}
+              onChange={(e) => setValue(parseInt(e.target.value, 10))}
+              min={0}
+              max={10}
+              step={1}
+              defaultValue={5}
+              type="range"
+            ></SliderBar>
+          </SliderBarDiv>
+        </SliderContainer>
       </DivContainer>
-      <SliderContainer>
-        <SliderBarDiv>
-          <SliderBar
-            width={value * 10}
-            onChange={(e) => setValue(parseInt(e.target.value, 10))}
-            min={0}
-            max={10}
-            step={1}
-            defaultValue={5}
-            type="range"
-          ></SliderBar>
-        </SliderBarDiv>
-      </SliderContainer>
     </HeaderContainer>
   );
 }
