@@ -73,25 +73,37 @@ export const SliderBarDiv = styled.div`
     rounded-full
   `}
 `;
-export const SliderBar = styled.input`
+export const SliderBar = styled.input<{ width?: any }>`
   ${tw`
     w-full
     h-[11px]
     rounded-full
     appearance-none
     cursor-pointer
+    bg-[#161616]
   `}
+
   &::-webkit-slider-thumb {
     position: relative;
     -webkit-appearance: none;
     width: 26px;
     height: 26px;
+    top: -8.5px;
     border-radius: 100%;
     border-width: 4px;
     border-style: solid;
     border-color: #161616;
+    cursor: ew-resize;
     background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
   }
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 11px;
+    border-radius: 5px;
+    border: none;
+    background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+  }
+
   &::-ms-thumb {
     position: relative;
     width: 26px;
@@ -100,7 +112,7 @@ export const SliderBar = styled.input`
     border-width: 4px;
     border-style: solid;
     border-color: #161616;
-    background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+    background-image: #161616;
   }
   &::-moz-range-thumb {
     position: relative;

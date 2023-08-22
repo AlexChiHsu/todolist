@@ -25,13 +25,13 @@ export default function Test() {
   return (
     <Container>
       <CardContainer ref={width}>
-        {/* {arr.map((item) => (
+        {arr.map((item) => (
           <Card>
-            {width?.current?.offsetWidth} {JSON.stringify(desktop)} &nbsp;
+            {width?.current?.offsetWidth} &nbsp;
             {arr.length}&nbsp;
           </Card>
-        ))} */}
-        <Grid
+        ))}
+        {/* <Grid
           columnCount={7}
           columnWidth={182}
           height={220}
@@ -42,7 +42,7 @@ export default function Test() {
           itemSize={50}
         >
           {Cell}
-        </Grid>
+        </Grid> */}
       </CardContainer>
     </Container>
   );
@@ -81,7 +81,7 @@ const CardContainer = styled.div`
   `}
 `;
 
-const Card = styled.div<{ width?: any }>`
+const Card = styled.button<{ width?: any }>`
   ${tw`
     bg-blue-500
     h-[220px]
@@ -94,4 +94,12 @@ const Card = styled.div<{ width?: any }>`
     ease-linear
     duration-300
   `}
+
+  &::before {
+    background: "red";
+  }
+
+  &::after {
+    background: yellow;
+  }
 `;
