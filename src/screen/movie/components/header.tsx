@@ -1,22 +1,21 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import {
   GridContainer,
   HeaderContainer,
+  SearchButton,
+  SearchButtonContainer,
   SliderBar,
   SliderBarDiv,
   SliderContainer,
-  SliderThumbnail,
   TypeButton,
 } from "../styles/headerStyles";
 import Text from "../../../components/common/text";
 import { DivContainer } from "../styles/movieStyles";
 import { useAppSelector } from "../../../app/hooks";
 import { years } from "../lists/lists";
-import { Slider } from "@material-tailwind/react";
 
 export default function Header() {
   const grens = useAppSelector((state) => state.movieList.movieGenres);
-  const width = useRef<HTMLDivElement | null>(null);
   const [value, setValue] = useState(5);
   return (
     <HeaderContainer>
@@ -40,6 +39,13 @@ export default function Header() {
       </GridContainer>
       <DivContainer>
         <Text text={"評分"} index={0} />
+        <Text
+          text={"0"}
+          index={-1}
+          css={{
+            marginLeft: 28,
+          }}
+        />
         <SliderContainer>
           <SliderBarDiv>
             <SliderBar
@@ -53,6 +59,10 @@ export default function Header() {
             ></SliderBar>
           </SliderBarDiv>
         </SliderContainer>
+        <Text text={"10"} index={-2} css={{ marginLeft: 0 }} />
+        <SearchButtonContainer>
+          <SearchButton>搜尋</SearchButton>
+        </SearchButtonContainer>
       </DivContainer>
     </HeaderContainer>
   );

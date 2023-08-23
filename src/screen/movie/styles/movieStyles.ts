@@ -11,5 +11,6 @@ export const MovieContainer = styled.div`
 export const DivContainer = styled.div`
   ${tw`
     flex
+    items-center
   `}
 `;

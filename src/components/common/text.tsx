@@ -1,13 +1,15 @@
 import React from "react";
-import { css, styled } from "styled-components";
-import tw from "twin.macro";
+import { CSSProp, css, styled } from "styled-components";
+import tw, { TwStyle } from "twin.macro";
 
 export interface ITextProp {
   text: string | any;
   index: number;
+  css?: CSSProp | TwStyle;
+  textStyle?: CSSProp | TwStyle;
 }
 
-const TextContainer = styled.div<{ index?: number }>`
+const TextContainer = styled.div<{ index?: number; style?: any }>`
   ${tw`
     flex
     flex-row
@@ -21,10 +23,17 @@ const TextContainer = styled.div<{ index?: number }>`
     css`
       margin-left: 0;
     `}
+
     ${({ index }) =>
     index === -1 &&
     css`
       margin-left: 0;
+    `}
+
+    ${({ style }) =>
+    style &&
+    css`
+      ${style}
     `}
 `;
 
@@ -36,18 +45,24 @@ const LeftBorder = styled.div<{ index?: number }>`
     mr-2
   `}
 
-  ${({ index }) =>
-    index === -1 &&
-    css`
-      width: 3px;
-      height: auto;
-      margin-right: 10px;
-      background-color: transparent;
-    `}
+  ${({ index }) => {
+    if (index === -1) {
+      return css`
+        width: 3px;
+        height: auto;
+        margin-right: 10px;
+        background-color: transparent;
+      `;
+    } else if (index === -2) {
+      return css`
+        margin-right: 0px;
+      `;
+    }
+  }}
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ style?: any }>`
   ${tw`
     text-white
     font-normal
@@ -56,13 +71,19 @@ const Content = styled.div`
 		line-clamp-3
 		whitespace-normal
   `}
+
+  ${({ style }) =>
+    style &&
+    css`
+      ${style}
+    `}
 `;
 export default function Text(props: ITextProp) {
-  const { text, index } = props;
+  const { text, index, css, textStyle } = props;
   return (
-    <TextContainer index={index}>
-      <LeftBorder index={index}></LeftBorder>
-      <Content>{text}</Content>
+    <TextContainer index={index} style={css}>
+      {index !== -2 && <LeftBorder index={index}></LeftBorder>}
+      <Content style={textStyle}>{text}</Content>
     </TextContainer>
   );
 }

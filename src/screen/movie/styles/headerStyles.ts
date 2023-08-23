@@ -7,6 +7,10 @@ export const HeaderContainer = styled.div`
     h-auto
     bg-[#686B721A]
     mt-6
+    pt-6
+    pb-6
+    pl-4
+    pr-4
   `}
 `;
 
@@ -46,10 +50,8 @@ export const SliderContainer = styled.div`
     pl-[5px]
     pr-[5px]
     rounded-full
-
-    ml-10
-    relative
-    right-0
+    ml-[5px]
+    mr-[5px]
   `}
 `;
 
@@ -62,6 +64,7 @@ export const SliderBarDiv = styled.div`
     rounded-full
   `}
 `;
+
 export const SliderBar = styled.input<{ width?: any }>`
   ${tw`
     w-full
@@ -120,15 +123,24 @@ export const SliderBar = styled.input<{ width?: any }>`
   }
 `;
 
-export const SliderThumbnail = styled.button`
+export const SearchButtonContainer = styled.div`
   ${tw`
-    w-[26px]
-    h-[26px]
-    rounded-full
-    border-4
-    relative
-    -left-[13px]
-    border-[#161616]
+    flex-1
+    flex
+    justify-end
+    pr-4
+  `}
+`;
+
+export const SearchButton = styled.button`
+  ${tw`
+    w-40
+    h-[42px]
+    text-white
+    font-normal
+    text-[16px]
+    rounded-[13px]
   `}
   background-image: linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%);
+  box-shadow: 0px 2px 8px 0px #0000007a;
 `;
