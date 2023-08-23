@@ -30,7 +30,24 @@ export default function Contents() {
 
   return (
     <ContentsContainer>
-      {movieData.results?.map((item) => (
+      {allData.map((item) =>
+        item.results.map((i) => (
+          <MovieListCard
+            movie={i}
+            type={"movie"}
+            cardContainerStyle={{
+              width: 140,
+              height: 215,
+              marginBottom: 28,
+            }}
+            cardImageStyle={{
+              width: 140,
+              height: 190,
+            }}
+          />
+        ))
+      )}
+      {/* {movieData.results?.map((item) => (
         <MovieListCard
           movie={item}
           type={"movie"}
@@ -44,7 +61,7 @@ export default function Contents() {
             height: 190,
           }}
         />
-      ))}
+      ))} */}
     </ContentsContainer>
   );
 }
