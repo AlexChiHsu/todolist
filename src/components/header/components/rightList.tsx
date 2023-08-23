@@ -36,10 +36,15 @@ const ButtonItem = styled.li`
   `}
 `;
 
-export default function RightList() {
+interface RightListPro {
+  isSelected: string;
+  setIsSelected: Function;
+}
+
+export default function RightList(props: RightListPro) {
+  const { isSelected, setIsSelected } = props;
   const [isLogin, setIsLogin] = useState(true);
   const [isShowLabel, setIsShowLabel] = useState(false);
-  const [isSelected, setIsSelected] = useState("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -54,18 +59,6 @@ export default function RightList() {
     setIsSelected(str);
     setIsShowLabel(false);
   };
-
-  useEffect(() => {
-    switch (isSelected) {
-      case "電影":
-        navigate("/movie");
-        dispatch(fetchMovieGenreList());
-        break;
-      default:
-        navigate("/");
-        break;
-    }
-  }, [isSelected, navigate]);
   return (
     <>
       <RightListContainer>

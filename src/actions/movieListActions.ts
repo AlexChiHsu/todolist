@@ -8,10 +8,10 @@ import {
 
 export const fetchPopularMovieList = createAsyncThunk(
   "fetch/popularMovieList",
-  async (language: string): Promise<MovieListProp> => {
+  async (args: { language: string; page: string }): Promise<MovieListProp> => {
     const response = await fetch(
-      getPopularMovieList(language).fullURL,
-      getPopularMovieList(language).options
+      getPopularMovieList(args.language, args.page).fullURL,
+      getPopularMovieList(args.language, args.page).options
     );
 
     return response.json();

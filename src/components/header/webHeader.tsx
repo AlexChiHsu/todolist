@@ -30,12 +30,19 @@ const WebHeaderContainer = styled.div`
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.48);
 `;
 
-function WebHeader() {
+interface WebHeaderProp {
+  isSelected: string;
+  setIsSelected: Function;
+}
+function WebHeader(props: WebHeaderProp) {
+  const { isSelected, setIsSelected } = props;
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
     <WebHeaderContainer>
-      <LogoWithText />
-      {!isMobile && <RightList />}
+      <LogoWithText isSelected={isSelected} setIsSelected={setIsSelected} />
+      {!isMobile && (
+        <RightList isSelected={isSelected} setIsSelected={setIsSelected} />
+      )}
     </WebHeaderContainer>
   );
 }

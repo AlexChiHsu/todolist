@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { MovieProp } from "../../../types/movieList";
-import { css, styled } from "styled-components";
-import tw from "twin.macro";
+import { CSSProp, css, styled } from "styled-components";
+import tw, { TwStyle } from "twin.macro";
 import { imageURL } from "../../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
 import withoutImg from "../../../assets/images/withoutImg.svg";
 
-const MovieCardContainer = styled.button<{ isCombined?: boolean }>`
+const MovieCardContainer = styled.button<{ isCombined?: boolean; style?: any }>`
   width: 103px;
   height: 155px;
   ${tw`
@@ -28,6 +28,12 @@ const MovieCardContainer = styled.button<{ isCombined?: boolean }>`
       margin-right: 16px;
       margin-bottom: 14px;
     `}
+
+  ${({ style }) =>
+    style &&
+    css`
+      ${style}
+    `}
 `;
 
 const MovieTitle = styled.div`
@@ -42,7 +48,11 @@ const MovieTitle = styled.div`
   `}
 `;
 
-const MovieImage = styled.div<{ path?: any; isCombined?: boolean }>`
+const MovieImage = styled.div<{
+  path?: any;
+  isCombined?: boolean;
+  style?: any;
+}>`
   ${tw`
     w-[103px]
     h-[128px]
@@ -75,6 +85,12 @@ const MovieImage = styled.div<{ path?: any; isCombined?: boolean }>`
       height: 201px;
       border-radius: 8px;
     `}
+
+    ${({ style }) =>
+    style &&
+    css`
+      ${style}
+    `}
 `;
 
 const VoteAverage = styled.span`
@@ -102,19 +118,28 @@ interface ICardProp {
   movie: MovieProp;
   type: string;
   isCastCombinedCredits?: boolean;
+  cardContainerStyle?: CSSProp | TwStyle;
+  cardImageStyle?: CSSProp | TwStyle;
 }
 export default function MovieListCard(props: ICardProp) {
   const { poster_path, title, vote_average, name, id } = props.movie;
-  const { type, isCastCombinedCredits } = props;
+  const { type, isCastCombinedCredits, cardContainerStyle, cardImageStyle } =
+    props;
   const navigation = useNavigate();
-  const url = poster_path === null ? `${withoutImg}` : imageURL + poster_path;
+  const boo = poster_path === null || poster_path === undefined;
+  const url = boo ? `${withoutImg}` : imageURL + poster_path;
 
   return (
     <MovieCardContainer
+      style={cardContainerStyle}
       isCombined={isCastCombinedCredits}
       onClick={() => navigation(`/detail/${type}/${id}`)}
     >
-      <MovieImage isCombined={isCastCombinedCredits} path={url}>
+      <MovieImage
+        isCombined={isCastCombinedCredits}
+        path={url}
+        style={cardImageStyle}
+      >
         <VoteAverage aria-disabled>
           {Math.round(vote_average * 10) / 10}
         </VoteAverage>

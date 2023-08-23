@@ -19,12 +19,12 @@ const options = {
   method: "GET",
   headers: headers,
 };
-export function getPopularMovieList(language: string) {
+export function getPopularMovieList(language: string, page: string) {
   const fullURL =
     apiURL +
     URL.GET_POPULAR_MOVIE_LIST.replace("{LANGUAGE}", language).replace(
       "{PAGE}",
-      "1"
+      page
     );
   return {
     fullURL,

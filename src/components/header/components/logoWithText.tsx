@@ -46,13 +46,16 @@ const LogoButton = styled.button`
     sm:mr-5
   `}
 `;
-
-export default function LogoWithText() {
-  const navigation = useNavigate();
+interface LogoWithTextProp {
+  isSelected: string;
+  setIsSelected: Function;
+}
+export default function LogoWithText(props: LogoWithTextProp) {
+  const { isSelected, setIsSelected } = props;
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
     <LogoWithTextContainer>
-      <LogoButton onClick={() => navigation(`/`)}>
+      <LogoButton onClick={() => setIsSelected("home")}>
         <Icon name={"logo"} width={isMobile ? 30 : 38} />
         <BrandText>WoW ! Movie</BrandText>
       </LogoButton>

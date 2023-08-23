@@ -20,7 +20,13 @@ const HomeContainer = styled.div`
     w-full
     h-full
     items-center
+    overflow-auto
   `}
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;
 
 const MovieContainer = styled.div`
@@ -56,7 +62,7 @@ function HomeScreen() {
     dispatch(fetchPopularTVListKr({ language: "ko", country: "KR" }));
     dispatch(fetchPopularTVListZh({ language: "zh", country: "CN" }));
     dispatch(fetchPopularTVAnimationList());
-    dispatch(fetchPopularMovieList("zh-TW"));
+    dispatch(fetchPopularMovieList({ language: "zh-TW", page: "1" }));
   }, [dispatch]);
 
   const data = (title: string) => {
