@@ -6,6 +6,8 @@ import BottomBar from "./components/header/components/bottomBar";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "./components/common/screen";
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "./app/hooks";
+import { fetchMovieGenreList } from "./actions/movieListActions";
 
 const AppContainer = styled.div`
   ${tw`
@@ -21,12 +23,14 @@ const AppContainer = styled.div`
 function App() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isSelected, setIsSelected] = useState("");
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     switch (isSelected) {
       case "電影":
         navigate("/movie");
+        dispatch(fetchMovieGenreList());
         break;
       case "home":
         navigate("/");
