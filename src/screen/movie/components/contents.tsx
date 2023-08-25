@@ -48,12 +48,6 @@ export default function Contents() {
     setAllData(cookData);
   }, [allData, dispatch, loadFirst, page]);
 
-  //allData.filter((item, index) => allData.indexOf(item) === index);
-  console.log(
-    JSON.stringify(
-      allData.filter((item, index) => allData.indexOf(item) === index)
-    )
-  );
   return (
     <>
       <ContentsContainer ref={width}>
