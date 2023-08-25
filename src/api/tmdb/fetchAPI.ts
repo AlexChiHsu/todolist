@@ -14,7 +14,7 @@ const URL = {
   GET_SIMILAR: "/{TYPE}/{ID}/similar?language=zh-TW&page=1",
   GET_COMBINED_CREDITS: "/person/{ID}/combined_credits?language=zh-TW",
   GET_GENRE_LIST: "/genre/{TYPE}/list?language=zh",
-  GET_TREND_LIST: "/trending/{TYPE}/day?language=zh-TW",
+  GET_TREND_LIST: "/trending/{TYPE}/day?language=zh-TW&page={PAGE}",
 };
 const options = {
   method: "GET",
@@ -125,8 +125,9 @@ export function getGenreList(type: string) {
   };
 }
 
-export function getTrendingList(type: string) {
-  const fullURL = apiURL + URL.GET_TREND_LIST.replace("{TYPE}", type);
+export function getTrendingList(type: string, page: string) {
+  const fullURL =
+    apiURL + URL.GET_TREND_LIST.replace("{TYPE}", type).replace("{PAGE}", page);
   return {
     fullURL,
     options,

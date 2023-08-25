@@ -118,7 +118,7 @@ export default function CarouselCard(props: CarouselCardProp) {
   const navigation = useNavigate();
   const { item } = props;
   const moreInfo = () => {
-    dispatch(fetchTrendingList("movie"));
+    dispatch(fetchTrendingList({ type: "movie", page: "1" }));
     const movie = movieTrending.results.filter((i) => i.id === item.id);
     if (movie.length === 0) {
       navigation(`/detail/tv/${item.id}`);

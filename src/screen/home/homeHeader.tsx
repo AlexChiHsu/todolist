@@ -36,9 +36,7 @@ export default function HomeHeader() {
     .slice(0, 10);
 
   useEffect(() => {
-    // dispatch(fetchTopRatedMovieList());
-    // dispatch(fetchTopRatedTVList());
-    dispatch(fetchTrendingList("all"));
+    dispatch(fetchTrendingList({ type: "all", page: "1" }));
   }, [dispatch]);
 
   return (

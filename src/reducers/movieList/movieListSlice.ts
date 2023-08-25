@@ -15,6 +15,7 @@ export interface IMovieListState {
   allData: any[];
   allTrendingList: MovieListProp;
   movieTrendingList: MovieListProp;
+  tvTrendingList: MovieListProp;
 }
 
 const initialState: IMovieListState = {
@@ -24,6 +25,7 @@ const initialState: IMovieListState = {
   allData: [],
   allTrendingList: initialList,
   movieTrendingList: initialList,
+  tvTrendingList: initialList,
 };
 
 export const movieList = createSlice({
@@ -51,8 +53,10 @@ export const movieList = createSlice({
       state.movieGenres = action.payload;
     });
     builder.addCase(fetchTrendingList.fulfilled, (state, action) => {
-      if (action.meta.arg === "movie") {
+      if (action.meta.arg.type === "movie") {
         state.movieTrendingList = action.payload;
+      } else if (action.meta.arg.type === "tv") {
+        state.tvTrendingList = action.payload;
       } else {
         state.allTrendingList = action.payload;
       }

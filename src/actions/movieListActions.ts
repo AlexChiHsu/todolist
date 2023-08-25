@@ -45,10 +45,10 @@ export const fetchGenreList = createAsyncThunk(
 
 export const fetchTrendingList = createAsyncThunk(
   "fetch/trendingList",
-  async (type: string): Promise<MovieListProp> => {
+  async (args: { type: string; page: string }): Promise<MovieListProp> => {
     const response = await fetch(
-      getTrendingList(type).fullURL,
-      getTrendingList(type).options
+      getTrendingList(args.type, args.page).fullURL,
+      getTrendingList(args.type, args.page).options
     );
 
     return response.json();

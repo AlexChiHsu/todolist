@@ -7,16 +7,24 @@ import {
 } from "../styles/contentsStyles";
 import MovieListCard from "../../../components/common/card/movieListCard";
 import { MovieListProp } from "../../../types/movieList";
-import { fetchPopularMovieList } from "../../../actions/movieListActions";
+import { fetchTrendingList } from "../../../actions/movieListActions";
+import { useParams } from "react-router-dom";
 
-export default function Contents() {
+interface ContentProp {
+  data: MovieListProp[];
+  isLoadFirst: boolean;
+  setIsLoadFirst: Function;
+  isLoading: boolean;
+  setIsLoading: Function;
+}
+
+export default function Contents(props: ContentProp) {
+  const { data, isLoadFirst, setIsLoadFirst, isLoading, setIsLoading } = props;
   const dispatch = useAppDispatch();
-  const [loadFirst, setLoadFirst] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const movieData = useAppSelector((state) => state.movieList.data);
   const [page, setPage] = useState(2);
-  const [allData, setAllData] = useState<MovieListProp[]>([movieData]);
   const width = useRef<HTMLDivElement>(null);
+  const param = useParams();
+  const [allData, setAllData] = useState<MovieListProp[]>(data);
 
   const onClick = () => {
     // setLoadFirst(false);
@@ -24,7 +32,7 @@ export default function Contents() {
   };
 
   useEffect(() => {
-    if (loadFirst) {
+    if (isLoadFirst) {
       if (page < 2) {
         setPage((v) => v + 1);
       }
@@ -34,28 +42,29 @@ export default function Contents() {
       }
       setIsLoading(false);
     }
-  }, [isLoading, loadFirst, page]);
+  }, [isLoading, isLoadFirst, page, setIsLoading]);
 
   useEffect(() => {
     const cookData = allData;
-    if (loadFirst) {
-      setLoadFirst(false);
+    if (isLoadFirst) {
+      setIsLoadFirst(false);
     } else {
-      dispatch(fetchPopularMovieList({ language: "zh-TW", page: page + "" }))
+      dispatch(fetchTrendingList({ type: param.type + "", page: page + "" }))
         .unwrap()
         .then((res) => cookData?.push(res));
     }
     setAllData(cookData);
-  }, [allData, dispatch, loadFirst, page]);
+    return;
+  }, [allData, dispatch, isLoadFirst, page, param, setIsLoadFirst]);
 
   return (
     <>
       <ContentsContainer ref={width}>
-        {allData.map((item) =>
-          item.results.map((i) => (
+        {allData?.map((item) =>
+          item.results?.map((i) => (
             <MovieListCard
               movie={i}
-              type={"movie"}
+              type={param.type + ""}
               cardContainerStyle={{
                 width: 140,
                 height: 215,
