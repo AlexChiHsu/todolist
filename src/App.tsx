@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "./components/common/screen";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "./app/hooks";
-import { fetchMovieGenreList } from "./actions/movieListActions";
+import { fetchGenreList } from "./actions/movieListActions";
 
 const AppContainer = styled.div`
   ${tw`
@@ -30,14 +30,18 @@ function App() {
     switch (isSelected) {
       case "電影":
         navigate("/movie");
-        dispatch(fetchMovieGenreList());
+        dispatch(fetchGenreList("movie"));
+        break;
+      case "影集":
+        navigate("/tv");
+        dispatch(fetchGenreList("tv"));
         break;
       case "home":
         navigate("/");
         setIsSelected("");
         break;
     }
-  }, [isSelected, navigate]);
+  }, [dispatch, isSelected, navigate]);
   return (
     <AppContainer>
       <WebHeader isSelected={isSelected} setIsSelected={setIsSelected} />

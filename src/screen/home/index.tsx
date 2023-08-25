@@ -58,9 +58,15 @@ function HomeScreen() {
   const navigation = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchPopularTVListUs({ language: "en", country: "US" }));
-    dispatch(fetchPopularTVListKr({ language: "ko", country: "KR" }));
-    dispatch(fetchPopularTVListZh({ language: "zh", country: "CN" }));
+    dispatch(
+      fetchPopularTVListUs({ language: "en", country: "US", page: "1" })
+    );
+    dispatch(
+      fetchPopularTVListKr({ language: "ko", country: "KR", page: "1" })
+    );
+    dispatch(
+      fetchPopularTVListZh({ language: "zh", country: "CN", page: "1" })
+    );
     dispatch(fetchPopularTVAnimationList());
     dispatch(fetchPopularMovieList({ language: "zh-TW", page: "1" }));
   }, [dispatch]);

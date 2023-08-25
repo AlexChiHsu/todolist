@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { fetchTopRatedMovieList } from "../../actions/movieListActions";
+import {
+  fetchTopRatedMovieList,
+  fetchTrendingList,
+} from "../../actions/movieListActions";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fetchTopRatedTVList } from "../../actions/tvListsActions";
 import { CarouselCustomNavigation } from "./carousel";
@@ -23,18 +26,21 @@ const HomeHeaderContainer = styled.div`
 `;
 
 export default function HomeHeader() {
-  const movieTopRated = useAppSelector((state) => state.movieList.topRatedData);
-  const { topRatedData } = useAppSelector((state) => state.tvLists);
+  const trendingList = useAppSelector(
+    (state) => state.movieList.allTrendingList
+  );
   const dispatch = useAppDispatch();
-  const allData = movieTopRated.results
-    .concat(topRatedData.results)
+  const allData = trendingList.results
+    .slice()
     .sort((a, b) => b.vote_average - a.vote_average)
     .slice(0, 10);
 
   useEffect(() => {
-    dispatch(fetchTopRatedMovieList());
-    dispatch(fetchTopRatedTVList());
+    // dispatch(fetchTopRatedMovieList());
+    // dispatch(fetchTopRatedTVList());
+    dispatch(fetchTrendingList("all"));
   }, [dispatch]);
+
   return (
     <HomeHeaderContainer>
       <CarouselCustomNavigation data={allData} />

@@ -7,7 +7,7 @@ import Icon from "../../common/icons/icon";
 import Thumbnail from "./thumbnail";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/hooks";
-import { fetchMovieGenreList } from "../../../actions/movieListActions";
+import { fetchGenreList } from "../../../actions/movieListActions";
 
 export default function BottomBar() {
   const navigate = useNavigate();
@@ -18,13 +18,18 @@ export default function BottomBar() {
       <BottomBarItemButton
         onClick={() => {
           navigate("/movie");
-          dispatch(fetchMovieGenreList());
+          dispatch(fetchGenreList("movie"));
         }}
       >
         <Icon name={"movie"} width={24} />
         電影
       </BottomBarItemButton>
-      <BottomBarItemButton>
+      <BottomBarItemButton
+        onClick={() => {
+          navigate("/tv");
+          dispatch(fetchGenreList("tv"));
+        }}
+      >
         <Icon name={"tv"} width={24} />
         影集
       </BottomBarItemButton>

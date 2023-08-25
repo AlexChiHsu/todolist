@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Thumbnail from "./thumbnail";
@@ -7,7 +7,6 @@ import Label from "./label";
 import { buttonLists } from "../lists/buttonLists";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/hooks";
-import { fetchMovieGenreList } from "../../../actions/movieListActions";
 
 const RightListContainer = styled.div`
   ${tw`
@@ -45,8 +44,6 @@ export default function RightList(props: RightListPro) {
   const { isSelected, setIsSelected } = props;
   const [isLogin, setIsLogin] = useState(true);
   const [isShowLabel, setIsShowLabel] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const clickThumbnail = (str: string) => {
     if (isLogin) {

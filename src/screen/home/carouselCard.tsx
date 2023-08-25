@@ -4,8 +4,9 @@ import tw from "twin.macro";
 import { MovieProp } from "../../types/movieList";
 import { imageURL } from "../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AddListButton from "../../components/common/button/addListButton";
+import { fetchTrendingList } from "../../actions/movieListActions";
 
 interface CarouselCardProp {
   item: MovieProp;
@@ -110,11 +111,15 @@ const ButtonWithBlackBg = styled.button`
 `;
 
 export default function CarouselCard(props: CarouselCardProp) {
-  const movieTopRated = useAppSelector((state) => state.movieList.topRatedData);
+  const movieTrending = useAppSelector(
+    (state) => state.movieList.movieTrendingList
+  );
+  const dispatch = useAppDispatch();
   const navigation = useNavigate();
   const { item } = props;
   const moreInfo = () => {
-    const movie = movieTopRated.results.filter((i) => i.id === item.id);
+    dispatch(fetchTrendingList("movie"));
+    const movie = movieTrending.results.filter((i) => i.id === item.id);
     if (movie.length === 0) {
       navigation(`/detail/tv/${item.id}`);
     } else {
@@ -123,7 +128,7 @@ export default function CarouselCard(props: CarouselCardProp) {
   };
   return (
     <BackgroundImage path={imageURL + item.backdrop_path}>
-      <Rated>{item.vote_average}</Rated>
+      <Rated>{Math.round(item.vote_average * 10) / 10}</Rated>
       <MovieTitle>{item?.title ?? item?.name}</MovieTitle>
       <MovieDescription>{item.overview}</MovieDescription>
       <ButtonContainer>

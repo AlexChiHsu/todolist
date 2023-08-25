@@ -4,6 +4,7 @@ import {
   getGenreList,
   getMovieTopRated,
   getPopularMovieList,
+  getTrendingList,
 } from "../api/tmdb/fetchAPI";
 
 export const fetchPopularMovieList = createAsyncThunk(
@@ -30,12 +31,24 @@ export const fetchTopRatedMovieList = createAsyncThunk(
   }
 );
 
-export const fetchMovieGenreList = createAsyncThunk(
-  "fetch/movieGenreList",
-  async (): Promise<GenresProp> => {
+export const fetchGenreList = createAsyncThunk(
+  "fetch/genreList",
+  async (type: string): Promise<GenresProp> => {
     const response = await fetch(
-      getGenreList().fullURL,
-      getGenreList().options
+      getGenreList(type).fullURL,
+      getGenreList(type).options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchTrendingList = createAsyncThunk(
+  "fetch/trendingList",
+  async (type: string): Promise<MovieListProp> => {
+    const response = await fetch(
+      getTrendingList(type).fullURL,
+      getTrendingList(type).options
     );
 
     return response.json();

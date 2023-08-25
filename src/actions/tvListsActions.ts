@@ -11,10 +11,11 @@ export const fetchPopularTVListUs = createAsyncThunk(
   async (args: {
     language: string;
     country: string;
+    page: string;
   }): Promise<MovieListProp> => {
     const response = await fetch(
-      getPopularTVList(args.language, args.country).fullURL,
-      getPopularTVList(args.language, args.country).options
+      getPopularTVList(args.language, args.country, args.page).fullURL,
+      getPopularTVList(args.language, args.country, args.page).options
     );
 
     return response.json();
@@ -26,10 +27,11 @@ export const fetchPopularTVListZh = createAsyncThunk(
   async (args: {
     language: string;
     country: string;
+    page: string;
   }): Promise<MovieListProp> => {
     const response = await fetch(
-      getPopularTVList(args.language, args.country).fullURL,
-      getPopularTVList(args.language, args.country).options
+      getPopularTVList(args.language, args.country, args.page).fullURL,
+      getPopularTVList(args.language, args.country, args.page).options
     );
 
     return response.json();
@@ -41,10 +43,11 @@ export const fetchPopularTVListKr = createAsyncThunk(
   async (args: {
     language: string;
     country: string;
+    page: string;
   }): Promise<MovieListProp> => {
     const response = await fetch(
-      getPopularTVList(args.language, args.country).fullURL,
-      getPopularTVList(args.language, args.country).options
+      getPopularTVList(args.language, args.country, args.page).fullURL,
+      getPopularTVList(args.language, args.country, args.page).options
     );
 
     return response.json();

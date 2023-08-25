@@ -4,7 +4,7 @@ const URL = {
   GET_POPULAR_MOVIE_LIST:
     "/movie/popular?language={LANGUAGE}&page={PAGE}&region=TW",
   GET_POPULAR_TV_LIST:
-    "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=zh-TW&page=1&sort_by=popularity.desc&with_origin_country={country}&with_original_language={language}",
+    "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=zh-TW&page={PAGE}&sort_by=popularity.desc&with_origin_country={country}&with_original_language={language}",
   GET_POPULAR_TV_ANIMATION_LIST: "/discover/tv?with_genres=16",
   GET_MOVIE_TOP_RATED: "/movie/top_rated?language=zh-TW",
   GET_TV_TOP_RATED: "/tv/top_rated?language=zh-TW",
@@ -13,7 +13,8 @@ const URL = {
   GET_COMMENTS: "/{TYPE}/{ID}/reviews?language=zh-TW&page=1",
   GET_SIMILAR: "/{TYPE}/{ID}/similar?language=zh-TW&page=1",
   GET_COMBINED_CREDITS: "/person/{ID}/combined_credits?language=zh-TW",
-  GET_GENRE_LIST: "/genre/movie/list?language=zh",
+  GET_GENRE_LIST: "/genre/{TYPE}/list?language=zh",
+  GET_TREND_LIST: "/trending/{TYPE}/day?language=zh-TW",
 };
 const options = {
   method: "GET",
@@ -32,13 +33,16 @@ export function getPopularMovieList(language: string, page: string) {
   };
 }
 
-export function getPopularTVList(language: string, country: string) {
+export function getPopularTVList(
+  language: string,
+  country: string,
+  page: string
+) {
   const fullURL =
     apiURL +
-    URL.GET_POPULAR_TV_LIST.replace("{country}", country).replace(
-      "{language}",
-      language
-    );
+    URL.GET_POPULAR_TV_LIST.replace("{country}", country)
+      .replace("{language}", language)
+      .replace("{PAGE}", page);
   return {
     fullURL,
     options,
@@ -113,8 +117,16 @@ export function getCombinedCredits(id: string) {
   };
 }
 
-export function getGenreList() {
-  const fullURL = apiURL + URL.GET_GENRE_LIST;
+export function getGenreList(type: string) {
+  const fullURL = apiURL + URL.GET_GENRE_LIST.replace("{TYPE}", type);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getTrendingList(type: string) {
+  const fullURL = apiURL + URL.GET_TREND_LIST.replace("{TYPE}", type);
   return {
     fullURL,
     options,
