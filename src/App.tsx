@@ -36,6 +36,9 @@ function App() {
         navigate("/tv");
         dispatch(fetchGenreList("tv"));
         break;
+      case "主題館":
+        navigate("/collection");
+        break;
       case "home":
         navigate("/");
         setIsSelected("");

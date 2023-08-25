@@ -33,7 +33,11 @@ export default function BottomBar() {
         <Icon name={"tv"} width={24} />
         影集
       </BottomBarItemButton>
-      <BottomBarItemButton>
+      <BottomBarItemButton
+        onClick={() => {
+          navigate("/collection");
+        }}
+      >
         <Icon name={"collection"} width={24} />
         主題館
       </BottomBarItemButton>

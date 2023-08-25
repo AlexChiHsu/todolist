@@ -6,6 +6,7 @@ import HomeScreen from "../../screen/home";
 import CastDetail from "../../screen/castDetail";
 import Test from "../../screen/test";
 import Movie from "../../screen/movieOrTv";
+import Theme from "../../screen/collection";
 
 export const router = createHashRouter(
   [
@@ -33,6 +34,10 @@ export const router = createHashRouter(
         {
           path: "/:type",
           element: <Movie />,
+        },
+        {
+          path: "/collection",
+          element: <Theme />,
         },
       ],
     },
