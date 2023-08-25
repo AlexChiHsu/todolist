@@ -25,7 +25,13 @@ export default function Header() {
       <GridContainer>
         <TypeButton autoFocus>全部</TypeButton>
         {grens.genres.map((item) => (
-          <TypeButton>{item.name}</TypeButton>
+          <TypeButton>
+            {item.name === "Sci-Fi & Fantasy"
+              ? "科幻奇幻"
+              : item.name === "War & Politics"
+              ? "戰爭"
+              : item.name}
+          </TypeButton>
         ))}
       </GridContainer>
       <DivContainer>
