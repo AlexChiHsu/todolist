@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import {
-  fetchTopRatedMovieList,
-  fetchTrendingList,
-} from "../../actions/movieListActions";
+import { fetchTrendingList } from "../../actions/movieListActions";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { fetchTopRatedTVList } from "../../actions/tvListsActions";
 import { CarouselCustomNavigation } from "./carousel";
 
 const HomeHeaderContainer = styled.div`
