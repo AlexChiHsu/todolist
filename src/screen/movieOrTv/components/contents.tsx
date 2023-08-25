@@ -57,25 +57,33 @@ export default function Contents(props: ContentProp) {
     return;
   }, [allData, dispatch, isLoadFirst, page, param, setIsLoadFirst]);
 
+  const filterData = allData.filter(
+    (item, index) =>
+      allData.indexOf(
+        allData[allData.map((i) => i.page).indexOf(item.page)]
+      ) === index
+  );
   return (
     <>
       <ContentsContainer ref={width}>
-        {allData?.map((item) =>
-          item.results?.map((i) => (
-            <MovieListCard
-              movie={i}
-              type={param.type + ""}
-              cardContainerStyle={{
-                width: 140,
-                height: 215,
-                marginBottom: 28,
-              }}
-              cardImageStyle={{
-                width: 140,
-                height: 190,
-              }}
-            />
-          ))
+        {filterData.map(
+          (item) =>
+            item.json !== null &&
+            item.results?.map((i) => (
+              <MovieListCard
+                movie={i}
+                type={param.type + ""}
+                cardContainerStyle={{
+                  width: 140,
+                  height: 215,
+                  marginBottom: 28,
+                }}
+                cardImageStyle={{
+                  width: 140,
+                  height: 190,
+                }}
+              />
+            ))
         )}
       </ContentsContainer>
       {!isLoading && (
