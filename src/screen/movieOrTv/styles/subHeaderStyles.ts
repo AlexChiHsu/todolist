@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import tw from "twin.macro";
 
 export const SubHeaderContainer = styled.div`
@@ -14,7 +14,7 @@ export const SubHeaderContainer = styled.div`
   `}
 `;
 
-export const ListsButton = styled.button`
+export const ListsButton = styled.button<{ focus?: boolean }>`
   ${tw`
       bg-[#161616]
       w-[102px]
@@ -26,7 +26,9 @@ export const ListsButton = styled.button`
       mr-2.5
   `}
   box-shadow: 0px 2px 8px 0px #0000007A;
-  &:focus {
-    background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
-  }
+  ${({ focus }) =>
+    focus &&
+    css`
+      background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
+    `}
 `;

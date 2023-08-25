@@ -16,6 +16,9 @@ export default function Movie() {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadFirst, setIsLoadFirst] = useState(true);
+  const [selectedType, setSelectedType] = useState("全部");
+  const [selectedYear, setSelectedYear] = useState("全部");
+  const [selectedTrending, setSelectedTrending] = useState("人氣");
 
   useEffect(() => {
     dispatch(fetchTrendingList({ type: param.type + "", page: "1" }));
@@ -23,8 +26,16 @@ export default function Movie() {
 
   return (
     <MovieContainer>
-      <Header />
-      <SubHeader />
+      <Header
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+        selectedYear={selectedYear}
+        setSelectedYear={setSelectedYear}
+      />
+      <SubHeader
+        selectedTrending={selectedTrending}
+        setSelectedTrending={setSelectedTrending}
+      />
       {param.type === "movie" && (
         <Contents
           data={[movieData]}

@@ -14,7 +14,16 @@ import { DivContainer } from "../styles/movieStyles";
 import { useAppSelector } from "../../../app/hooks";
 import { years } from "../lists/lists";
 
-export default function Header() {
+interface HeaderProp {
+  selectedType: string;
+  setSelectedType: Function;
+  selectedYear: string;
+  setSelectedYear: Function;
+}
+
+export default function Header(props: HeaderProp) {
+  const { selectedYear, selectedType, setSelectedType, setSelectedYear } =
+    props;
   const grens = useAppSelector((state) => state.movieList.movieGenres);
   const [value, setValue] = useState(5);
   return (
@@ -23,9 +32,17 @@ export default function Header() {
         <Text text={"類型"} index={0} />
       </DivContainer>
       <GridContainer>
-        <TypeButton autoFocus>全部</TypeButton>
+        <TypeButton
+          focus={selectedType === "全部"}
+          onClick={() => setSelectedType("全部")}
+        >
+          全部
+        </TypeButton>
         {grens.genres.map((item) => (
-          <TypeButton>
+          <TypeButton
+            focus={selectedType === item.name}
+            onClick={() => setSelectedType(item.name)}
+          >
             {item.name === "Sci-Fi & Fantasy"
               ? "科幻奇幻"
               : item.name === "War & Politics"
@@ -38,9 +55,19 @@ export default function Header() {
         <Text text={"年份"} index={0} />
       </DivContainer>
       <GridContainer>
-        <TypeButton autoFocus>全部</TypeButton>
+        <TypeButton
+          focus={selectedYear === "全部"}
+          onClick={() => setSelectedYear("全部")}
+        >
+          全部
+        </TypeButton>
         {years.map((item) => (
-          <TypeButton>{item}</TypeButton>
+          <TypeButton
+            focus={selectedYear === item + ""}
+            onClick={() => setSelectedYear(item + "")}
+          >
+            {item}
+          </TypeButton>
         ))}
       </GridContainer>
       <DivContainer>
