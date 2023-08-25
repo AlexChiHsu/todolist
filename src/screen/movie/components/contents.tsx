@@ -1,16 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { ContentsContainer } from "../styles/contentsStyles";
 import MovieListCard from "../../../components/common/card/movieListCard";
 import { MovieListProp, MovieProp } from "../../../types/movieList";
 import { fetchPopularMovieList } from "../../../actions/movieListActions";
+import { useMediaQuery } from "react-responsive";
+import { SCREENS } from "../../../components/common/screen";
+import { useDevice } from "../../../components/helper/media";
 
 export default function Contents() {
   const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
   const [page, setPage] = useState(2);
+  const [device, setDevice] = useState("");
   const [allData, setAllData] = useState<MovieListProp[]>([movieData]);
-  // const allData = movieData;
+  const width = useRef<HTMLDivElement>(null);
+  const deviceType = useDevice(width.current?.offsetWidth ?? 1025);
 
   useEffect(() => {
     if (page < 2) {
@@ -26,10 +31,12 @@ export default function Contents() {
     setAllData(cookData);
   }, [allData, dispatch, page]);
 
-  console.log(JSON.stringify(allData));
+  useEffect(() => {
+    setDevice(deviceType);
+  }, [deviceType]);
 
   return (
-    <ContentsContainer>
+    <ContentsContainer ref={width}>
       {allData.map((item) =>
         item.results.map((i) => (
           <MovieListCard

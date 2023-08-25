@@ -5,14 +5,13 @@ export const ContentsContainer = styled.div`
   ${tw`
     w-full
     h-auto
-    flex
-    flex-row
-    flex-wrap
-    items-center
-    justify-between
     pl-4
     pr-4
     pt-9
     text-white
   `}
+
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, 152px);
 `;
