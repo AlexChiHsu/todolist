@@ -19,7 +19,7 @@ export default function Contents() {
   const width = useRef<HTMLDivElement>(null);
 
   const onClick = () => {
-    setLoadFirst(false);
+    // setLoadFirst(false);
     setIsLoading(true);
   };
 
@@ -30,7 +30,7 @@ export default function Contents() {
       }
     } else {
       if (isLoading) {
-        setTimeout(() => setPage((v) => v + 1), 1000);
+        setPage((v) => v + 1);
       }
       setIsLoading(false);
     }
@@ -38,13 +38,22 @@ export default function Contents() {
 
   useEffect(() => {
     const cookData = allData;
-    dispatch(fetchPopularMovieList({ language: "zh-TW", page: page + "" }))
-      .unwrap()
-      .then((res) => cookData?.push(res));
+    if (loadFirst) {
+      setLoadFirst(false);
+    } else {
+      dispatch(fetchPopularMovieList({ language: "zh-TW", page: page + "" }))
+        .unwrap()
+        .then((res) => cookData?.push(res));
+    }
     setAllData(cookData);
-  }, [allData, dispatch, page]);
+  }, [allData, dispatch, loadFirst, page]);
 
-  console.log(JSON.stringify(allData));
+  //allData.filter((item, index) => allData.indexOf(item) === index);
+  console.log(
+    JSON.stringify(
+      allData.filter((item, index) => allData.indexOf(item) === index)
+    )
+  );
   return (
     <>
       <ContentsContainer ref={width}>
