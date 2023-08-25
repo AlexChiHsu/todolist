@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { MovieProp } from "../../../types/movieList";
 import { CSSProp, css, styled } from "styled-components";
 import tw, { TwStyle } from "twin.macro";
