@@ -3,6 +3,9 @@ import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { MovieProp } from "../../types/movieList";
 import CarouselCard from "./carouselCard";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useEffect, useState } from "react";
+import { fetchTrendingList } from "../../actions/movieListActions";
 
 interface IDataProp {
   data: MovieProp[];
@@ -39,6 +42,25 @@ const Dot = styled.button<{ isOnPage?: boolean }>`
 `;
 export function CarouselCustomNavigation(props: IDataProp) {
   const { data } = props;
+  const movieTrending = useAppSelector(
+    (state) => state.movieList.movieTrendingList
+  );
+  const dispatch = useAppDispatch();
+  const [type, setType] = useState("");
+  useEffect(() => {
+    dispatch(fetchTrendingList({ type: "movie", page: "1" }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const movie = movieTrending.results.filter((i) =>
+      data.map((item) => item.id === i.id)
+    );
+    if (movie) {
+      setType("movie");
+    } else {
+      setType("tv");
+    }
+  }, [data, movieTrending.results]);
   return (
     <Carousel
       className="overflow-hidden whitespace-nowrap relative h-full w-full"
@@ -54,7 +76,7 @@ export function CarouselCustomNavigation(props: IDataProp) {
       )}
     >
       {data.map((item) => (
-        <CarouselCard item={item} />
+        <CarouselCard item={item} type={type} />
       ))}
     </Carousel>
   );

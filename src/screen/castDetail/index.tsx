@@ -24,6 +24,14 @@ export default function CastDetail() {
             isCastCombinedCredits={true}
             movie={item}
             type={item.media_type}
+            cardContainerStyle={{
+              width: 140,
+              height: 215,
+            }}
+            cardImageStyle={{
+              width: 140,
+              height: 190,
+            }}
           />
         ))}
       </CastDetailCreditsContainer>

@@ -10,6 +10,7 @@ import { fetchTrendingList } from "../../actions/movieListActions";
 
 interface CarouselCardProp {
   item: MovieProp;
+  type: string;
 }
 
 const BackgroundImage = styled.div<{ path?: any }>`
@@ -111,20 +112,10 @@ const ButtonWithBlackBg = styled.button`
 `;
 
 export default function CarouselCard(props: CarouselCardProp) {
-  const movieTrending = useAppSelector(
-    (state) => state.movieList.movieTrendingList
-  );
-  const dispatch = useAppDispatch();
   const navigation = useNavigate();
-  const { item } = props;
+  const { item, type } = props;
   const moreInfo = () => {
-    dispatch(fetchTrendingList({ type: "movie", page: "1" }));
-    const movie = movieTrending.results.filter((i) => i.id === item.id);
-    if (movie.length === 0) {
-      navigation(`/detail/tv/${item.id}`);
-    } else {
-      navigation(`/detail/movie/${item.id}`);
-    }
+    navigation(`/detail/${type}/${item.id}`);
   };
   return (
     <BackgroundImage path={imageURL + item.backdrop_path}>
