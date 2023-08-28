@@ -15,6 +15,8 @@ const URL = {
   GET_COMBINED_CREDITS: "/person/{ID}/combined_credits?language=zh-TW",
   GET_GENRE_LIST: "/genre/{TYPE}/list?language=zh",
   GET_TREND_LIST: "/trending/{TYPE}/day?language=zh-TW&page={PAGE}",
+  GET_COLLECTION_MOVIE_LIST:
+    "/discover/movie?include_adult=false&include_video=false&language=zh-TW&page={PAGE}&region=TW&sort_by=popularity.desc&with_genres={GENRES}",
 };
 const options = {
   method: "GET",
@@ -128,6 +130,19 @@ export function getGenreList(type: string) {
 export function getTrendingList(type: string, page: string) {
   const fullURL =
     apiURL + URL.GET_TREND_LIST.replace("{TYPE}", type).replace("{PAGE}", page);
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getCollectionMovieList(page: string, genres: string) {
+  const fullURL =
+    apiURL +
+    URL.GET_COLLECTION_MOVIE_LIST.replace("{PAGE}", page).replace(
+      "{GENRES}",
+      genres
+    );
   return {
     fullURL,
     options,

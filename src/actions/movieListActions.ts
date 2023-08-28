@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GenresProp, MovieListProp } from "../types/movieList";
 import {
+  getCollectionMovieList,
   getGenreList,
   getMovieTopRated,
   getPopularMovieList,
@@ -49,6 +50,18 @@ export const fetchTrendingList = createAsyncThunk(
     const response = await fetch(
       getTrendingList(args.type, args.page).fullURL,
       getTrendingList(args.type, args.page).options
+    );
+
+    return response.json();
+  }
+);
+
+export const fetchCollectionMovieList = createAsyncThunk(
+  "fetch/collectionMovieList",
+  async (args: { page: string; genres: string }): Promise<MovieListProp> => {
+    const response = await fetch(
+      getCollectionMovieList(args.page, args.genres).fullURL,
+      getCollectionMovieList(args.page, args.genres).options
     );
 
     return response.json();

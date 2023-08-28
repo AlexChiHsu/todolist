@@ -72,11 +72,11 @@ module.exports = withMT({
         slider: "linear-gradient(91.47deg, #C10171 3.73%, #5C00F2 100%)",
       },
       screens: {
-        sm: "640px",
+        sm: "320px",
         // => @media (min-width: 640px) { ... }
 
-        md: "768px",
-        // => @media (min-width: 768px) { ... }
+        md: "720px",
+        // => @media (min-width: 720px) { ... }
 
         lg: "1024px",
         // => @media (min-width: 1024px) { ... }

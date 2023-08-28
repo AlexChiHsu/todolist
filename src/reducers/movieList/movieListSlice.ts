@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GenresProp, MovieListProp } from "../../types/movieList";
 import {
+  fetchCollectionMovieList,
   fetchGenreList,
   fetchPopularMovieList,
   fetchTopRatedMovieList,
@@ -15,6 +16,7 @@ export interface IMovieListState {
   allData: any[];
   allTrendingList: MovieListProp;
   movieTrendingList: MovieListProp;
+  collectionList: MovieListProp;
   tvTrendingList: MovieListProp;
 }
 
@@ -25,6 +27,7 @@ const initialState: IMovieListState = {
   allData: [],
   allTrendingList: initialList,
   movieTrendingList: initialList,
+  collectionList: initialList,
   tvTrendingList: initialList,
 };
 
@@ -51,6 +54,9 @@ export const movieList = createSlice({
     });
     builder.addCase(fetchGenreList.fulfilled, (state, action) => {
       state.movieGenres = action.payload;
+    });
+    builder.addCase(fetchCollectionMovieList.fulfilled, (state, action) => {
+      state.collectionList = action.payload;
     });
     builder.addCase(fetchTrendingList.fulfilled, (state, action) => {
       if (action.meta.arg.type === "movie") {

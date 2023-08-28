@@ -5,19 +5,38 @@ export const CollectionContainer = styled.div`
   ${tw`
     w-full
     h-auto
-    grid
-    auto-cols-auto
+    gap-4
+    sm:pl-4
+    sm:pr-4
+    pl-[84px]
+    pr-[84px]
+    pt-12
+    overflow-y-scroll
+    overflow-x-hidden
+    sm:flex
+    sm:flex-wrap
+    sm:items-center
+    sm:justify-center
+    sm:pb-32
   `}
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, 360px);
 `;
 
 export const CollectionCardContainer = styled.div<{ path?: any }>`
   ${tw`
+    sm:w-[327px]
+    sm:h-[161px]
     w-[360px]
     h-[180px]
     rounded-lg
     pr-2
     pb-1
     overflow-hidden
+    bg-no-repeat
+    bg-cover
     `}
   box-shadow: 0px 2px 8px 0px #0000007A;
 

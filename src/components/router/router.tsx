@@ -7,6 +7,7 @@ import CastDetail from "../../screen/castDetail";
 import Test from "../../screen/test";
 import Movie from "../../screen/movieOrTv";
 import Theme from "../../screen/collection";
+import CollectionPage from "../../screen/collection/components/collectionPage";
 
 export const router = createHashRouter(
   [
@@ -38,6 +39,10 @@ export const router = createHashRouter(
         {
           path: "/collection",
           element: <Theme />,
+        },
+        {
+          path: "/movie/:id",
+          element: <CollectionPage />,
         },
       ],
     },
