@@ -14,6 +14,7 @@ import {
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../config/firebase";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -84,6 +85,8 @@ function HomeScreen() {
         return movieData;
     }
   };
+
+  console.log(auth);
 
   return (
     <>

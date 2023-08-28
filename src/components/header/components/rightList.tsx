@@ -5,8 +5,8 @@ import Thumbnail from "./thumbnail";
 import Button from "../../common/button";
 import Label from "./label";
 import { buttonLists } from "../lists/buttonLists";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../app/hooks";
+import { isLogin } from "../../helper/userProfile";
+import { auth } from "../../../config/firebase";
 
 const RightListContainer = styled.div`
   ${tw`
@@ -42,11 +42,10 @@ interface RightListPro {
 
 export default function RightList(props: RightListPro) {
   const { isSelected, setIsSelected } = props;
-  const [isLogin, setIsLogin] = useState(true);
   const [isShowLabel, setIsShowLabel] = useState(false);
 
   const clickThumbnail = (str: string) => {
-    if (isLogin) {
+    if (isLogin()) {
       setIsShowLabel(true);
       setIsSelected(str);
     }
@@ -75,7 +74,12 @@ export default function RightList(props: RightListPro) {
               isFill={false}
               onClick={() => clickThumbnail("user")}
               isSelected={isSelected === "user"}
-              component={<Thumbnail isLogin={isLogin} />}
+              component={
+                <Thumbnail
+                  isLogin={isLogin()}
+                  url={auth.currentUser?.photoURL ?? ""}
+                />
+              }
             />
           </ButtonItem>
         </ButtonListContainer>

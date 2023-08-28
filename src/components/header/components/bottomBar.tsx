@@ -8,6 +8,8 @@ import Thumbnail from "./thumbnail";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/hooks";
 import { fetchGenreList } from "../../../actions/movieListActions";
+import { isLogin } from "../../helper/userProfile";
+import { auth } from "../../../config/firebase";
 
 export default function BottomBar() {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export default function BottomBar() {
         我的片單
       </BottomBarItemButton>
       <BottomBarItemButton>
-        <Thumbnail isLogin={true} />
+        <Thumbnail isLogin={isLogin()} url={auth.currentUser?.photoURL ?? ""} />
       </BottomBarItemButton>
     </BottomBarContainer>
   );

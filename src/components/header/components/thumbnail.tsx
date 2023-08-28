@@ -34,7 +34,7 @@ export default function Thumbnail(props: IThumbnailProp) {
     <ThumbnailContainer>
       <ThumbnailImg>
         {isLogin && url ? (
-          <img src={`${imagePath(url)}`} />
+          <img src={`${url}`} />
         ) : (
           <Icon
             name={"logout"}
