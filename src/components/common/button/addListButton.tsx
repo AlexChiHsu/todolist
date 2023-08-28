@@ -58,7 +58,6 @@ export default function AddListButton() {
           </ButtonWithBlackBg>
         </ButtonWithoutBg>
       )}
-      ;
     </>
   );
 }
