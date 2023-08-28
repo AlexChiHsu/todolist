@@ -8,6 +8,7 @@ import Test from "../../screen/test";
 import Movie from "../../screen/movieOrTv";
 import Theme from "../../screen/collection";
 import CollectionPage from "../../screen/collection/components/collectionPage";
+import Login from "../../screen/login";
 
 export const router = createHashRouter(
   [
@@ -43,6 +44,10 @@ export const router = createHashRouter(
         {
           path: "/:type/:id/:genres",
           element: <CollectionPage />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
       ],
     },

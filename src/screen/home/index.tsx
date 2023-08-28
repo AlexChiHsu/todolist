@@ -98,7 +98,8 @@ function HomeScreen() {
               isDetail={false}
             />
           ))}
-          <TestButton onClick={() => navigation(`/test`)} />
+          {/* <TestButton onClick={() => navigation(`/test`)} /> */}
+          <TestButton onClick={() => navigation(`/login`)} />
           <Footer />
         </MovieContainer>
       </HomeContainer>
