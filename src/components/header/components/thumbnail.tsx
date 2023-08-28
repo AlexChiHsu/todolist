@@ -2,10 +2,9 @@ import React from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../common/icons/icon";
-import { imagePath } from "../../helper/media";
+import { auth } from "../../../config/firebase";
 
 interface IThumbnailProp {
-  isLogin: boolean;
   url?: string;
 }
 
@@ -29,12 +28,13 @@ const ThumbnailImg = styled.div`
 `;
 
 export default function Thumbnail(props: IThumbnailProp) {
-  const { isLogin, url } = props;
+  const { url } = props;
+  const isLogin = auth.currentUser !== null;
   return (
     <ThumbnailContainer>
       <ThumbnailImg>
-        {isLogin && url ? (
-          <img src={`${url}`} />
+        {isLogin ? (
+          <img src={`${url ? url : auth.currentUser?.photoURL}`} />
         ) : (
           <Icon
             name={"logout"}

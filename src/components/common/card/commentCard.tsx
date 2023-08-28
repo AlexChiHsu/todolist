@@ -12,6 +12,7 @@ import {
 } from "../../../screen/detail/styles/comment";
 import Thumbnail from "../../header/components/thumbnail";
 import Icon from "../icons/icon";
+import { imagePath } from "../../helper/media";
 
 interface CommentCardProp {
   userName: string;
@@ -64,7 +65,7 @@ export default function CommentCard(props: CommentCardProp) {
     <CommentCardContainer>
       <CommentCardLeft>
         <ButtonThumbnail>
-          <Thumbnail isLogin={true} url={thumbnailUrl} />
+          <Thumbnail url={imagePath(thumbnailUrl)} />
         </ButtonThumbnail>
       </CommentCardLeft>
       <CommentCardCenter>
