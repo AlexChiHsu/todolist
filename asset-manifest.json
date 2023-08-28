@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/w-movie/static/css/main.9eabb416.css",
-    "main.js": "/w-movie/static/js/main.facacb4d.js",
+    "main.js": "/w-movie/static/js/main.c4c6e280.js",
     "static/js/787.9b0bf541.chunk.js": "/w-movie/static/js/787.9b0bf541.chunk.js",
     "static/media/netflix.svg": "/w-movie/static/media/netflix.3345d635a41b66b44b7e02c300f9ee15.svg",
     "static/media/appletv.svg": "/w-movie/static/media/appletv.5332e5f89b72b5359127ff7e76519b97.svg",
@@ -33,11 +33,11 @@
     "static/media/chevron-up.svg": "/w-movie/static/media/chevron-up.a1eb858b6e5366f1bd5779a8e0ec1c44.svg",
     "static/media/plus.svg": "/w-movie/static/media/plus.d665e014bf5464e4af380767b2a51afd.svg",
     "main.9eabb416.css.map": "/w-movie/static/css/main.9eabb416.css.map",
-    "main.facacb4d.js.map": "/w-movie/static/js/main.facacb4d.js.map",
+    "main.c4c6e280.js.map": "/w-movie/static/js/main.c4c6e280.js.map",
     "787.9b0bf541.chunk.js.map": "/w-movie/static/js/787.9b0bf541.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9eabb416.css",
-    "static/js/main.facacb4d.js"
+    "static/js/main.c4c6e280.js"
   ]
 }
