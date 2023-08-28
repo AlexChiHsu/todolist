@@ -78,7 +78,7 @@ export default function RightList(props: RightListPro) {
           </ButtonItem>
         </ButtonListContainer>
       </RightListContainer>
-      {isShowLabel && <Label />}
+      {isShowLabel && <Label setIsShowLabel={setIsShowLabel} />}
     </>
   );
 }
