@@ -25,6 +25,7 @@ import { ReactComponent as Movie } from "../../../assets/images/movie.svg";
 import { ReactComponent as Tv } from "../../../assets/images/tv.svg";
 import { ReactComponent as Collection } from "../../../assets/images/collection.svg";
 import { ReactComponent as Favorite } from "../../../assets/images/favorite.svg";
+import { ReactComponent as Google } from "../../../assets/images/google.svg";
 
 interface IIconsProp {
   name:
@@ -54,6 +55,7 @@ interface IIconsProp {
     | "tv"
     | "collection"
     | "favorite"
+    | "google"
     | "user";
   stroke?: string;
   width?: string | number;
@@ -304,6 +306,15 @@ export default function Icon(props: IIconsProp) {
     case "tv":
       return (
         <Tv
+          fill={fillColor}
+          stroke={strokeColor}
+          width={width}
+          height={height}
+        />
+      );
+    case "google":
+      return (
+        <Google
           fill={fillColor}
           stroke={strokeColor}
           width={width}

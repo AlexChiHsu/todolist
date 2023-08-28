@@ -1,14 +1,16 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
+import { Button, Dialog } from "@material-tailwind/react";
 import { auth, provide } from "../../config/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import {
+  DialogButton,
+  DialogButtonText,
+  DialogContainer,
+  DialogIconDiv,
+  DialogTitle,
+} from "./styles/dialogStyles";
+import Icon from "../../components/common/icons/icon";
 
 export function DialogScreen() {
   const [open, setOpen] = React.useState(false);
@@ -27,34 +29,23 @@ export function DialogScreen() {
       <Button onClick={handleOpen} variant="gradient">
         Open Dialog
       </Button>
-      <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>請登入帳號</DialogHeader>
-        <DialogBody divider>
-          <Button variant="text" color="red" onClick={login} className="mr-1">
-            <span>google登入</span>
-          </Button>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>取消</span>
-          </Button>
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
+      <Dialog
+        className="items-center flex justify-center bg-transparent"
+        open={open}
+        handler={handleOpen}
+      >
+        <DialogContainer>
+          <DialogTitle>請登入帳號</DialogTitle>
+          <DialogButton onClick={login}>
+            <DialogIconDiv>
+              <Icon name={"google"} width={24} height={24} />
+            </DialogIconDiv>
+            <DialogButtonText>Google 登入</DialogButtonText>
+          </DialogButton>
+          <DialogButton onClick={handleOpen} cancel={true}>
+            <DialogButtonText cancel={true}>取消</DialogButtonText>
+          </DialogButton>
+        </DialogContainer>
       </Dialog>
     </>
   );
