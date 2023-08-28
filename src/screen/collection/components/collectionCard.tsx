@@ -30,7 +30,9 @@ export default function CollectionCard(props: CollectionCardProp) {
         }
       });
       dispatch(fetchCollectionMovieList({ page: "1", genres: `${genreStr}` }));
-      navigate(`/movie/${id}`);
+      navigate(
+        `/${title !== "熱門韓劇" ? "movie" : "tv"}/${id}/${genreStr ?? 0}`
+      );
     }
 
     if (url !== "") {

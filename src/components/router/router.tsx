@@ -41,7 +41,7 @@ export const router = createHashRouter(
           element: <Theme />,
         },
         {
-          path: "/movie/:id",
+          path: "/:type/:id/:genres",
           element: <CollectionPage />,
         },
       ],

@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import withoutImg from "../../../assets/images/withoutImg.svg";
 
 const MovieCardContainer = styled.button<{ isCombined?: boolean; style?: any }>`
-  width: 103px;
-  height: 155px;
   ${tw`
+    w-[103px]
+    h-[155px]
+    sm:w-[103px]
+    sm:h-[153px]
     gap-1
     ml-1
     mr-1

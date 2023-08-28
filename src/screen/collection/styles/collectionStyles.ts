@@ -23,6 +23,12 @@ export const CollectionContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   grid-template-columns: repeat(auto-fill, 360px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;
 
 export const CollectionCardContainer = styled.div<{ path?: any }>`
@@ -67,4 +73,25 @@ export const CollectionCardButton = styled.button`
     items-end
     flex
   `}
+`;
+
+export const CollectionPageContainer = styled.div`
+  ${tw`
+    w-full
+    h-auto
+    overflow-y-scroll
+    overflow-x-hidden
+    sm:pl-4
+    sm:pr-4
+    pl-32
+    pr-32
+    pt-10
+    pb-10
+  `}
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;

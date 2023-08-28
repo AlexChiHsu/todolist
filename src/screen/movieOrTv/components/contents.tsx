@@ -7,8 +7,12 @@ import {
 } from "../styles/contentsStyles";
 import MovieListCard from "../../../components/common/card/movieListCard";
 import { MovieListProp } from "../../../types/movieList";
-import { fetchTrendingList } from "../../../actions/movieListActions";
+import {
+  fetchCollectionMovieList,
+  fetchTrendingList,
+} from "../../../actions/movieListActions";
 import { useParams } from "react-router-dom";
+import { fetchPopularTVListKr } from "../../../actions/tvListsActions";
 
 interface ContentProp {
   data: MovieListProp[];
@@ -16,32 +20,37 @@ interface ContentProp {
   setIsLoadFirst: Function;
   isLoading: boolean;
   setIsLoading: Function;
+  isCollection?: boolean;
+  genres?: string;
+  country?: string;
 }
 
 export default function Contents(props: ContentProp) {
-  const { data, isLoadFirst, setIsLoadFirst, isLoading, setIsLoading } = props;
+  const {
+    data,
+    isLoadFirst,
+    setIsLoadFirst,
+    isLoading,
+    setIsLoading,
+    isCollection,
+    genres,
+    country,
+  } = props;
   const dispatch = useAppDispatch();
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const width = useRef<HTMLDivElement>(null);
   const param = useParams();
   const [allData, setAllData] = useState<MovieListProp[]>(data);
 
   const onClick = () => {
-    // setLoadFirst(false);
     setIsLoading(true);
   };
 
   useEffect(() => {
-    if (isLoadFirst) {
-      if (page < 2) {
-        setPage((v) => v + 1);
-      }
-    } else {
-      if (isLoading) {
-        setPage((v) => v + 1);
-      }
-      setIsLoading(false);
+    if (isLoading) {
+      setPage((v) => v + 1);
     }
+    setIsLoading(false);
   }, [isLoading, isLoadFirst, page, setIsLoading]);
 
   useEffect(() => {
@@ -49,13 +58,40 @@ export default function Contents(props: ContentProp) {
     if (isLoadFirst) {
       setIsLoadFirst(false);
     } else {
-      dispatch(fetchTrendingList({ type: param.type + "", page: page + "" }))
-        .unwrap()
-        .then((res) => cookData?.push(res));
+      if (isCollection && genres !== undefined) {
+        dispatch(
+          fetchCollectionMovieList({ page: page + "", genres: genres ?? "" })
+        )
+          .unwrap()
+          .then((res) => cookData?.push(res));
+      } else if (isCollection && country !== "") {
+        dispatch(
+          fetchPopularTVListKr({
+            language: "ko",
+            country: "KR",
+            page: page + "",
+          })
+        )
+          .unwrap()
+          .then((res) => cookData?.push(res));
+      } else {
+        dispatch(fetchTrendingList({ type: param.type + "", page: page + "" }))
+          .unwrap()
+          .then((res) => cookData?.push(res));
+      }
     }
     setAllData(cookData);
-    return;
-  }, [allData, dispatch, isLoadFirst, page, param, setIsLoadFirst]);
+  }, [
+    allData,
+    country,
+    dispatch,
+    genres,
+    isCollection,
+    isLoadFirst,
+    page,
+    param,
+    setIsLoadFirst,
+  ]);
 
   const filterData = allData.filter(
     (item, index) =>
@@ -63,6 +99,7 @@ export default function Contents(props: ContentProp) {
         allData[allData.map((i) => i.page).indexOf(item.page)]
       ) === index
   );
+
   return (
     <>
       <ContentsContainer ref={width}>

@@ -1,4 +1,3 @@
-import React from "react";
 import { CollectionContainer } from "./styles/collectionStyles";
 import CollectionCard from "./components/collectionCard";
 import { collectionList } from "./list/collectionList";
