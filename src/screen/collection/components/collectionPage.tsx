@@ -28,7 +28,7 @@ export default function CollectionPage() {
         setIsLoading={setIsLoading}
         isCollection={true}
         genres={genres}
-        country={item?.country ?? ""}
+        country={item?.title === "熱門韓劇" ? item.country : ""}
       />
     </CollectionPageContainer>
   );

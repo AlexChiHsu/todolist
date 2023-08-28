@@ -6,6 +6,7 @@ import {
 import { useAppDispatch } from "../../../app/hooks";
 import { fetchCollectionMovieList } from "../../../actions/movieListActions";
 import { useNavigate } from "react-router-dom";
+import { fetchPopularTVListKr } from "../../../actions/tvListsActions";
 
 interface CollectionCardProp {
   image: string;
@@ -30,11 +31,19 @@ export default function CollectionCard(props: CollectionCardProp) {
         }
       });
       dispatch(fetchCollectionMovieList({ page: "1", genres: `${genreStr}` }));
-      navigate(
-        `/${title !== "熱門韓劇" ? "movie" : "tv"}/${id}/${genreStr ?? 0}`
-      );
+      navigate(`/${title !== "熱門韓劇" ? "movie" : "tv"}/${id}/${genreStr}`);
     }
 
+    if (country === "KR") {
+      dispatch(
+        fetchPopularTVListKr({
+          language: "ko",
+          country: "KR",
+          page: "1",
+        })
+      );
+      navigate(`/${title !== "熱門韓劇" ? "movie" : "tv"}/${id}/${0}`);
+    }
     if (url !== "") {
       window.open(url);
     }

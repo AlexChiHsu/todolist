@@ -46,6 +46,7 @@ export default function Contents(props: ContentProp) {
     setIsLoading(true);
   };
 
+  console.log(country);
   useEffect(() => {
     if (isLoading) {
       setPage((v) => v + 1);
@@ -58,7 +59,7 @@ export default function Contents(props: ContentProp) {
     if (isLoadFirst) {
       setIsLoadFirst(false);
     } else {
-      if (isCollection && genres !== undefined) {
+      if (isCollection && genres !== "0") {
         dispatch(
           fetchCollectionMovieList({ page: page + "", genres: genres ?? "" })
         )
