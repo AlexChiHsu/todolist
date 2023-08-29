@@ -52,23 +52,21 @@ const TestButton = styled.button`
 function HomeScreen() {
   const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
-  const wishList = useAppSelector((state) => state.user.userWishList);
+  const wishItem = useAppSelector((state) => state.user.userWishItem);
   const { usData, zhData, krData, aniData } = useAppSelector(
     (state) => state.tvLists
   );
   const navigation = useNavigate();
 
-  const [wishListData, setWishListData] = useState<MovieProp[]>([wishList]);
+  const [wishListData, setWishListData] = useState<MovieProp[]>([wishItem]);
 
   useEffect(() => {
     const sectionData = wishListData;
-    sectionData.push(wishList);
+    sectionData.push(wishItem);
     setWishListData(sectionData);
-  }, [wishList, wishListData]);
+  }, [wishItem, wishListData]);
 
-  console.log(
-    JSON.stringify(wishListData.map((item) => item.name ?? item.title))
-  );
+  console.log(JSON.stringify(wishItem));
   useEffect(() => {
     dispatch(
       fetchPopularTVListUs({ language: "en", country: "US", page: "1" })

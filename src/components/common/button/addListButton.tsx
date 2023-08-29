@@ -3,7 +3,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { useAppDispatch } from "../../../app/hooks";
 import { MovieProp } from "../../../types/movieList";
-import { setUserWishList } from "../../../reducers/user/userSlice";
+import { setUserWishItem } from "../../../reducers/user/userSlice";
 
 const ButtonGradientBg = styled.button`
   ${tw`
@@ -59,7 +59,7 @@ export default function AddListButton(props: IAddListButtonProp) {
   const [data, setData] = useState<[{ id: string }]>();
 
   const onClick = () => {
-    dispatch(setUserWishList(item));
+    dispatch(setUserWishItem(item));
   };
 
   // console.log(JSON.stringify(data));

@@ -10,13 +10,13 @@ import { MovieProp } from "../../types/movieList";
 export interface IUserState {
   user: UserProp;
   userPassword: UserPasswordProp;
-  userWishList: MovieProp;
+  userWishItem: MovieProp;
 }
 
 const initialState: IUserState = {
   user: initialUser,
   userPassword: initialUserPassword,
-  userWishList: initialUserWishList,
+  userWishItem: initialUserWishList,
 };
 
 export const user = createSlice({
@@ -29,13 +29,13 @@ export const user = createSlice({
     setUserPassword: (state, action) => {
       state.userPassword = action.payload;
     },
-    setUserWishList: (state, action) => {
-      state.userWishList = action.payload;
+    setUserWishItem: (state, action) => {
+      state.userWishItem = action.payload;
     },
   },
 });
 
-export const { setUserAccount, setUserPassword, setUserWishList } =
+export const { setUserAccount, setUserPassword, setUserWishItem } =
   user.actions;
 
 export default user.reducer;
