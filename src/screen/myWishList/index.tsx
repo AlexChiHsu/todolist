@@ -1,9 +1,16 @@
-import React from "react";
-import { MyWishListContainer } from "./styles/myWishListStyles";
+import React, { useState } from "react";
+import {
+  ContentContainer,
+  MyWishListContainer,
+} from "./styles/myWishListStyles";
 import { MovieProp } from "../../types/movieList";
 import { useAppSelector } from "../../app/hooks";
+import Header from "./components/header";
+import MovieListCard from "../../components/common/card/movieListCard";
+import { useDevice } from "../../components/helper/media";
 
 export default function MyWishList() {
+  const [selected, setSelected] = useState("全部");
   const data = useAppSelector((state) => state.user.userWishList);
   const filterData = data.filter(
     (item: MovieProp, index: number) =>
@@ -13,15 +20,38 @@ export default function MyWishList() {
         data[data.map((i: MovieProp) => i.id).indexOf(item.id)] === index
       )
   );
+  const device = useDevice(window.innerWidth);
 
-  // const filterData = allData.filter(
-  //   (item, index) =>
-  //     allData.indexOf(
-  //       allData[allData.map((i) => i.page).indexOf(item.page)]
-  //     ) === index
-  // );
+  let cardContainerStyle = { width: 152, height: 226 };
+  let cardImageStyle = { width: 152, height: 201 };
 
+  switch (device) {
+    case "pc":
+      cardContainerStyle = { width: 152, height: 226 };
+      cardImageStyle = { width: 152, height: 201 };
+      break;
+    case "tablet":
+      cardContainerStyle = { width: 140, height: 215 };
+      cardImageStyle = { width: 140, height: 168 };
+      break;
+    case "mobile":
+      cardContainerStyle = { width: 103, height: 153 };
+      cardImageStyle = { width: 103, height: 128 };
+      break;
+  }
   return (
-    <MyWishListContainer>{JSON.stringify(filterData)}</MyWishListContainer>
+    <MyWishListContainer>
+      <Header selected={selected} setSelected={setSelected} />
+      <ContentContainer autoFillWidth={cardContainerStyle?.width}>
+        {filterData.map((item: MovieProp) => (
+          <MovieListCard
+            movie={item}
+            type={item.type}
+            cardContainerStyle={cardContainerStyle}
+            cardImageStyle={cardImageStyle}
+          />
+        ))}
+      </ContentContainer>
+    </MyWishListContainer>
   );
 }
