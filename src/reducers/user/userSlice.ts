@@ -37,7 +37,12 @@ export const user = createSlice({
 
     setUserWishList: (state, action) => {
       const data = state.userWishList;
-      data.push(action.payload);
+      const index = data.findIndex((i) => i.id === action.payload.id);
+      if (index !== -1) {
+        data.splice(index, 1);
+      } else {
+        data.push(action.payload);
+      }
       state.userWishList = data;
     },
   },

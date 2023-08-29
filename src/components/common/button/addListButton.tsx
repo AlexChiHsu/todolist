@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { useAppDispatch } from "../../../app/hooks";
@@ -53,7 +52,6 @@ interface IAddListButtonProp {
 }
 
 export default function AddListButton(props: IAddListButtonProp) {
-  const [isClick, setIsClick] = useState(false);
   const { item, type, wishListId } = props;
   const dispatch = useAppDispatch();
 
@@ -67,9 +65,7 @@ export default function AddListButton(props: IAddListButtonProp) {
         <ButtonGradientBg onClick={onClick}>加入片單</ButtonGradientBg>
       ) : (
         <ButtonWithoutBg>
-          <ButtonWithBlackBg onClick={() => setIsClick(!isClick)}>
-            移出片單
-          </ButtonWithBlackBg>
+          <ButtonWithBlackBg onClick={onClick}>移出片單</ButtonWithBlackBg>
         </ButtonWithoutBg>
       )}
     </>

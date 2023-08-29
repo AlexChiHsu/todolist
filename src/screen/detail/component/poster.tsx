@@ -5,7 +5,6 @@ import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
 import Text from "../../../components/common/text";
 import AddListButton from "../../../components/common/button/addListButton";
-import { useParams } from "react-router-dom";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -107,10 +106,15 @@ interface IPorsterProp {
 export default function Poster(props: IPorsterProp) {
   const { type } = props;
   const { detail, credits } = useAppSelector((state) => state.detail);
+  const wishList = useAppSelector((state) => state.user.userWishList);
   const data = detail;
-  const director = credits.crew.find(
-    (item: { job: string }) => item.job === "Director" ?? item.job === "Writer"
+  const director = credits?.crew?.find(
+    (item: any) => item.job === "Director" ?? item.job === "Writer"
   );
+
+  const wishListId =
+    wishList.find((i: { id: number }) => i.id === data?.id)?.id.toString() ??
+    "0";
 
   return (
     <PosterContainer>
@@ -126,7 +130,7 @@ export default function Poster(props: IPorsterProp) {
               ))}
           </DivContainer>
           <DivContainer>
-            <AddListButton item={detail} type={type} wishListId="" />
+            <AddListButton item={detail} type={type} wishListId={wishListId} />
           </DivContainer>
         </RightHeader>
         <DivContainer>
