@@ -8,19 +8,25 @@ import { useNavigate } from "react-router-dom";
 
 interface ILabelProp {
   setIsShowLabel: Function;
+  openLogin: boolean;
+  setOpenLogin: Function;
 }
 
-const LabelContainer = styled.div`
+const LabelContainer = styled.div<{ innerHeight?: any }>`
   height: 66;
   width: 103;
   ${tw`
     rounded-2xl
     p-2.5
-    flex
     absolute
     right-8
     top-16
   `}
+
+  @media (max-width: 720px) {
+    right: 17px;
+    top: ${({ innerHeight }) => innerHeight - 120}px;
+  }
 
   background-color: #161616;
 `;
@@ -29,20 +35,24 @@ export default function Label(props: ILabelProp) {
   const { setIsShowLabel } = props;
   const navigate = useNavigate();
   const onClick = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("logout!!!!");
-        navigate("/");
-        setIsShowLabel(false);
-      })
-      .catch((err) => console.log("logout error", err));
+    if (auth.currentUser === null) {
+      navigate("/login");
+    } else {
+      signOut(auth)
+        .then(() => {
+          console.log("logout!!!!");
+          navigate("/");
+        })
+        .catch((err) => console.log("logout error", err));
+    }
+    setIsShowLabel(false);
   };
   return (
-    <LabelContainer>
+    <LabelContainer innerHeight={window.innerHeight}>
       <Button
         isOpenBottomBar={false}
         onClick={onClick}
-        text="登出"
+        text={auth.currentUser === null ? "登入" : "登出"}
         css={{ border: "none" }}
       />
     </LabelContainer>

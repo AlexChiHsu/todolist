@@ -5,7 +5,6 @@ import Thumbnail from "./thumbnail";
 import Button from "../../common/button";
 import Label from "./label";
 import { buttonLists } from "../lists/buttonLists";
-import { auth } from "../../../config/firebase";
 
 const RightListContainer = styled.div`
   ${tw`
@@ -34,20 +33,21 @@ const ButtonItem = styled.li`
   `}
 `;
 
-interface RightListPro {
+interface RightListProp {
   isSelected: string;
   setIsSelected: Function;
+  openLogin: boolean;
+  setOpenLogin: Function;
 }
 
-export default function RightList(props: RightListPro) {
-  const { isSelected, setIsSelected } = props;
+export default function RightList(props: RightListProp) {
+  const { isSelected, setIsSelected, setOpenLogin, openLogin } = props;
   const [isShowLabel, setIsShowLabel] = useState(false);
 
   const clickThumbnail = (str: string) => {
-    if (auth.currentUser !== null) {
-      setIsShowLabel(true);
-      setIsSelected(str);
-    }
+    setIsShowLabel(true);
+    setIsSelected(str);
+    setOpenLogin(!openLogin);
   };
 
   const onClick = (str: string) => {
@@ -78,7 +78,13 @@ export default function RightList(props: RightListPro) {
           </ButtonItem>
         </ButtonListContainer>
       </RightListContainer>
-      {isShowLabel && <Label setIsShowLabel={setIsShowLabel} />}
+      {isShowLabel && (
+        <Label
+          setIsShowLabel={setIsShowLabel}
+          openLogin={openLogin}
+          setOpenLogin={setOpenLogin}
+        />
+      )}
     </>
   );
 }

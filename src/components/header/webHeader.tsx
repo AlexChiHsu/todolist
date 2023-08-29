@@ -33,15 +33,22 @@ const WebHeaderContainer = styled.div`
 interface WebHeaderProp {
   isSelected: string;
   setIsSelected: Function;
+  openLogin: boolean;
+  setOpenLogin: Function;
 }
 function WebHeader(props: WebHeaderProp) {
-  const { isSelected, setIsSelected } = props;
+  const { isSelected, setIsSelected, setOpenLogin, openLogin } = props;
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
     <WebHeaderContainer>
       <LogoWithText isSelected={isSelected} setIsSelected={setIsSelected} />
       {!isMobile && (
-        <RightList isSelected={isSelected} setIsSelected={setIsSelected} />
+        <RightList
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
+          openLogin={openLogin}
+          setOpenLogin={setOpenLogin}
+        />
       )}
     </WebHeaderContainer>
   );

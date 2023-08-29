@@ -25,6 +25,7 @@ export const LoadMoreContainer = styled.div`
     items-center
     justify-center
     pb-10
+    sm:pb-20
   `}
 `;
 

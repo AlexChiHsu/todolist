@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import tw from "twin.macro";
 
 export const BottomBarContainer = styled.div`
@@ -18,7 +18,7 @@ export const BottomBarContainer = styled.div`
   box-shadow: 0px 2px 8px 0px #0000007A;
 `;
 
-export const BottomBarItemButton = styled.button`
+export const BottomBarItemButton = styled.button<{ isSelected?: any }>`
   ${tw`
   flex
   flex-col
@@ -31,4 +31,10 @@ export const BottomBarItemButton = styled.button`
   pt-[7px]
   pb-[7px]
   `}
+
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      color: #c10171;
+    `}
 `;

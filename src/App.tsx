@@ -23,6 +23,7 @@ const AppContainer = styled.div`
 function App() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isSelected, setIsSelected] = useState("");
+  const [openLogin, setOpenLogin] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -47,9 +48,21 @@ function App() {
   }, [dispatch, isSelected, navigate]);
   return (
     <AppContainer>
-      <WebHeader isSelected={isSelected} setIsSelected={setIsSelected} />
+      <WebHeader
+        isSelected={isSelected}
+        setIsSelected={setIsSelected}
+        openLogin={openLogin}
+        setOpenLogin={setOpenLogin}
+      />
       <Outlet />
-      {isMobile && <BottomBar />}
+      {isMobile && (
+        <BottomBar
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
+          openLogin={openLogin}
+          setOpenLogin={setOpenLogin}
+        />
+      )}
     </AppContainer>
   );
 }

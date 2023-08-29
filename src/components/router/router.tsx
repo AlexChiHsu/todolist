@@ -8,7 +8,7 @@ import Test from "../../screen/test";
 import Movie from "../../screen/movieOrTv";
 import Theme from "../../screen/collection";
 import CollectionPage from "../../screen/collection/components/collectionPage";
-import Login from "../../screen/login";
+import { Login } from "../../screen/login";
 
 export const router = createHashRouter(
   [
