@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/w-movie/static/css/main.c9776f33.css",
-    "main.js": "/w-movie/static/js/main.b9efa05a.js",
+    "main.css": "/w-movie/static/css/main.2dc646ba.css",
+    "main.js": "/w-movie/static/js/main.5af13858.js",
     "static/js/787.9b0bf541.chunk.js": "/w-movie/static/js/787.9b0bf541.chunk.js",
     "static/media/netflix.svg": "/w-movie/static/media/netflix.3345d635a41b66b44b7e02c300f9ee15.svg",
     "static/media/appletv.svg": "/w-movie/static/media/appletv.5332e5f89b72b5359127ff7e76519b97.svg",
@@ -33,12 +33,12 @@
     "static/media/arrow-down.svg": "/w-movie/static/media/arrow-down.f97a5bb15e7a3bb129270172b8cfa053.svg",
     "static/media/chevron-up.svg": "/w-movie/static/media/chevron-up.a1eb858b6e5366f1bd5779a8e0ec1c44.svg",
     "static/media/plus.svg": "/w-movie/static/media/plus.d665e014bf5464e4af380767b2a51afd.svg",
-    "main.c9776f33.css.map": "/w-movie/static/css/main.c9776f33.css.map",
-    "main.b9efa05a.js.map": "/w-movie/static/js/main.b9efa05a.js.map",
+    "main.2dc646ba.css.map": "/w-movie/static/css/main.2dc646ba.css.map",
+    "main.5af13858.js.map": "/w-movie/static/js/main.5af13858.js.map",
     "787.9b0bf541.chunk.js.map": "/w-movie/static/js/787.9b0bf541.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c9776f33.css",
-    "static/js/main.b9efa05a.js"
+    "static/css/main.2dc646ba.css",
+    "static/js/main.5af13858.js"
   ]
 }
