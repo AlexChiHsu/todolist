@@ -23,6 +23,11 @@ const DetailContainer = styled.div`
     pl-[42px]
     overflow-auto
   `}
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;
 
 export default function Detail() {

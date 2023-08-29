@@ -10,6 +10,7 @@ import Text from "../../../components/common/text";
 import Icon from "../../../components/common/icons/icon";
 import CommentCard from "../../../components/common/card/commentCard";
 import { useAppSelector } from "../../../app/hooks";
+import { auth } from "../../../config/firebase";
 
 export default function Comment() {
   const comments = useAppSelector((state) => state.detail.comments);
@@ -56,27 +57,33 @@ export default function Comment() {
     <CommentContainer>
       <CommentHeaderContainer>
         <CommentButton>
-          <Text text={"我來評論"} index={0} />
-          {starts.map((item, index) => (
-            <StartsContainer
-              index={item}
-              onMouseOver={() => setSelected(item)}
-              onMouseLeave={() => setSelected(-1)}
-            >
-              <Icon
-                name={"star"}
-                width={20}
-                height={20}
-                fill={
-                  hightLight.length === 0
-                    ? "#686B72"
-                    : hightLight[item] === index
-                    ? hoverColor
-                    : "#686B72"
-                }
-              />
-            </StartsContainer>
-          ))}
+          {auth.currentUser === null ? (
+            <Text text={"請登入後評論"} index={0} />
+          ) : (
+            <>
+              <Text text={"我來評論"} index={0} />
+              {starts.map((item, index) => (
+                <StartsContainer
+                  index={item}
+                  onMouseOver={() => setSelected(item)}
+                  onMouseLeave={() => setSelected(-1)}
+                >
+                  <Icon
+                    name={"star"}
+                    width={20}
+                    height={20}
+                    fill={
+                      hightLight.length === 0
+                        ? "#686B72"
+                        : hightLight[item] === index
+                        ? hoverColor
+                        : "#686B72"
+                    }
+                  />
+                </StartsContainer>
+              ))}
+            </>
+          )}
         </CommentButton>
       </CommentHeaderContainer>
       <CardContainer>

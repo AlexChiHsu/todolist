@@ -45,7 +45,7 @@ export default function RightList(props: RightListProp) {
   const [isShowLabel, setIsShowLabel] = useState(false);
 
   const clickThumbnail = (str: string) => {
-    setIsShowLabel(true);
+    setIsShowLabel(!isShowLabel);
     setIsSelected(str);
     setOpenLogin(!openLogin);
   };

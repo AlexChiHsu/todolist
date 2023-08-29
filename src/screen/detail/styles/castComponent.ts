@@ -18,6 +18,11 @@ export const CastComponentContainer = styled.div`
     mb-3
     overflow-auto
   `}
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  overflow: auto;
 `;
 
 export const CastCardButton = styled.button`

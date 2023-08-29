@@ -81,7 +81,7 @@ export default function BottomBar(props: BottomBarProp) {
         <BottomBarItemButton
           onClick={() => {
             setIsSelected("user");
-            setIsShowLabel(true);
+            setIsShowLabel(!isShowLabel);
           }}
         >
           <Thumbnail />
