@@ -1,4 +1,9 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import movieListReducer from "../reducers/movieList/movieListSlice";
 import homeReducer from "../reducers/home/homeSlice";
 import tvListsReducer from "../reducers/tvList/tvLists";
@@ -14,16 +19,18 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2, // 檢視 'Merge Process' 部分的具體情況
 };
 
-const persistedReducer = persistReducer<any, any>(persistConfig, detailReducer);
+const reducer = combineReducers({
+  homePage: homeReducer,
+  movieList: movieListReducer,
+  tvLists: tvListsReducer,
+  detail: detailReducer,
+  user: userReducer,
+});
+
+const persistedReducer = persistReducer<any, any>(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer: {
-    homePage: homeReducer,
-    movieList: movieListReducer,
-    tvLists: tvListsReducer,
-    detail: persistedReducer,
-    user: userReducer,
-  },
+  reducer: persistedReducer,
 });
 
 export const persistor = persistStore(store);

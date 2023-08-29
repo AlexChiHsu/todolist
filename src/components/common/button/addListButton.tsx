@@ -49,11 +49,12 @@ const ButtonWithBlackBg = styled.button`
 interface IAddListButtonProp {
   item: MovieProp;
   type: string;
+  wishListId: string;
 }
 
 export default function AddListButton(props: IAddListButtonProp) {
   const [isClick, setIsClick] = useState(false);
-  const { item, type } = props;
+  const { item, type, wishListId } = props;
   const dispatch = useAppDispatch();
 
   const onClick = () => {
@@ -62,7 +63,7 @@ export default function AddListButton(props: IAddListButtonProp) {
 
   return (
     <>
-      {!isClick ? (
+      {wishListId === "0" ? (
         <ButtonGradientBg onClick={onClick}>加入片單</ButtonGradientBg>
       ) : (
         <ButtonWithoutBg>

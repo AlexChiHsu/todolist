@@ -45,6 +45,7 @@ export function CarouselCustomNavigation(props: IDataProp) {
   const movieTrending = useAppSelector(
     (state) => state.movieList.movieTrendingList
   );
+  const wishList = useAppSelector((state) => state.user.userWishList);
   const dispatch = useAppDispatch();
   const [type, setType] = useState("");
   useEffect(() => {
@@ -52,7 +53,7 @@ export function CarouselCustomNavigation(props: IDataProp) {
   }, [dispatch]);
 
   useEffect(() => {
-    const movie = movieTrending.results.filter((i) =>
+    const movie = movieTrending.results.filter((i: { id: number }) =>
       data.map((item) => item.id === i.id)
     );
     if (movie) {
@@ -61,6 +62,13 @@ export function CarouselCustomNavigation(props: IDataProp) {
       setType("tv");
     }
   }, [data, movieTrending.results]);
+
+  const render = (item: MovieProp, type: string) => {
+    const wishListId =
+      wishList.find((i: { id: number }) => i.id === item.id)?.id.toString() ??
+      "0";
+    return <CarouselCard item={item} type={type} wishListId={wishListId} />;
+  };
   return (
     <Carousel
       className="overflow-hidden whitespace-nowrap relative h-full w-full"
@@ -75,9 +83,7 @@ export function CarouselCustomNavigation(props: IDataProp) {
         </DotContainer>
       )}
     >
-      {data.map((item) => (
-        <CarouselCard item={item} type={type} />
-      ))}
+      {data.map((item) => render(item, type))}
     </Carousel>
   );
 }

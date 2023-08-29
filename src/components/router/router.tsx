@@ -9,6 +9,7 @@ import Movie from "../../screen/movieOrTv";
 import Theme from "../../screen/collection";
 import CollectionPage from "../../screen/collection/components/collectionPage";
 import { Login } from "../../screen/login";
+import MyWishList from "../../screen/myWishList";
 
 export const router = createHashRouter(
   [
@@ -48,6 +49,10 @@ export const router = createHashRouter(
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/myWishList",
+          element: <MyWishList />,
         },
       ],
     },

@@ -6,8 +6,9 @@ import BottomBar from "./components/header/components/bottomBar";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "./components/common/screen";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fetchGenreList } from "./actions/movieListActions";
+import { setUserWishList } from "./reducers/user/userSlice";
 
 const AppContainer = styled.div`
   ${tw`
@@ -24,8 +25,13 @@ function App() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isSelected, setIsSelected] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
+  const wishItem = useAppSelector((state) => state.user.userWishItem);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(setUserWishList(wishItem));
+  }, [dispatch, wishItem]);
 
   useEffect(() => {
     switch (isSelected) {
@@ -40,12 +46,16 @@ function App() {
       case "主題館":
         navigate("/collection");
         break;
+      case "我的片單":
+        navigate("/myWishList");
+        break;
       case "home":
         navigate("/");
         setIsSelected("");
         break;
     }
   }, [dispatch, isSelected, navigate]);
+
   return (
     <AppContainer>
       <WebHeader

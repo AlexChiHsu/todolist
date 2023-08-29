@@ -9,6 +9,7 @@ import AddListButton from "../../components/common/button/addListButton";
 interface CarouselCardProp {
   item: MovieProp;
   type: string;
+  wishListId: string;
 }
 
 const BackgroundImage = styled.div<{ path?: any }>`
@@ -111,7 +112,7 @@ const ButtonWithBlackBg = styled.button`
 
 export default function CarouselCard(props: CarouselCardProp) {
   const navigation = useNavigate();
-  const { item, type } = props;
+  const { item, type, wishListId } = props;
   const moreInfo = () => {
     navigation(`/detail/${type}/${item.id}`);
   };
@@ -124,7 +125,7 @@ export default function CarouselCard(props: CarouselCardProp) {
         <ButtonWithoutBg>
           <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
         </ButtonWithoutBg>
-        <AddListButton item={item} type={type} />
+        <AddListButton item={item} type={type} wishListId={wishListId} />
       </ButtonContainer>
     </BackgroundImage>
   );

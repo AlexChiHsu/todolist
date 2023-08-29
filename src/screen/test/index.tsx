@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
-import { FixedSizeList as Grid } from "react-window";
+
 export default function Test() {
   const arr = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -10,28 +10,17 @@ export default function Test() {
   ];
   const width = useRef<null | HTMLDivElement>(null);
 
-  const Cell = ({
-    columnIndex,
-    rowIndex,
-  }: {
-    columnIndex: number;
-    rowIndex: number;
-  }) => (
-    <Card>
-      row {rowIndex}, col {columnIndex}
-    </Card>
-  );
-
   const [bgSize, setBgSize] = useState(0);
 
   const handleSlide = (e: any) => {
     setBgSize(e.target.value);
   };
+
   return (
     <Container>
       <CardContainer ref={width}>
         {arr.map((item) => (
-          <Card>
+          <Card onClick={() => {}}>
             {width?.current?.offsetWidth} &nbsp;
             {arr.length}&nbsp;
           </Card>
@@ -47,18 +36,6 @@ export default function Test() {
             type={"range"}
           />
         </SliderContainer>
-        {/* <Grid
-          columnCount={7}
-          columnWidth={182}
-          height={220}
-          rowCount={1000}
-          rowHeight={220}
-          width={300}
-          itemData={arr}
-          itemSize={50}
-        >
-          {Cell}
-        </Grid> */}
       </CardContainer>
     </Container>
   );

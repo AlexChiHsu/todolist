@@ -28,7 +28,10 @@ export default function HomeHeader() {
   const dispatch = useAppDispatch();
   const allData = trendingList.results
     .slice()
-    .sort((a, b) => b.vote_average - a.vote_average)
+    .sort(
+      (a: { vote_average: number }, b: { vote_average: number }) =>
+        b.vote_average - a.vote_average
+    )
     .slice(0, 10);
 
   useEffect(() => {

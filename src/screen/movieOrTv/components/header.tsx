@@ -1,4 +1,9 @@
-import { useState } from "react";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  useState,
+} from "react";
 import {
   GridContainer,
   HeaderContainer,
@@ -38,18 +43,29 @@ export default function Header(props: HeaderProp) {
         >
           全部
         </TypeButton>
-        {grens.genres.map((item) => (
-          <TypeButton
-            focus={selectedType === item.name}
-            onClick={() => setSelectedType(item.name)}
-          >
-            {item.name === "Sci-Fi & Fantasy"
-              ? "科幻奇幻"
-              : item.name === "War & Politics"
-              ? "戰爭"
-              : item.name}
-          </TypeButton>
-        ))}
+        {grens.genres.map(
+          (item: {
+            name:
+              | string
+              | number
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | null
+              | undefined;
+          }) => (
+            <TypeButton
+              focus={selectedType === item.name}
+              onClick={() => setSelectedType(item.name)}
+            >
+              {item.name === "Sci-Fi & Fantasy"
+                ? "科幻奇幻"
+                : item.name === "War & Politics"
+                ? "戰爭"
+                : item.name}
+            </TypeButton>
+          )
+        )}
       </GridContainer>
       <DivContainer>
         <Text text={"年份"} index={0} />

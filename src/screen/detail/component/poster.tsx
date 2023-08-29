@@ -126,7 +126,7 @@ export default function Poster(props: IPorsterProp) {
               ))}
           </DivContainer>
           <DivContainer>
-            <AddListButton item={detail} type={type} />
+            <AddListButton item={detail} type={type} wishListId="" />
           </DivContainer>
         </RightHeader>
         <DivContainer>

@@ -3,7 +3,7 @@ import tw from "twin.macro";
 import MovieList from "../movieList";
 import { lists } from "../../components/common/list";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchPopularMovieList } from "../../actions/movieListActions";
 import {
   fetchPopularTVListUs,
@@ -14,7 +14,6 @@ import {
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
 import { useNavigate } from "react-router-dom";
-import { MovieProp } from "../../types/movieList";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -52,19 +51,10 @@ const TestButton = styled.button`
 function HomeScreen() {
   const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
-  const wishItem = useAppSelector((state) => state.user.userWishItem);
   const { usData, zhData, krData, aniData } = useAppSelector(
     (state) => state.tvLists
   );
   const navigation = useNavigate();
-
-  const [wishListData, setWishListData] = useState<MovieProp[]>([wishItem]);
-
-  useEffect(() => {
-    const sectionData = wishListData;
-    sectionData.push(wishItem);
-    setWishListData(sectionData);
-  }, [wishItem, wishListData]);
 
   useEffect(() => {
     dispatch(
@@ -108,8 +98,7 @@ function HomeScreen() {
               isDetail={false}
             />
           ))}
-          {/* <TestButton onClick={() => navigation(`/test`)} /> */}
-          <TestButton onClick={() => navigation(`/login`)} />
+          <TestButton onClick={() => navigation(`/test`)} />
           <Footer />
         </MovieContainer>
       </HomeContainer>

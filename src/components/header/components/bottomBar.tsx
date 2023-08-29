@@ -70,7 +70,13 @@ export default function BottomBar(props: BottomBarProp) {
           />
           主題館
         </BottomBarItemButton>
-        <BottomBarItemButton isSelected={isSelected === "我的片單"}>
+        <BottomBarItemButton
+          onClick={() => {
+            navigate("/myWishList");
+            setIsSelected("我的片單");
+          }}
+          isSelected={isSelected === "我的片單"}
+        >
           <Icon
             name={"favorite"}
             width={24}
