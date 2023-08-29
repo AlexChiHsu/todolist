@@ -3,7 +3,7 @@ import tw from "twin.macro";
 import MovieList from "../movieList";
 import { lists } from "../../components/common/list";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchPopularMovieList } from "../../actions/movieListActions";
 import {
   fetchPopularTVListUs,
@@ -14,7 +14,7 @@ import {
 import Footer from "./footer";
 import HomeHeader from "./homeHeader";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../config/firebase";
+import { MovieProp } from "../../types/movieList";
 
 const HomeContainer = styled.div`
   ${tw`
@@ -52,11 +52,23 @@ const TestButton = styled.button`
 function HomeScreen() {
   const dispatch = useAppDispatch();
   const movieData = useAppSelector((state) => state.movieList.data);
+  const wishList = useAppSelector((state) => state.user.userWishList);
   const { usData, zhData, krData, aniData } = useAppSelector(
     (state) => state.tvLists
   );
   const navigation = useNavigate();
 
+  const [wishListData, setWishListData] = useState<MovieProp[]>([wishList]);
+
+  useEffect(() => {
+    const sectionData = wishListData;
+    sectionData.push(wishList);
+    setWishListData(sectionData);
+  }, [wishList, wishListData]);
+
+  console.log(
+    JSON.stringify(wishListData.map((item) => item.name ?? item.title))
+  );
   useEffect(() => {
     dispatch(
       fetchPopularTVListUs({ language: "en", country: "US", page: "1" })
@@ -85,8 +97,6 @@ function HomeScreen() {
         return movieData;
     }
   };
-
-  console.log(auth);
 
   return (
     <>

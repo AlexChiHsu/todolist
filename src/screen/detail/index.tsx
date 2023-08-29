@@ -47,7 +47,7 @@ export default function Detail() {
 
   return (
     <DetailContainer>
-      <Poster />
+      <Poster type={type + ""} />
       <CastComponent />
       <Comment />
       <MovieList

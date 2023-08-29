@@ -46,7 +46,6 @@ export default function Contents(props: ContentProp) {
     setIsLoading(true);
   };
 
-  console.log(country);
   useEffect(() => {
     if (isLoading) {
       setPage((v) => v + 1);

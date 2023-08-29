@@ -1,5 +1,3 @@
-import { MovieProp } from "./movieList";
-
 export interface UserProp {
   id: string;
   userName: string;
@@ -10,12 +8,6 @@ export interface UserPasswordProp {
   id: string;
   userId: string;
   password: string;
-}
-
-export interface UserWishListProp {
-  id: string;
-  userId: string;
-  wishList: [MovieProp];
 }
 
 export interface UserDramaCommentsProp {

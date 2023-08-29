@@ -126,7 +126,7 @@ export default function CarouselCard(props: CarouselCardProp) {
         <ButtonWithoutBg>
           <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
         </ButtonWithoutBg>
-        <AddListButton />
+        <AddListButton item={item} type={type} />
       </ButtonContainer>
     </BackgroundImage>
   );

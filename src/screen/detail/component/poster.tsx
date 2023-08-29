@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../app/hooks";
 import LabelButton from "./labelButton";
 import Text from "../../../components/common/text";
 import AddListButton from "../../../components/common/button/addListButton";
+import { useParams } from "react-router-dom";
 
 const PosterContainer = styled.div`
   ${tw`
@@ -99,7 +100,12 @@ const Rated = styled.h2`
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
 
-export default function Poster() {
+interface IPorsterProp {
+  type: string;
+}
+
+export default function Poster(props: IPorsterProp) {
+  const { type } = props;
   const { detail, credits } = useAppSelector((state) => state.detail);
   const data = detail;
   const director = credits.crew.find(
@@ -120,7 +126,7 @@ export default function Poster() {
               ))}
           </DivContainer>
           <DivContainer>
-            <AddListButton />
+            <AddListButton item={detail} type={type} />
           </DivContainer>
         </RightHeader>
         <DivContainer>

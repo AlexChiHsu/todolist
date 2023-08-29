@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
+import { useAppDispatch } from "../../../app/hooks";
+import { MovieProp } from "../../../types/movieList";
+import { setUserWishList } from "../../../reducers/user/userSlice";
 
 const ButtonGradientBg = styled.button`
   ${tw`
@@ -43,14 +46,27 @@ const ButtonWithBlackBg = styled.button`
   background-image: linear-gradient(0deg, #161616, #161616);
 `;
 
-export default function AddListButton() {
+interface IAddListButtonProp {
+  item: MovieProp;
+  type: string;
+}
+
+export default function AddListButton(props: IAddListButtonProp) {
   const [isClick, setIsClick] = useState(false);
+  const { item, type } = props;
+  // const wishList = useAppSelector((state) => state.user.userWishList);
+  const dispatch = useAppDispatch();
+  const [data, setData] = useState<[{ id: string }]>();
+
+  const onClick = () => {
+    dispatch(setUserWishList(item));
+  };
+
+  // console.log(JSON.stringify(data));
   return (
     <>
-      {isClick ? (
-        <ButtonGradientBg onClick={() => setIsClick(!isClick)}>
-          加入片單
-        </ButtonGradientBg>
+      {!isClick ? (
+        <ButtonGradientBg onClick={onClick}>加入片單</ButtonGradientBg>
       ) : (
         <ButtonWithoutBg>
           <ButtonWithBlackBg onClick={() => setIsClick(!isClick)}>

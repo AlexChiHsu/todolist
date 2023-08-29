@@ -3,6 +3,7 @@ import movieListReducer from "../reducers/movieList/movieListSlice";
 import homeReducer from "../reducers/home/homeSlice";
 import tvListsReducer from "../reducers/tvList/tvLists";
 import detailReducer from "../reducers/detail/detail";
+import userReducer from "../reducers/user/userSlice";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { persistReducer, persistStore } from "redux-persist";
@@ -21,6 +22,7 @@ export const store = configureStore({
     movieList: movieListReducer,
     tvLists: tvListsReducer,
     detail: persistedReducer,
+    user: userReducer,
   },
 });
 
