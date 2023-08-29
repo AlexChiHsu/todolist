@@ -39,6 +39,7 @@ export const initialUserWishList = {
   media_type: "",
   department: "",
   job: "",
+  type: "",
 } as MovieProp;
 
 export const initialUserDramaComments = {

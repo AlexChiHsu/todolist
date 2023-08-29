@@ -4,9 +4,7 @@ import tw from "twin.macro";
 import { MovieProp } from "../../types/movieList";
 import { imageURL } from "../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AddListButton from "../../components/common/button/addListButton";
-import { fetchTrendingList } from "../../actions/movieListActions";
 
 interface CarouselCardProp {
   item: MovieProp;

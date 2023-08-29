@@ -26,6 +26,7 @@ export const initialList = {
       media_type: "",
       department: "",
       job: "",
+      type: "",
     },
   ],
   total_pages: 0,

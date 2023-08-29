@@ -28,6 +28,7 @@ export interface MovieProp {
   media_type: string;
   department: string;
   job: string;
+  type: string;
 }
 
 export interface DetailProp {

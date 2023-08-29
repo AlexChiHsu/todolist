@@ -54,15 +54,12 @@ interface IAddListButtonProp {
 export default function AddListButton(props: IAddListButtonProp) {
   const [isClick, setIsClick] = useState(false);
   const { item, type } = props;
-  // const wishList = useAppSelector((state) => state.user.userWishList);
   const dispatch = useAppDispatch();
-  const [data, setData] = useState<[{ id: string }]>();
 
   const onClick = () => {
-    dispatch(setUserWishItem(item));
+    dispatch(setUserWishItem({ ...item, type: type }));
   };
 
-  // console.log(JSON.stringify(data));
   return (
     <>
       {!isClick ? (
