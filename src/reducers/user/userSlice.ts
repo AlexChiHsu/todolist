@@ -3,7 +3,7 @@ import { UserPasswordProp, UserProp } from "../../types/user";
 import {
   initialUser,
   initialUserPassword,
-  initialUserWishList,
+  initialUserWishItem,
 } from "./initialUser";
 import { MovieProp } from "../../types/movieList";
 
@@ -11,14 +11,12 @@ export interface IUserState {
   user: UserProp;
   userPassword: UserPasswordProp;
   userWishItem: MovieProp;
-  userWishList: MovieProp[];
 }
 
 const initialState: IUserState = {
   user: initialUser,
   userPassword: initialUserPassword,
-  userWishItem: initialUserWishList,
-  userWishList: [initialUserWishList],
+  userWishItem: initialUserWishItem,
 };
 
 export const user = createSlice({
@@ -34,17 +32,10 @@ export const user = createSlice({
     setUserWishItem: (state, action) => {
       state.userWishItem = action.payload;
     },
-    setUserWishList: (state, action) => {
-      state.userWishList = action.payload;
-    },
   },
 });
 
-export const {
-  setUserAccount,
-  setUserPassword,
-  setUserWishItem,
-  setUserWishList,
-} = user.actions;
+export const { setUserAccount, setUserPassword, setUserWishItem } =
+  user.actions;
 
 export default user.reducer;

@@ -66,7 +66,6 @@ function HomeScreen() {
     setWishListData(sectionData);
   }, [wishItem, wishListData]);
 
-  console.log(JSON.stringify(wishItem));
   useEffect(() => {
     dispatch(
       fetchPopularTVListUs({ language: "en", country: "US", page: "1" })
