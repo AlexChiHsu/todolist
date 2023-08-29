@@ -7,7 +7,14 @@ export const MyWishListContainer = styled.div`
     h-auto
     overflow-y-scroll
     overflow-x-hidden
+    pl-10
+    pr-10
+    mt-6
   `}
+  @media (max-width: 720px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 
   &::-webkit-scrollbar {
     display: none;
