@@ -1,8 +1,8 @@
-import React, { KeyboardEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../common/icons/icon";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { fetchSearchList } from "../../actions/searchActions";
 import { useNavigate } from "react-router-dom";
 

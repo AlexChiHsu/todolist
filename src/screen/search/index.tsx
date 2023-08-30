@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useAppSelector } from "../../app/hooks";
-import { ContentContainer, SearchListContainer } from "./styles/searchStyles";
+import {
+  ContentContainer,
+  SearchFail,
+  SearchListContainer,
+} from "./styles/searchStyles";
 import Header from "./components/header";
 import MovieListCard from "../../components/common/card/movieListCard";
 import { imagePath, useDevice } from "../../components/helper/media";
@@ -40,28 +44,36 @@ export default function Search() {
     <SearchListContainer>
       <Header selected={selected} setSelected={setSelected} />
       <ContentContainer autoFillWidth={cardContainerStyle?.width}>
-        {selected === "片名" ? (
-          <>
-            {allData.map((item: MovieProp) => (
-              <MovieListCard
-                movie={item}
-                type={item.type}
-                cardContainerStyle={cardContainerStyle}
-                cardImageStyle={cardImageStyle}
-              />
-            ))}
-          </>
+        {allData.length === 0 ? (
+          <SearchFail>找不到符合的結果。</SearchFail>
         ) : (
           <>
-            {searchPersonList.results.map((item: PersonResultsProp) => (
-              <CastCard
-                path={
-                  item.profile_path !== null ? imagePath(item.profile_path) : ""
-                }
-                name={item.name}
-                id={item.id}
-              />
-            ))}
+            {selected === "片名" ? (
+              <>
+                {allData.map((item: MovieProp) => (
+                  <MovieListCard
+                    movie={item}
+                    type={item.type}
+                    cardContainerStyle={cardContainerStyle}
+                    cardImageStyle={cardImageStyle}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                {searchPersonList.results.map((item: PersonResultsProp) => (
+                  <CastCard
+                    path={
+                      item.profile_path !== null
+                        ? imagePath(item.profile_path)
+                        : ""
+                    }
+                    name={item.name}
+                    id={item.id}
+                  />
+                ))}
+              </>
+            )}
           </>
         )}
       </ContentContainer>

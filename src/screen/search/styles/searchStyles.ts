@@ -83,3 +83,8 @@ export const ContentContainer = styled.div<{ autoFillWidth?: any }>`
     padding-right: 16px;
   }
 `;
+
+export const SearchFail = styled.h3`
+  ${tw`
+  `}
+`;
