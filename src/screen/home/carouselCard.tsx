@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { MovieProp } from "../../types/movieList";
 import { imageURL } from "../../api/tmdb/commonURL";
 import { useNavigate } from "react-router-dom";
 import AddListButton from "../../components/common/button/addListButton";
+import { useDevice } from "../../components/helper/media";
 
 interface CarouselCardProp {
   item: MovieProp;
@@ -25,6 +26,10 @@ const BackgroundImage = styled.div<{ path?: any }>`
 		justify-end
 		pb-[235px]
 	`}
+  @media (max-width: 720px) {
+    padding-left: 38px;
+    padding-right: 31px;
+  }
   ${({ path }) =>
     css`
       background-image: radial-gradient(
@@ -45,6 +50,10 @@ const Rated = styled.h2`
 		bg-clip-text
 		text-transparent
 	`}
+  @media (max-width: 720px) {
+    font-size: 33px;
+    font-weight: 700;
+  }
   font-family: "Roboto";
   background-image: linear-gradient(91.47deg, #c10171 3.73%, #5c00f2 100%);
 `;
@@ -58,6 +67,13 @@ const MovieTitle = styled.h1`
 		truncate
 		leading-[90px]
 	`}
+
+  @media (max-width: 720px) {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 36px;
+    margin-bottom: 7px;
+  }
 `;
 
 const MovieDescription = styled.h5`
@@ -116,15 +132,21 @@ export default function CarouselCard(props: CarouselCardProp) {
   const moreInfo = () => {
     navigation(`/detail/${type}/${item.id}`);
   };
+  const device = useDevice(window.innerWidth);
+  console.log(device);
   return (
     <BackgroundImage path={imageURL + item.backdrop_path}>
       <Rated>{Math.round(item.vote_average * 10) / 10}</Rated>
       <MovieTitle>{item?.title ?? item?.name}</MovieTitle>
-      <MovieDescription>{item.overview}</MovieDescription>
+      {device !== "mobile" && (
+        <MovieDescription>{item.overview}</MovieDescription>
+      )}
       <ButtonContainer>
-        <ButtonWithoutBg>
-          <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
-        </ButtonWithoutBg>
+        {device !== "mobile" && (
+          <ButtonWithoutBg>
+            <ButtonWithBlackBg onClick={moreInfo}>更多資訊</ButtonWithBlackBg>
+          </ButtonWithoutBg>
+        )}
         <AddListButton item={item} type={type} wishListId={wishListId} />
       </ButtonContainer>
     </BackgroundImage>

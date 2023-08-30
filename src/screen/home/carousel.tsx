@@ -23,6 +23,11 @@ const DotContainer = styled.div`
 		bottom-[120px]
 		right-[40px]
 	`}
+  @media (max-width: 720px) {
+    padding-right: 0px;
+    right: 31px;
+    height: 3px;
+  }
 `;
 const Dot = styled.button<{ isOnPage?: boolean }>`
   ${tw`
@@ -33,11 +38,18 @@ const Dot = styled.button<{ isOnPage?: boolean }>`
 		mr-2
 	`}
 
+  @media (max-width: 720px) {
+    width: 19px;
+    margin-right: 4px;
+  }
   ${({ isOnPage }) =>
     !isOnPage &&
     css`
       width: 15px;
       background: #ffffff5e;
+      @media (max-width: 720px) {
+        width: 8px;
+      }
     `}
 `;
 export function CarouselCustomNavigation(props: IDataProp) {

@@ -4,6 +4,7 @@ import tw from "twin.macro";
 import Icon from "../../components/common/icons/icon";
 import { MovieListProp } from "../../types/movieList";
 import { useEffect, useRef, useState } from "react";
+import { useDevice } from "../../components/helper/media";
 
 const MovieListContainer = styled.div<{
   isShowBg?: boolean;
@@ -126,6 +127,7 @@ export default function MovieList(props: IMovieListProp) {
   const scroll = useRef<null | HTMLDivElement>(null);
   const [left, setLeft] = useState(0);
   const [endOfLeft, setEndOfLeft] = useState(scroll.current?.scrollLeft);
+  const device = useDevice(window.innerWidth);
 
   const onRightClick = () => {
     if (scroll.current?.offsetWidth !== undefined) {
@@ -166,9 +168,11 @@ export default function MovieList(props: IMovieListProp) {
     <MovieListContainer isShowBg={isShowBg} isDetail={isDetail}>
       <ListTitle>{listTitle}</ListTitle>
       <ListContainer>
-        <IconBackground onClick={onLeftClick}>
-          <Icon name={"arrowLeft"} fill="white" width={48} height={27} />
-        </IconBackground>
+        {device === "pc" && (
+          <IconBackground onClick={onLeftClick}>
+            <Icon name={"arrowLeft"} fill="white" width={48} height={27} />
+          </IconBackground>
+        )}
         <ScrollContainer>
           <ScrollList ref={scroll}>
             {data?.results.map((item) => (
@@ -179,9 +183,11 @@ export default function MovieList(props: IMovieListProp) {
             ))}
           </ScrollList>
         </ScrollContainer>
-        <IconBackground onClick={onRightClick}>
-          <Icon name={"arrowRight"} fill="white" width={48} height={27} />
-        </IconBackground>
+        {device === "pc" && (
+          <IconBackground onClick={onRightClick}>
+            <Icon name={"arrowRight"} fill="white" width={48} height={27} />
+          </IconBackground>
+        )}
       </ListContainer>
     </MovieListContainer>
   );
