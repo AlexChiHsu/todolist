@@ -10,6 +10,7 @@ import Theme from "../../screen/collection";
 import CollectionPage from "../../screen/collection/components/collectionPage";
 import { Login } from "../../screen/login";
 import MyWishList from "../../screen/myWishList";
+import Search from "../../screen/search";
 
 export const router = createHashRouter(
   [
@@ -53,6 +54,10 @@ export const router = createHashRouter(
         {
           path: "/myWishList",
           element: <MyWishList />,
+        },
+        {
+          path: "/search",
+          element: <Search />,
         },
       ],
     },

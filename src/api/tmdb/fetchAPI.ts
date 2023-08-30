@@ -17,6 +17,8 @@ const URL = {
   GET_TREND_LIST: "/trending/{TYPE}/day?language=zh-TW&page={PAGE}",
   GET_COLLECTION_MOVIE_LIST:
     "/discover/movie?include_adult=false&include_video=false&language=zh-TW&page={PAGE}&region=TW&sort_by=popularity.desc&with_genres={GENRES}",
+  GET_SEARCH_LIST:
+    "/search/{TYPE}?query={WORD}&include_adult=false&language=zh-TW&page={PAGE}",
 };
 const options = {
   method: "GET",
@@ -143,6 +145,18 @@ export function getCollectionMovieList(page: string, genres: string) {
       "{GENRES}",
       genres
     );
+  return {
+    fullURL,
+    options,
+  };
+}
+
+export function getSearchList(page: string, type: string, word: string) {
+  const fullURL =
+    apiURL +
+    URL.GET_SEARCH_LIST.replace("{PAGE}", page)
+      .replace("{TYPE}", type)
+      .replace("{WORD}", word);
   return {
     fullURL,
     options,

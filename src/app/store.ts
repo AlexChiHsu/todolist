@@ -9,6 +9,7 @@ import homeReducer from "../reducers/home/homeSlice";
 import tvListsReducer from "../reducers/tvList/tvLists";
 import detailReducer from "../reducers/detail/detail";
 import userReducer from "../reducers/user/userSlice";
+import searchReducer from "../reducers/search/searchSlice";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { persistReducer, persistStore } from "redux-persist";
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   tvLists: tvListsReducer,
   detail: detailReducer,
   user: userReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer<any, any>(persistConfig, reducer);

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { KeyboardEventHandler, useState } from "react";
 import { styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../common/icons/icon";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchSearchList } from "../../actions/searchActions";
+import { useNavigate } from "react-router-dom";
 
 const SearchBoxContainer = styled.div`
   ${tw`
@@ -52,6 +55,20 @@ const SearchBoxInput = styled.input`
   border-color: rgba(104, 107, 114, 1);
 `;
 export default function SearchBox() {
+  const [searchWord, setSearchWord] = useState("");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      dispatch(
+        fetchSearchList({ page: "1", type: "person", word: searchWord })
+      );
+      dispatch(fetchSearchList({ page: "1", type: "movie", word: searchWord }));
+      dispatch(fetchSearchList({ page: "1", type: "tv", word: searchWord }));
+      navigate("/search");
+    }
+  };
   return (
     <SearchBoxContainer>
       <Box>
@@ -64,7 +81,11 @@ export default function SearchBox() {
             fill="#686B72"
           />
         </IconContainer>
-        <SearchBoxInput placeholder="搜尋劇名 / 演員"></SearchBoxInput>
+        <SearchBoxInput
+          onChange={(e) => setSearchWord(e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e)}
+          placeholder="搜尋劇名 / 演員"
+        ></SearchBoxInput>
       </Box>
     </SearchBoxContainer>
   );

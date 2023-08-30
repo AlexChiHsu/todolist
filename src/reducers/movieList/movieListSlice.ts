@@ -34,17 +34,7 @@ const initialState: IMovieListState = {
 export const movieList = createSlice({
   name: "movie list",
   initialState,
-  reducers: {
-    setAllData: (state, action) => {
-      const array = state.allData;
-      const index = array.push(action.payload);
-      if (index < 10) {
-        if (index !== -1) {
-          state.allData = array;
-        }
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPopularMovieList.fulfilled, (state, action) => {
       state.data = action.payload;
@@ -69,6 +59,6 @@ export const movieList = createSlice({
     });
   },
 });
-export const { setAllData } = movieList.actions;
+export const {} = movieList.actions;
 
 export default movieList.reducer;
