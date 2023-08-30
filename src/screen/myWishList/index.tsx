@@ -39,17 +39,28 @@ export default function MyWishList() {
       cardImageStyle = { width: 103, height: 128 };
       break;
   }
+
+  const cardItem = (item: MovieProp) => (
+    <MovieListCard
+      movie={item}
+      type={item.type}
+      cardContainerStyle={cardContainerStyle}
+      cardImageStyle={cardImageStyle}
+    />
+  );
+
   return (
     <MyWishListContainer>
       <Header selected={selected} setSelected={setSelected} />
       <ContentContainer autoFillWidth={cardContainerStyle?.width}>
         {filterData.map((item: MovieProp) => (
-          <MovieListCard
-            movie={item}
-            type={item.type}
-            cardContainerStyle={cardContainerStyle}
-            cardImageStyle={cardImageStyle}
-          />
+          <>
+            {selected === "全部" && cardItem(item)}
+
+            {selected === "電影" && item.type === "movie" && cardItem(item)}
+
+            {selected === "戲劇" && item.type === "tv" && cardItem(item)}
+          </>
         ))}
       </ContentContainer>
     </MyWishListContainer>
