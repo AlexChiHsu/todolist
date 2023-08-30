@@ -133,7 +133,7 @@ export default function CarouselCard(props: CarouselCardProp) {
     navigation(`/detail/${type}/${item.id}`);
   };
   const device = useDevice(window.innerWidth);
-  console.log(device);
+
   return (
     <BackgroundImage path={imageURL + item.backdrop_path}>
       <Rated>{Math.round(item.vote_average * 10) / 10}</Rated>

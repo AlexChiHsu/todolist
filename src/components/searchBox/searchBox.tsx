@@ -54,8 +54,13 @@ const SearchBoxInput = styled.input`
   `}
   border-color: rgba(104, 107, 114, 1);
 `;
-export default function SearchBox() {
-  const [searchWord, setSearchWord] = useState("");
+
+interface ISearchBoxProp {
+  setSearchWord: Function;
+  searchWord: string;
+}
+export default function SearchBox(props: ISearchBoxProp) {
+  const { setSearchWord, searchWord } = props;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -82,9 +87,11 @@ export default function SearchBox() {
           />
         </IconContainer>
         <SearchBoxInput
+          onBlur={() => setSearchWord("")}
           onChange={(e) => setSearchWord(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e)}
           placeholder="搜尋劇名 / 演員"
+          value={searchWord}
         ></SearchBoxInput>
       </Box>
     </SearchBoxContainer>

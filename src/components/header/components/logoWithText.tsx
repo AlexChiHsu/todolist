@@ -49,9 +49,11 @@ const LogoButton = styled.button`
 interface LogoWithTextProp {
   isSelected: string;
   setIsSelected: Function;
+  searchWord: string;
+  setSearchWord: Function;
 }
 export default function LogoWithText(props: LogoWithTextProp) {
-  const { isSelected, setIsSelected } = props;
+  const { isSelected, setIsSelected, searchWord, setSearchWord } = props;
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
     <LogoWithTextContainer>
@@ -59,7 +61,7 @@ export default function LogoWithText(props: LogoWithTextProp) {
         <Icon name={"logo"} width={isMobile ? 30 : 38} />
         <BrandText>WoW ! Movie</BrandText>
       </LogoButton>
-      <SearchBox />
+      <SearchBox setSearchWord={setSearchWord} searchWord={searchWord} />
     </LogoWithTextContainer>
   );
 }

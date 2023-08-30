@@ -25,6 +25,7 @@ function App() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   const [isSelected, setIsSelected] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
   const wishItem = useAppSelector((state) => state.user.userWishItem);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function App() {
       case "home":
         navigate("/");
         setIsSelected("");
+        setSearchWord("");
         break;
     }
   }, [dispatch, isSelected, navigate]);
@@ -63,6 +65,8 @@ function App() {
         setIsSelected={setIsSelected}
         openLogin={openLogin}
         setOpenLogin={setOpenLogin}
+        searchWord={searchWord}
+        setSearchWord={setSearchWord}
       />
       <Outlet />
       {isMobile && (

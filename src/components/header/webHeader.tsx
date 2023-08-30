@@ -35,13 +35,27 @@ interface WebHeaderProp {
   setIsSelected: Function;
   openLogin: boolean;
   setOpenLogin: Function;
+  searchWord: string;
+  setSearchWord: Function;
 }
 function WebHeader(props: WebHeaderProp) {
-  const { isSelected, setIsSelected, setOpenLogin, openLogin } = props;
+  const {
+    isSelected,
+    setIsSelected,
+    setOpenLogin,
+    openLogin,
+    searchWord,
+    setSearchWord,
+  } = props;
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
   return (
     <WebHeaderContainer>
-      <LogoWithText isSelected={isSelected} setIsSelected={setIsSelected} />
+      <LogoWithText
+        isSelected={isSelected}
+        setIsSelected={setIsSelected}
+        searchWord={searchWord}
+        setSearchWord={setSearchWord}
+      />
       {!isMobile && (
         <RightList
           isSelected={isSelected}
