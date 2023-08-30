@@ -3,7 +3,7 @@ import { css, styled } from "styled-components";
 import tw from "twin.macro";
 import Icon from "../../components/common/icons/icon";
 import { MovieListProp } from "../../types/movieList";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const MovieListContainer = styled.div<{
   isShowBg?: boolean;
@@ -123,21 +123,44 @@ interface IMovieListProp {
 
 export default function MovieList(props: IMovieListProp) {
   const { listTitle, data, isShowBg, isDetail } = props;
-
   const scroll = useRef<null | HTMLDivElement>(null);
-  let left = 0;
+  const [left, setLeft] = useState(0);
+  const [endOfLeft, setEndOfLeft] = useState(scroll.current?.scrollLeft);
 
   const onRightClick = () => {
-    scroll?.current?.scrollTo({
-      left: (left += 500),
-    });
+    if (scroll.current?.offsetWidth !== undefined) {
+      let value = scroll.current?.offsetWidth;
+      setLeft((v) => v + value);
+    }
   };
 
   const onLeftClick = () => {
-    scroll?.current?.scrollTo({
-      left: (left -= 500),
-    });
+    if (scroll.current?.offsetWidth !== undefined) {
+      let value = scroll.current?.offsetWidth;
+      setLeft((v) => v - value);
+    }
   };
+
+  useEffect(() => {
+    scroll?.current?.scrollTo({
+      left: left,
+    });
+    if (left < 0) {
+      setLeft(0);
+    }
+
+    if (
+      scroll.current?.scrollWidth !== undefined &&
+      scroll.current?.scrollWidth - scroll.current?.clientWidth <=
+        scroll.current.scrollLeft + 1
+    ) {
+      setEndOfLeft(scroll.current.scrollLeft);
+    }
+
+    if (endOfLeft !== 0 && endOfLeft !== undefined && left > endOfLeft) {
+      setLeft(endOfLeft);
+    }
+  }, [left, endOfLeft]);
 
   return (
     <MovieListContainer isShowBg={isShowBg} isDetail={isDetail}>
