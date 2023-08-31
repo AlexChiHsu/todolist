@@ -18,7 +18,13 @@ export function Login() {
   const navigate = useNavigate();
 
   const login = async () => {
-    const result = await signInWithPopup(auth, provide);
+    const result = await signInWithPopup(auth, provide)
+      .then((result) => {
+        console.log("Logged In", result);
+      })
+      .catch((error) => {
+        console.log("Caught error Popup closed");
+      });
     console.log(result);
     navigate("/");
   };
