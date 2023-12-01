@@ -1,22 +1,22 @@
 export const lists = [
   {
-    title: "熱門電影",
+    title: "movie",
     language: "zh-TW",
   },
   {
-    title: "熱門韓劇",
+    title: "kr",
     language: "zh",
   },
   {
-    title: "熱門美劇",
+    title: "us",
     language: "en",
   },
   {
-    title: "熱門陸劇、台劇",
+    title: "ch",
     language: "zh",
   },
   {
-    title: "熱門動畫",
+    title: "ani",
     language: "zh-TW",
   },
 ];

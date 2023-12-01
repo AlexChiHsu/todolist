@@ -126,6 +126,7 @@ export default function MovieList(props: IMovieListProp) {
   const { listTitle, data, isShowBg, isDetail } = props;
   const scroll = useRef<null | HTMLDivElement>(null);
   const [left, setLeft] = useState(0);
+  const [title, setTitle] = useState("");
   const [endOfLeft, setEndOfLeft] = useState(scroll.current?.scrollLeft);
   const device = useDevice(window.innerWidth);
 
@@ -162,11 +163,29 @@ export default function MovieList(props: IMovieListProp) {
     if (endOfLeft !== 0 && endOfLeft !== undefined && left > endOfLeft) {
       setLeft(endOfLeft);
     }
+
+    switch (listTitle) {
+      case "movie":
+        setTitle("熱門電影");
+        break;
+      case "kr":
+        setTitle("熱門韓劇");
+        break;
+      case "us":
+        setTitle("熱門美劇");
+        break;
+      case "ch":
+        setTitle("熱門陸劇、台劇");
+        break;
+      case "ani":
+        setTitle("熱門動畫");
+        break;
+    }
   }, [left, endOfLeft]);
 
   return (
     <MovieListContainer isShowBg={isShowBg} isDetail={isDetail}>
-      <ListTitle>{listTitle}</ListTitle>
+      <ListTitle>{title}</ListTitle>
       <ListContainer>
         {device === "pc" && (
           <IconBackground onClick={onLeftClick}>
@@ -178,7 +197,7 @@ export default function MovieList(props: IMovieListProp) {
             {data?.results.map((item) => (
               <MovieListCard
                 movie={item}
-                type={listTitle === "熱門電影" ? "movie" : "tv"}
+                type={title === "movie" ? "movie" : "tv"}
               />
             ))}
           </ScrollList>

@@ -36,18 +36,18 @@ function App() {
 
   useEffect(() => {
     switch (isSelected) {
-      case "電影":
+      case "movie":
         navigate("/movie");
         dispatch(fetchGenreList("movie"));
         break;
-      case "影集":
+      case "tv":
         navigate("/tv");
         dispatch(fetchGenreList("tv"));
         break;
-      case "主題館":
+      case "collection":
         navigate("/collection");
         break;
-      case "我的片單":
+      case "myWishList":
         navigate("/myWishList");
         break;
       case "home":

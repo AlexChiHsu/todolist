@@ -72,13 +72,13 @@ function HomeScreen() {
 
   const data = (title: string) => {
     switch (title) {
-      case "熱門美劇":
+      case "us":
         return usData;
-      case "熱門韓劇":
+      case "kr":
         return krData;
-      case "熱門陸劇、台劇":
+      case "ch":
         return zhData;
-      case "熱門動畫":
+      case "ani":
         return aniData;
       default:
         return movieData;

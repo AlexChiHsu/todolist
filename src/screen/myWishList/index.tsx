@@ -10,7 +10,7 @@ import MovieListCard from "../../components/common/card/movieListCard";
 import { useDevice } from "../../components/helper/media";
 
 export default function MyWishList() {
-  const [selected, setSelected] = useState("全部");
+  const [selected, setSelected] = useState("all");
   const data = useAppSelector((state) => state.user.userWishList);
   const filterData = data.filter(
     (item: MovieProp, index: number) =>
@@ -55,11 +55,11 @@ export default function MyWishList() {
       <ContentContainer autoFillWidth={cardContainerStyle?.width}>
         {filterData.map((item: MovieProp) => (
           <>
-            {selected === "全部" && cardItem(item)}
+            {selected === "all" && cardItem(item)}
 
-            {selected === "電影" && item.type === "movie" && cardItem(item)}
+            {selected === "movie" && item.type === "movie" && cardItem(item)}
 
-            {selected === "戲劇" && item.type === "tv" && cardItem(item)}
+            {selected === "tv" && item.type === "tv" && cardItem(item)}
           </>
         ))}
       </ContentContainer>

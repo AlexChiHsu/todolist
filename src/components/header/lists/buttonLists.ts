@@ -1,14 +1,14 @@
 export const buttonLists = [
   {
-    title: "電影",
+    title: "movie",
   },
   {
-    title: "影集",
+    title: "tv",
   },
   {
-    title: "主題館",
+    title: "collection",
   },
   {
-    title: "我的片單",
+    title: "myWishList",
   },
 ];

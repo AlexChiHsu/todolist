@@ -54,6 +54,19 @@ export default function RightList(props: RightListProp) {
     setIsSelected(str);
     setIsShowLabel(false);
   };
+
+  const getTitle = (buttonTitle: string) => {
+    switch (buttonTitle) {
+      case "movie":
+        return "電影";
+      case "collection":
+        return "主題館";
+      case "tv":
+        return "戲劇";
+      case "myWishList":
+        return "我的片單";
+    }
+  };
   return (
     <>
       <RightListContainer>
@@ -64,7 +77,7 @@ export default function RightList(props: RightListProp) {
                 isOpenBottomBar={true}
                 isFill={false}
                 onClick={() => onClick(item.title)}
-                text={item.title}
+                text={getTitle(item.title)}
                 isSelected={isSelected === item.title}
               />
             ))}

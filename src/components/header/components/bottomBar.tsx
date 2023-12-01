@@ -27,60 +27,60 @@ export default function BottomBar(props: BottomBarProp) {
     <>
       <BottomBarContainer>
         <BottomBarItemButton
-          isSelected={isSelected === "電影"}
+          isSelected={isSelected === "movie"}
           onClick={() => {
             navigate("/movie");
             dispatch(fetchGenreList("movie"));
-            setIsSelected("電影");
+            setIsSelected("movie");
           }}
         >
           <Icon
             name={"movie"}
             width={24}
-            fill={isSelected === "電影" ? "#C10171" : "#686B72"}
+            fill={isSelected === "movie" ? "#C10171" : "#686B72"}
           />
           電影
         </BottomBarItemButton>
         <BottomBarItemButton
-          isSelected={isSelected === "影集"}
+          isSelected={isSelected === "tv"}
           onClick={() => {
             navigate("/tv");
             dispatch(fetchGenreList("tv"));
-            setIsSelected("影集");
+            setIsSelected("tv");
           }}
         >
           <Icon
             name={"tv"}
             width={24}
-            fill={isSelected === "影集" ? "#C10171" : "#686B72"}
+            fill={isSelected === "tv" ? "#C10171" : "#686B72"}
           />
           影集
         </BottomBarItemButton>
         <BottomBarItemButton
-          isSelected={isSelected === "主題館"}
+          isSelected={isSelected === "collection"}
           onClick={() => {
             navigate("/collection");
-            setIsSelected("主題館");
+            setIsSelected("collection");
           }}
         >
           <Icon
             name={"collection"}
             width={24}
-            fill={isSelected === "主題館" ? "#C10171" : "#686B72"}
+            fill={isSelected === "collection" ? "#C10171" : "#686B72"}
           />
           主題館
         </BottomBarItemButton>
         <BottomBarItemButton
           onClick={() => {
             navigate("/myWishList");
-            setIsSelected("我的片單");
+            setIsSelected("myWishList");
           }}
-          isSelected={isSelected === "我的片單"}
+          isSelected={isSelected === "myWishList"}
         >
           <Icon
             name={"favorite"}
             width={24}
-            fill={isSelected === "我的片單" ? "#C10171" : "#686B72"}
+            fill={isSelected === "myWishList" ? "#C10171" : "#686B72"}
           />
           我的片單
         </BottomBarItemButton>
